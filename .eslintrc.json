@@ -1,0 +1,85 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      // Allows for the parsing of JSX
+      "jsx": true
+    }
+  },
+  "ignorePatterns": [
+    "node_modules/**/*",
+    "scripts/*.js",
+    "config-overrides.js",
+    "src/**/generated/**/*",
+    "node_modules",
+    "coverage",
+    "build",
+    "dist",
+    ".DS_Store",
+    ".env.local",
+    ".env.development.local",
+    ".env.test.local",
+    ".env.production.local",
+    ".idea/",
+    ".vscode/",
+    "package-lock.json",
+    "yarn.lock"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "react/react-in-jsx-scope": "off", // React 17+
+    "react/prop-types": "off",
+    "object-shorthand": ["error", "always"],
+    "@typescript-eslint/member-delimiter-style": [
+      "error",
+      {
+        "multiline": {
+          "delimiter": "semi", // 'none' or 'semi' or 'comma'
+          "requireLast": true
+        },
+        "singleline": {
+          "delimiter": "semi", // 'semi' or 'comma'
+          "requireLast": false
+        }
+      }
+    ],
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "ethers",
+            "message": "Please import from '@ethersproject/module' directly to support tree-shaking."
+          },
+          {
+            "name": "styled-components",
+            "message": "Please import from styled-components/macro."
+          }
+        ],
+        "patterns": [
+          {
+            "group": ["**/dist"],
+            "message": "Do not import from dist/ - this is an implementation detail, and breaks tree-shaking."
+          },
+          {
+            "group": ["!styled-components/macro"]
+          }
+        ]
+      }
+    ]
+  }
+}
