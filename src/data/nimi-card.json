@@ -1,0 +1,35 @@
+{
+  "displayName": "Nimi",
+  "displayImageUrl": "https://pbs.twimg.com/profile_images/1522297478565044225/x_huMFHD_400x400.jpg",
+  "addresses": [
+    {
+      "address": "0x4e675ceB415fC41700fb821fF3B43cE5C8B9a83B",
+      "blockchain": "ethereum"
+    }
+  ],
+  "description": "Host your personal page on your ENS domain! Nimi 0.1.alpha live on Ethereum Mainnet :) #devconnect #ETHAmsterdam",
+  "ensAddress": "0x4e675ceB415fC41700fb821fF3B43cE5C8B9a83B",
+  "ensName": "nimi.eth",
+  "links": [
+    {
+      "label": "Twitter",
+      "type": "twitter",
+      "url": "https://twitter.com/0xNimi"
+    },
+    {
+      "label": "Github",
+      "type": "github",
+      "url": "https://github.com/nimi-app"
+    },
+    {
+      "label": "Twitter",
+      "type": "twitter",
+      "url": "https://twitter.com/0xNimi"
+    },
+    {
+      "label": "Telegram",
+      "type": "instagram",
+      "url": "https://instagram.com/0xNimi"
+    }
+  ]
+}
