@@ -1,6 +1,20 @@
 # Nimi Card App
 
-Nimi Card App codebase. Exports a React component that takes an
+Nimi Card App codebase. Exports a React component that takes an `Nimi` profile, and generates a Nimi Card. 
+
+**Nimi Schema**
+
+```typescript
+export interface Nimi {
+  displayName: string;
+  displayImageUrl: string;
+  description: string;
+  ensAddress: string;
+  ensName: string;
+  links: NimiLink[];
+  addresses: NimiBlockchainAddress[];
+}
+```
 
 # Development
 
