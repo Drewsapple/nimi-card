@@ -42,7 +42,7 @@ interface NimiBlockchainAddress {
 /**
  * Base defintion of a Nimi Card
  */
-export interface NimiCard {
+export interface Nimi {
   displayName: string;
   displayImageUrl: string;
   description: string;

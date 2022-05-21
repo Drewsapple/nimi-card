@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { blockchainList, NimiLink, linkTypeList, NimiCard } from './types';
+import { blockchainList, NimiLink, linkTypeList, Nimi } from './types';
 
 /**
  * Display name validator
@@ -61,7 +61,7 @@ export const links = Joi.array().items(link);
 /**
  * NimiCard schema definition
  */
-export const nimiCard = Joi.object<NimiCard>({
+export const nimiCard = Joi.object<Nimi>({
   displayName,
   ensAddress,
   ensName,

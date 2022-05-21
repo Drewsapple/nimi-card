@@ -1,9 +1,8 @@
-import { Flex } from 'rebass';
 import styled from 'styled-components/macro';
 
 const NIMI_CARDS_WIDTH = 500;
 
-export const StyledWrapper = styled(Flex)`
+export const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,7 +12,6 @@ export const StyledWrapper = styled(Flex)`
   max-width: ${NIMI_CARDS_WIDTH}px;
 
   /** Mobile default style */
-  overflow: hidden;
   background: #fff;
 
   /** Add blur on mobile */
@@ -27,6 +25,10 @@ export const StyledWrapper = styled(Flex)`
     /** border-radius: 25px;
    box-shadow: 0px 5px 24px rgba(138, 143, 234, 0.12); **/
   }
+`;
+
+export const StyledInnerWrapper = styled.div`
+  padding: 0px 20px;
 `;
 
 export const ProfilePictureContainer = styled.div`
@@ -61,7 +63,7 @@ export const ProfilePicture = styled.div<{
 `
 );
 
-export const DisplayName = styled.div`
+export const DisplayNameWrapper = styled.div`
   display: flex;
   font-family: 'Baloo 2';
   font-style: normal;
@@ -73,6 +75,8 @@ export const DisplayName = styled.div`
   text-align: center;
   color: #000000;
 `;
+
+export const DisplayName = styled.div``;
 
 export const AddressBar = styled.div`
   margin-top: 26px;

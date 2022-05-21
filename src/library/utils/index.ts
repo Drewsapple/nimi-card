@@ -1,4 +1,3 @@
-import { getAddress } from '@ethersproject/address';
 import { Blockchain } from '../components/NimiCard/types';
 
 const BLOCKCHAIN_ADDRESS_EXPLORER_URL: Record<Blockchain, string> = {
@@ -28,9 +27,5 @@ export function getExplorerAddressLink(blockchain: Blockchain, address: string):
  * @throws If the address is not checksummed
  */
 export function shortenAddress(address: string, charsBefore = 4, charsAfter = 4): string {
-  const parsed = getAddress(address);
-  if (!parsed) {
-    throw Error(`Invalid 'address' parameter '${address}'.`);
-  }
-  return `${parsed.substring(0, charsBefore + 2)}...${parsed.substring(42 - charsAfter)}`;
+  return `${address.substring(0, charsBefore + 2)}...${address.substring(42 - charsAfter)}`;
 }
