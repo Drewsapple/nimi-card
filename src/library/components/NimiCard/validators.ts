@@ -1,7 +1,6 @@
 import * as Yup from 'yup';
-import { NimiCard } from './NimiCard';
 
-import { blockchainList, NimiLink, linkTypeList, Nimi } from './types';
+import { blockchainList, NimiLink, linkTypeList, Nimi, NimiBlockchainAddress } from './types';
 
 /**
  * Display name validator
@@ -27,12 +26,12 @@ export const description = Yup.string().max(300, 'Maximum 300 characters').optio
 /**
  * Profile image url
  */
-export const imageUrl = Yup.string().url('Invalid URL').optional();
+export const displayImageUrl = Yup.string().url('Invalid URL').optional();
 
 /**
  * A single Blockchain address
  */
-export const blockchainWallet = Yup.object({
+export const blockchainWallet: Yup.SchemaOf<NimiBlockchainAddress> = Yup.object({
   blockchain: Yup.string().oneOf(blockchainList).required(),
   address: Yup.string().required(),
 });
@@ -45,7 +44,7 @@ export const blockchainAddresses = Yup.array().of(blockchainWallet);
 /**
  * A single link definition and validator
  */
-export const link = Yup.object({
+export const link: Yup.SchemaOf<NimiLink> = Yup.object({
   type: Yup.string().oneOf(linkTypeList).required(),
   label: Yup.string().optional(),
   url: Yup.string().url().required(),
@@ -59,11 +58,12 @@ export const links = Yup.array().of(link);
 /**
  * NimiCard schema definition
  */
-export const nimiCard = Yup.object().shape({
+export const nimiCard: Yup.SchemaOf<Nimi> = Yup.object().shape({
   displayName,
   ensAddress,
-  ensName,
+  displayImageUrl,
   description,
+  ensName,
   links,
   addresses: blockchainAddresses,
 });
