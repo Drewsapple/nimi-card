@@ -1,67 +1,66 @@
-import Joi from 'joi';
+import * as Yup from 'yup';
+import arrayToRegEx from '../../../utils/arrayToRegEx';
+import { NimiCard } from './NimiCard';
+
 import { blockchainList, NimiLink, linkTypeList, Nimi } from './types';
 
 /**
  * Display name validator
  */
-export const displayName = Joi.string().min(3).max(30).required();
+export const displayName = Yup.string().min(3, 'Minimum 3 characters').max(30, 'Maximum 30 characters').required();
 
 /**
  * ENS name
  */
-export const ensName = Joi.string().min(3).max(255).required();
+export const ensName = Yup.string().min(3, 'Minimum 3 characters').max(255, 'Maximum 255 characters').required();
 
 /**
  * The Ethereum address that holds the ENS
  */
-export const ensAddress = Joi.string().length(42).required();
+export const ensAddress = Yup.string().length(42).required();
 
 /**
  *
  * @todo - add support for Markdown
  */
-export const description = Joi.string().allow('').max(300).optional();
+export const description = Yup.string().max(300, 'Maximum 300 characters').optional();
 
 /**
  * Profile image url
  */
-export const imageUrl = Joi.string().uri().optional();
+export const imageUrl = Yup.string().url('Invalid URL').optional();
 
 /**
  * A single Blockchain address
  */
-export const blockchainWallet = Joi.object({
-  blockchain: Joi.string()
-    .valid(...blockchainList)
-    .required(),
-  address: Joi.string().required(),
+export const blockchainWallet = Yup.object({
+  blockchain: Yup.string().matches(arrayToRegEx(blockchainList)).required(),
+  address: Yup.string().required(),
 });
 
 /**
  * List of Blockchain addresses
  */
-export const blockchainAddresses = Joi.array().items(blockchainWallet);
+export const blockchainAddresses = Yup.array().of(blockchainWallet);
 
 /**
  * A single link definition and validator
  */
-export const link = Joi.object<NimiLink>({
-  type: Joi.string()
-    .valid(...linkTypeList)
-    .required(),
-  label: Joi.string().optional(),
-  url: Joi.string().uri().required(),
+export const link = Yup.object({
+  type: Yup.string().matches(arrayToRegEx(linkTypeList)).required(),
+  label: Yup.string().optional(),
+  url: Yup.string().url().required(),
 });
 
 /**
  *
  */
-export const links = Joi.array().items(link);
+export const links = Yup.array().of(link);
 
 /**
  * NimiCard schema definition
  */
-export const nimiCard = Joi.object<Nimi>({
+export const nimiCard = Yup.object().shape({
   displayName,
   ensAddress,
   ensName,
