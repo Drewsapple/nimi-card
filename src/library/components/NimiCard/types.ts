@@ -10,7 +10,7 @@ export const linkTypeList = [
   'youtube',
   'email',
   'discord',
-] as const;
+];
 
 /**
  * Generated type of linkTypeList
@@ -27,7 +27,7 @@ export interface NimiLink {
  * List of supported networks
  * Order matters
  */
-export const blockchainList = ['ethereum', 'bitcoin', 'polygon', 'bnb-chain', 'dogecoin'] as const;
+export const blockchainList = ['ethereum', 'bitcoin', 'polygon', 'bnb-chain', 'dogecoin'];
 
 /**
  * Generated type of blockchainList

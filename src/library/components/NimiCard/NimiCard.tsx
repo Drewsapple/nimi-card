@@ -27,11 +27,11 @@ interface NimiCardProps {
 }
 
 export function NimiCard({ nimi }: NimiCardProps) {
-  const { value: validatedNimi } = nimiCard.validate(nimi);
+  const validateNimi = nimiCard.validate(nimi);
 
   const { t } = useTranslation();
 
-  const { displayName, displayImageUrl, addresses, description, ensName, links } = validatedNimi as Nimi;
+  const { displayName, displayImageUrl, addresses, description, ensName, links } = validateNimi;
 
   return (
     <StyledWrapper>

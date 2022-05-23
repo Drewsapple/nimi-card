@@ -1,5 +1,4 @@
 import * as Yup from 'yup';
-import arrayToRegEx from '../../../utils/arrayToRegEx';
 import { NimiCard } from './NimiCard';
 
 import { blockchainList, NimiLink, linkTypeList, Nimi } from './types';
@@ -34,7 +33,7 @@ export const imageUrl = Yup.string().url('Invalid URL').optional();
  * A single Blockchain address
  */
 export const blockchainWallet = Yup.object({
-  blockchain: Yup.string().matches(arrayToRegEx(blockchainList)).required(),
+  blockchain: Yup.string().oneOf(blockchainList).required(),
   address: Yup.string().required(),
 });
 
@@ -47,7 +46,7 @@ export const blockchainAddresses = Yup.array().of(blockchainWallet);
  * A single link definition and validator
  */
 export const link = Yup.object({
-  type: Yup.string().matches(arrayToRegEx(linkTypeList)).required(),
+  type: Yup.string().oneOf(linkTypeList).required(),
   label: Yup.string().optional(),
   url: Yup.string().url().required(),
 });
