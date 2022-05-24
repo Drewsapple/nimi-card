@@ -32,7 +32,7 @@ export const displayImageUrl = Yup.string().url('Invalid URL').optional();
  * A single Blockchain address
  */
 export const blockchainWallet: Yup.SchemaOf<NimiBlockchainAddress> = Yup.object({
-  blockchain: Yup.string().oneOf(blockchainList).required(),
+  blockchain: Yup.mixed().oneOf(Array.from(blockchainList)).required(),
   address: Yup.string().required(),
 });
 
@@ -45,7 +45,7 @@ export const blockchainAddresses = Yup.array().of(blockchainWallet);
  * A single link definition and validator
  */
 export const link: Yup.SchemaOf<NimiLink> = Yup.object({
-  type: Yup.string().oneOf(linkTypeList).required(),
+  type: Yup.mixed().oneOf(Array.from(linkTypeList)).required(),
   label: Yup.string().optional(),
   url: Yup.string().url().required(),
 });
