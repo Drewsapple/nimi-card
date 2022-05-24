@@ -45,7 +45,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
           <div>{ensName}</div>
         </AddressBar>
         <DescriptionWrapper>{description}</DescriptionWrapper>
-        {links && (
+        {links && links.length > 0 && (
           <Section>
             <SectionTitle>{t('socials')}</SectionTitle>
             <SectionItemContainerGrid>
@@ -63,7 +63,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
             </SectionItemContainerGrid>
           </Section>
         )}
-        {addresses && (
+        {addresses && addresses.length > 0 && (
           <Section>
             <SectionTitle>{t('addresses')}</SectionTitle>
             <SectionItemContainer>
