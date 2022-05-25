@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": false,
   "dependencies": {
-    "joi": "^17.6.0"
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "GENERATE_SOURCEMAP=false react-app-rewired start",

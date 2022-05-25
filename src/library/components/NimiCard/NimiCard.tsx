@@ -27,11 +27,11 @@ interface NimiCardProps {
 }
 
 export function NimiCard({ nimi }: NimiCardProps) {
-  const { value: validatedNimi } = nimiCard.validate(nimi);
+  const validateNimi = nimiCard.validateSync(nimi);
 
   const { t } = useTranslation();
 
-  const { displayName, displayImageUrl, addresses, description, ensName, links } = validatedNimi as Nimi;
+  const { displayName, displayImageUrl, addresses, description, ensName, links } = validateNimi;
 
   return (
     <StyledWrapper>
@@ -45,7 +45,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
           <div>{ensName}</div>
         </AddressBar>
         <DescriptionWrapper>{description}</DescriptionWrapper>
-        {links.length > 0 && (
+        {links && links.length > 0 && (
           <Section>
             <SectionTitle>{t('socials')}</SectionTitle>
             <SectionItemContainerGrid>
@@ -63,7 +63,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
             </SectionItemContainerGrid>
           </Section>
         )}
-        {addresses.length > 0 && (
+        {addresses && addresses.length > 0 && (
           <Section>
             <SectionTitle>{t('addresses')}</SectionTitle>
             <SectionItemContainer>

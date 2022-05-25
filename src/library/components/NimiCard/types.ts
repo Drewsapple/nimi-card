@@ -19,7 +19,7 @@ export type NimiLinkType = typeof linkTypeList[number];
 
 export interface NimiLink {
   type: NimiLinkType;
-  label: string;
+  label?: string;
   url: string;
 }
 
@@ -34,7 +34,7 @@ export const blockchainList = ['ethereum', 'bitcoin', 'polygon', 'bnb-chain', 'd
  */
 export type Blockchain = typeof blockchainList[number];
 
-interface NimiBlockchainAddress {
+export interface NimiBlockchainAddress {
   address: string;
   blockchain: Blockchain;
 }
@@ -44,9 +44,9 @@ interface NimiBlockchainAddress {
  */
 export interface Nimi {
   displayName: string;
-  displayImageUrl: string;
-  description: string;
   ensAddress: string;
+  displayImageUrl?: string;
+  description?: string;
   ensName: string;
   links: NimiLink[];
   addresses: NimiBlockchainAddress[];

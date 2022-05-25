@@ -48,7 +48,7 @@ export const PicBackgroundTop = styled.div`
 `;
 
 export const ProfilePicture = styled.div<{
-  image: string;
+  image?: string;
 }>(
   ({ image = 'https://pbs.twimg.com/profile_images/1466765692754083849/xltEmb3d_400x400.jpg' }) => `
   background-image: url(${image});
