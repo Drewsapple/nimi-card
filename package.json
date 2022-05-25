@@ -6,8 +6,8 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "GENERATE_SOURCEMAP=false react-app-rewired start",
-    "build": "GENERATE_SOURCEMAP=false react-app-rewired build",
+    "start": "GENERATE_SOURCEMAP=false react-scripts start",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-app-rewired test --passWithNoTests",
     "eject": "react-scripts eject",
     "lint": "eslint \"./src/**/*.{ts,tsx,js}\"",
@@ -62,7 +62,7 @@
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.0.0",
     "react-i18next": "^11.16.7",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^4.0.3",
     "rollup": "^2.74.1",
     "rollup-plugin-dts": "^4.2.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
