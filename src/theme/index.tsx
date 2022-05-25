@@ -4,7 +4,7 @@ import {
   createGlobalStyle,
   css,
   DefaultTheme,
-} from 'styled-components/macro';
+} from 'styled-components';
 import { Colors } from './styled';
 import backgroundImageUrl from '../assets/images/nimi-header-background.png';
 
