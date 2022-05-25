@@ -6,6 +6,7 @@ import {
   DefaultTheme,
 } from 'styled-components/macro';
 import { Colors } from './styled';
+import backgroundImageUrl from '../assets/images/nimi-header-background.png';
 
 export const MEDIA_WIDTHS = {
   fromExtraSmall: 500,
@@ -167,7 +168,7 @@ body, html, #root {
 }
 
 body {
-  background-image: url("${require('../assets/images/nimi-header-background.png')}");
+  background-image: url("${backgroundImageUrl}");
   background-position: center;
   background-size: cover;
 }
