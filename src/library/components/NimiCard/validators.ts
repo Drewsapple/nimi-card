@@ -47,7 +47,7 @@ export const blockchainAddresses = Yup.array().of(blockchainWallet);
 export const link: Yup.SchemaOf<NimiLink> = Yup.object({
   type: Yup.mixed().oneOf(Array.from(linkTypeList)).required(),
   label: Yup.string().optional(),
-  url: Yup.string().url().required(),
+  url: Yup.string().required(),
 });
 
 /**

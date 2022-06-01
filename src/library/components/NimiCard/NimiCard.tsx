@@ -19,8 +19,12 @@ import {
   ProfilePictureContainer,
   Section,
   SectionTitle,
+  EnsName,
+  Divider,
+  StyledExternalLink,
 } from './styled';
 import { getExplorerAddressLink, shortenAddress } from '../../utils';
+import { socialImagesMapping } from '../../../contstants';
 
 interface NimiCardProps {
   nimi: Nimi;
@@ -31,8 +35,8 @@ export function NimiCard({ nimi }: NimiCardProps) {
 
   const { t } = useTranslation();
 
-  const { displayName, displayImageUrl, addresses, description, ensName, links } = validateNimi;
-
+  const { ensAddress, displayName, displayImageUrl, addresses, description, ensName, links } = validateNimi;
+  console.log(links);
   return (
     <StyledWrapper>
       <StyledInnerWrapper>
@@ -42,9 +46,14 @@ export function NimiCard({ nimi }: NimiCardProps) {
         </ProfilePictureContainer>
         <DisplayName>{displayName}</DisplayName>
         <AddressBar>
-          <div>{ensName}</div>
+          <EnsName>{ensName}</EnsName>
+          <Divider />
+          <StyledExternalLink color="shadow1" href={getExplorerAddressLink('ethereum', ensAddress)}>
+            {shortenAddress(ensAddress, 2, 4)}
+          </StyledExternalLink>
         </AddressBar>
         <DescriptionWrapper>{description}</DescriptionWrapper>
+
         {links && links.length > 0 && (
           <Section>
             <SectionTitle>{t('socials')}</SectionTitle>
@@ -57,6 +66,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
                   title={label}
                   key={`${type}-${url}`}
                 >
+                  <img src={socialImagesMapping[type]} />
                   {label}
                 </SectionItemLink>
               ))}

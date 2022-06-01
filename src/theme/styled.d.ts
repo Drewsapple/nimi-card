@@ -26,6 +26,7 @@ export interface Colors {
 
   modalBG: Color;
   advancedBG: Color;
+  shadow1: Color;
 
   //blues
   primary1: Color;

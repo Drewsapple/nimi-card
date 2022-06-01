@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ExternalLink } from '../../../theme';
 
 const NIMI_CARDS_WIDTH = 500;
 
@@ -34,7 +35,6 @@ export const StyledInnerWrapper = styled.div`
 export const ProfilePictureContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 325px;
   width: 100%;
   align-items: center;
 `;
@@ -76,20 +76,40 @@ export const DisplayNameWrapper = styled.div`
   color: #000000;
 `;
 
-export const DisplayName = styled.div``;
-
-export const AddressBar = styled.div`
-  margin-top: 26px;
-  font-family: 'Baloo 2';
+export const DisplayName = styled.div`
   font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
+  font-weight: 500;
+  font-size: 31.818px;
   line-height: 100%;
-  /* identical to box height, or 22px */
-
+  justify-content: center;
+  margin-top: 20px;
   display: flex;
   align-items: center;
-  text-align: center;
+  color: #000000;
+`;
+export const EnsName = styled.div`
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+`;
+export const Divider = styled.div`
+  height: 18px;
+  width: 1.5px;
+  background-color: #000000;
+`;
+export const AddressBar = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 24px;
+`;
+export const StyledExternalLink = styled(ExternalLink)`
+  font-weight: 400;
+  font-size: 17.8976px;
+  line-height: 100%;
 `;
 
 export const VerticalSeparator = styled.div`
@@ -102,9 +122,14 @@ export const VerticalSeparator = styled.div`
 `;
 
 export const DescriptionWrapper = styled.div`
-  font: inherit;
-  font-size: 15px;
-  margin: 25px 37px;
+  font-size: 14px;
+  color: #000000;
+  overflow-wrap: break-word;
+  margin: 19px;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: left;
 `;
 
 export const Section = styled.section`
