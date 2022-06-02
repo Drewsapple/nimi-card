@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ExternalLink } from '../../../theme';
 import { ReactComponent as NimiBig } from '../../../assets/images/nimi-big.svg';
 
-const NIMI_CARDS_WIDTH = 570;
+const NIMI_CARDS_WIDTH = 500;
 
 export const StyledWrapper = styled.div`
   display: flex;
