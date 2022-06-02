@@ -14,22 +14,22 @@
     {
       "label": "Twitter",
       "type": "twitter",
-      "url": "sdsdsd"
+      "url": "0xNimi"
     },
     {
       "label": "Github",
       "type": "github",
-      "url": "https://github.com/nimi-app"
-    },
-    {
-      "label": "Twitter",
-      "type": "twitter",
-      "url": "https://twitter.com/0xNimi"
+      "url": "nimi-app"
     },
     {
       "label": "Telegram",
       "type": "instagram",
-      "url": "https://instagram.com/0xNimi"
+      "url": "0xNimi"
+    },
+    {
+      "label": "Website",
+      "type": "website",
+      "url": "https://nimi.eth.limo"
     }
   ]
 }

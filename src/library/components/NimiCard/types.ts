@@ -8,6 +8,7 @@ export const linkTypeList = [
   'facebook',
   'instagram',
   'youtube',
+  'website',
   'email',
   'discord',
 ] as const;

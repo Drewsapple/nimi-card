@@ -1,15 +1,18 @@
 import styled from 'styled-components';
 import { ExternalLink } from '../../../theme';
+import { ReactComponent as NimiBig } from '../../../assets/images/nimi-big.svg';
 
-const NIMI_CARDS_WIDTH = 500;
+const NIMI_CARDS_WIDTH = 570;
 
 export const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
+  justify-content: space-between;
 
   /** Spacing and padding */
-  width: 100%;
+
   max-width: ${NIMI_CARDS_WIDTH}px;
 
   /** Mobile default style */
@@ -30,6 +33,7 @@ export const StyledWrapper = styled.div`
 
 export const StyledInnerWrapper = styled.div`
   padding: 0px 20px;
+  margin-top: 215px;
 `;
 
 export const ProfilePictureContainer = styled.div`
@@ -42,9 +46,18 @@ export const ProfilePictureContainer = styled.div`
 export const PicBackgroundTop = styled.div`
   background: linear-gradient(111.35deg, #4368ea -25.85%, #c490dd 73.38%);
   opacity: 0.8;
+  position: absolute;
   border-radius: 0px 0px 200px 200px;
   height: 188px;
   width: 100%;
+  @media (min-width: ${NIMI_CARDS_WIDTH}px) {
+    width: 70vw;
+  }
+`;
+export const StyledNimiBig = styled(NimiBig)`
+  margin-top: 15px;
+  position: absolute;
+  z-index: 1;
 `;
 
 export const ProfilePicture = styled.div<{
@@ -82,7 +95,7 @@ export const DisplayName = styled.div`
   font-size: 31.818px;
   line-height: 100%;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 33px;
   display: flex;
   align-items: center;
   color: #000000;
@@ -158,25 +171,19 @@ export const SectionItemContainer = styled.div`
 `;
 
 export const SectionItemContainerGrid = styled.div`
+  display: grid;
+  grid-row-gap: 27px;
   @media (min-width: ${NIMI_CARDS_WIDTH}px) {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(1, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    grid-column-gap: 32px;
   }
-`;
-
-export const SectionItem = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 20px;
 `;
 
 export const SectionItemLink = styled.a`
   display: flex;
   flex-direction: row;
-  margin-bottom: 20px;
+  gap: 8px;
   font-size: 17px;
   font-weight: 400;
   color: rgba(47, 128, 237, 1);
@@ -187,5 +194,6 @@ export const Footer = styled.footer`
   border-radius: 200px 200px 0px 0px;
   opacity: 0.8;
   width: 100%;
+
   height: 75px;
 `;

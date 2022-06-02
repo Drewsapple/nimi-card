@@ -22,9 +22,10 @@ import {
   EnsName,
   Divider,
   StyledExternalLink,
+  StyledNimiBig,
 } from './styled';
 import { getExplorerAddressLink, shortenAddress } from '../../utils';
-import { socialImagesMapping } from '../../../contstants';
+import { blockChainImagesMapping, socialsMapping } from '../../../contstants';
 
 interface NimiCardProps {
   nimi: Nimi;
@@ -36,12 +37,13 @@ export function NimiCard({ nimi }: NimiCardProps) {
   const { t } = useTranslation();
 
   const { ensAddress, displayName, displayImageUrl, addresses, description, ensName, links } = validateNimi;
-  console.log(links);
+
   return (
     <StyledWrapper>
+      <PicBackgroundTop />
+      <StyledNimiBig />
       <StyledInnerWrapper>
         <ProfilePictureContainer>
-          <PicBackgroundTop />
           <ProfilePicture image={displayImageUrl} />
         </ProfilePictureContainer>
         <DisplayName>{displayName}</DisplayName>
@@ -60,14 +62,14 @@ export function NimiCard({ nimi }: NimiCardProps) {
             <SectionItemContainerGrid>
               {links.map(({ label, type, url }) => (
                 <SectionItemLink
-                  href={url}
+                  href={socialsMapping[type].prepend + url}
                   target="_blank"
                   rel="noopener noreferrer"
                   title={label}
                   key={`${type}-${url}`}
                 >
-                  <img src={socialImagesMapping[type]} />
-                  {label}
+                  <img src={socialsMapping[type].logo} />
+                  {url}
                 </SectionItemLink>
               ))}
             </SectionItemContainerGrid>
@@ -85,7 +87,8 @@ export function NimiCard({ nimi }: NimiCardProps) {
                   rel="noopener noreferrer"
                   title={`View ${address} address on the explorer`}
                 >
-                  {shortenAddress(address, 7, 9)}
+                  <img src={blockChainImagesMapping[blockchain]} />
+                  {address}
                 </SectionItemLink>
               ))}
             </SectionItemContainer>
@@ -100,9 +103,8 @@ export function NimiCard({ nimi }: NimiCardProps) {
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   flex: 1;
 `;
