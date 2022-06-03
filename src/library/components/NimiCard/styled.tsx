@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { ExternalLink } from '../../../theme';
-import { ReactComponent as NimiBig } from '../../../assets/images/nimi-big.svg';
+
+import { ReactComponent as NimiHeaderWave } from '../../assets/svg/nimi-header-wave.svg';
 
 const NIMI_CARDS_WIDTH = 570;
 

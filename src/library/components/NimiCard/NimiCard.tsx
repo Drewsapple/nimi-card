@@ -25,7 +25,7 @@ import {
   StyledNimiBig,
 } from './styled';
 import { getExplorerAddressLink, shortenAddress } from '../../utils';
-import { blockChainImagesMapping, socialsMapping } from '../../../contstants';
+import { blockchainLogoUrl, nimiLinkDetailsExtended } from '../../contstants';
 
 interface NimiCardProps {
   nimi: Nimi;
@@ -55,20 +55,19 @@ export function NimiCard({ nimi }: NimiCardProps) {
           </StyledExternalLink>
         </AddressBar>
         <DescriptionWrapper>{description}</DescriptionWrapper>
-
         {links && links.length > 0 && (
           <Section>
             <SectionTitle>{t('socials')}</SectionTitle>
             <SectionItemContainerGrid>
               {links.map(({ label, type, url }) => (
                 <SectionItemLink
-                  href={socialsMapping[type].prepend + url}
+                  href={nimiLinkDetailsExtended[type].prepend + url}
                   target="_blank"
                   rel="noopener noreferrer"
                   title={label}
                   key={`${type}-${url}`}
                 >
-                  <img src={socialsMapping[type].logo} />
+                  <img src={nimiLinkDetailsExtended[type].logo} />
                   {url}
                 </SectionItemLink>
               ))}
@@ -87,7 +86,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
                   rel="noopener noreferrer"
                   title={`View ${address} address on the explorer`}
                 >
-                  <img src={blockChainImagesMapping[blockchain]} />
+                  {blockchainLogoUrl[blockchain] && <img src={blockchainLogoUrl[blockchain]} />}
                   {shortenAddress(address, 7, 9)}
                 </SectionItemLink>
               ))}

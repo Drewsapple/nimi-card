@@ -1,10 +1,10 @@
-import { Blockchain } from '../components/NimiCard/types';
+import { NimiBlockchain } from '../components/NimiCard/types';
 
-const BLOCKCHAIN_ADDRESS_EXPLORER_URL: Record<Blockchain, string> = {
+const BLOCKCHAIN_ADDRESS_EXPLORER_URL: Record<NimiBlockchain, string> = {
   ethereum: 'https://etherscan.io/address/',
   bitcoin: 'https://blockstream.info/address/',
   polygon: 'https://explorer.polygon.io/address/',
-  'bnb-chain': 'https://bscscan.com/address/',
+  litecoin: 'https://blockchair.com/litecoin/address/',
   dogecoin: 'https://dogechain.info/address/',
 };
 
@@ -14,7 +14,7 @@ const BLOCKCHAIN_ADDRESS_EXPLORER_URL: Record<Blockchain, string> = {
  * @param address - address to get the explorer url for
  * @returns the explorer url
  */
-export function getExplorerAddressLink(blockchain: Blockchain, address: string): string {
+export function getExplorerAddressLink(blockchain: NimiBlockchain, address: string): string {
   return BLOCKCHAIN_ADDRESS_EXPLORER_URL[blockchain] + address;
 }
 

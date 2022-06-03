@@ -11,15 +11,16 @@ export const linkTypeList = [
   'website',
   'email',
   'discord',
+  'lenster',
 ] as const;
 
 /**
  * Generated type of linkTypeList
  */
-export type NimiLinkType = typeof linkTypeList[number];
+export type NimiLink = typeof linkTypeList[number];
 
-export interface NimiLink {
-  type: NimiLinkType;
+export interface NimiLinkBaseDetails {
+  type: NimiLink;
   label?: string;
   url: string;
 }
@@ -28,16 +29,16 @@ export interface NimiLink {
  * List of supported networks
  * Order matters
  */
-export const blockchainList = ['ethereum', 'bitcoin', 'polygon', 'bnb-chain', 'dogecoin'] as const;
+export const blockchainList = ['ethereum', 'bitcoin', 'litecoin', 'polygon', 'dogecoin'] as const;
 
 /**
  * Generated type of blockchainList
  */
-export type Blockchain = typeof blockchainList[number];
+export type NimiBlockchain = typeof blockchainList[number];
 
 export interface NimiBlockchainAddress {
   address: string;
-  blockchain: Blockchain;
+  blockchain: NimiBlockchain;
 }
 
 /**
@@ -49,6 +50,6 @@ export interface Nimi {
   displayImageUrl?: string;
   description?: string;
   ensName: string;
-  links: NimiLink[];
+  links: NimiLinkBaseDetails[];
   addresses: NimiBlockchainAddress[];
 }
