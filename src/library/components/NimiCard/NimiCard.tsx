@@ -88,7 +88,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
                   title={`View ${address} address on the explorer`}
                 >
                   <img src={blockChainImagesMapping[blockchain]} />
-                  {address}
+                  {shortenAddress(address, 7, 9)}
                 </SectionItemLink>
               ))}
             </SectionItemContainer>

@@ -34,6 +34,9 @@ export const StyledWrapper = styled.div`
 export const StyledInnerWrapper = styled.div`
   padding: 0px 20px;
   margin-top: 215px;
+  @media (max-width: ${NIMI_CARDS_WIDTH}px) {
+    max-width: 100vw;
+  }
 `;
 
 export const ProfilePictureContainer = styled.div`
