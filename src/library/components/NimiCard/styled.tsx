@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { ExternalLink } from '../../../theme';
-
+import { ExternalLink } from '../../components/ExternalLink';
+import NimiLogoMark from '../../assets/svg/nimi-logo-mark.svg';
 import { ReactComponent as NimiHeaderWave } from '../../assets/svg/nimi-header-wave.svg';
 
 const NIMI_CARDS_WIDTH = 570;
@@ -58,7 +58,8 @@ export const PicBackgroundTop = styled.div`
     width: 70vw;
   }
 `;
-export const StyledNimiBig = styled(NimiBig)`
+
+export const StyledNimiBig = styled(NimiHeaderWave)`
   margin-top: 15px;
   position: absolute;
   z-index: 1;
@@ -67,7 +68,7 @@ export const StyledNimiBig = styled(NimiBig)`
 export const ProfilePicture = styled.div<{
   image?: string;
 }>(
-  ({ image = 'https://pbs.twimg.com/profile_images/1466765692754083849/xltEmb3d_400x400.jpg' }) => `
+  ({ image = NimiLogoMark }) => `
   background-image: url(${image});
   background-position: center, center;
   background-size: cover;
@@ -116,6 +117,7 @@ export const Divider = styled.div`
   width: 1.5px;
   background-color: #000000;
 `;
+
 export const AddressBar = styled.div`
   display: flex;
   width: 100%;
@@ -123,6 +125,7 @@ export const AddressBar = styled.div`
   align-items: center;
   margin-top: 24px;
 `;
+
 export const StyledExternalLink = styled(ExternalLink)`
   font-weight: 400;
   font-size: 17.8976px;
@@ -191,6 +194,7 @@ export const SectionItemLink = styled.a`
   font-size: 17px;
   font-weight: 400;
   color: rgba(47, 128, 237, 1);
+  align-items: center;
 `;
 
 export const Footer = styled.footer`
@@ -200,4 +204,12 @@ export const Footer = styled.footer`
   width: 100%;
 
   height: 75px;
+`;
+
+/**
+ *
+ */
+export const NimiLinkImage = styled.img`
+  width: 22px;
+  height: 22px;
 `;
