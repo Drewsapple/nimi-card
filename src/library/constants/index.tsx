@@ -1,4 +1,3 @@
-// import { NimiLinkType } from '../library';
 import LensterLogo from '../assets/svg/links/lenster.svg';
 import InstagramLogo from '../assets/svg/links/instagram.svg';
 import TwitterLogo from '../assets/svg/links/twitter.svg';
@@ -6,6 +5,7 @@ import EmailLogo from '../assets/svg/links/mail.svg';
 import LinkedInLogo from '../assets/svg/links/linkedIn.svg';
 import WebsiteLogo from '../assets/svg/links/website.svg';
 import TelegramLogo from '../assets/svg/links/telegram.svg';
+import GitHubMarkLogo from '../assets/svg/links/github.svg';
 
 import EtherLogoUrl from '../assets/svg/blockchain/ether.svg';
 import BitcoinLogoUrl from '../assets/svg/blockchain/bitcoin.svg';
@@ -28,7 +28,7 @@ export const nimiLinkDetailsExtended: Record<
   linkedin: { logo: LinkedInLogo, prepend: 'https://linkedin.com/in/' },
   website: { logo: WebsiteLogo, prepend: '' },
   telegram: { logo: TelegramLogo, prepend: 'https://t.me/' },
-  github: { prepend: 'https://github.com/' },
+  github: { logo: GitHubMarkLogo, prepend: 'https://github.com/' },
   medium: { prepend: 'https://medium.com/@' },
   reddit: { prepend: 'https://reddit.com/user/' },
   facebook: { prepend: 'https://facebook.com/' },
