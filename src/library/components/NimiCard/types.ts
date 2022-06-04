@@ -42,6 +42,40 @@ export interface NimiBlockchainAddress {
 }
 
 /**
+ * Blockchain information
+ */
+export interface NimiBlockchainDetails {
+  name: string;
+  explorerAddressUrl: string[];
+}
+
+/**
+ * Additional information about the Nimi blockchains
+ */
+export const nimiBlockchainDetails: Record<NimiBlockchain, NimiBlockchainDetails> = {
+  ethereum: {
+    name: 'Ethereum',
+    explorerAddressUrl: ['https://etherscan.io/address/'],
+  },
+  bitcoin: {
+    name: 'Bitcoin',
+    explorerAddressUrl: ['https://blockstream.info/address/'],
+  },
+  litecoin: {
+    name: 'Litecoin',
+    explorerAddressUrl: ['https://blockchair.com/litecoin/address/'],
+  },
+  polygon: {
+    name: 'Polygon',
+    explorerAddressUrl: ['https://polygonscan.com/address/'],
+  },
+  dogecoin: {
+    name: 'Dogecoin',
+    explorerAddressUrl: ['https://dogechain.info/address/'],
+  },
+};
+
+/**
  * Base defintion of a Nimi Card
  */
 export interface Nimi {
