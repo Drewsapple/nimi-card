@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ExternalLink } from '../../components/ExternalLink';
 import NimiLogoMark from '../../assets/svg/nimi-logo-mark.svg';
-import { ReactComponent as NimiHeaderWave } from '../../assets/svg/nimi-header-wave.svg';
+import NimiHeaderWaveUrl from '../../assets/svg/nimi-header-wave.svg';
 
 const NIMI_CARDS_WIDTH = 570;
 
@@ -59,10 +59,13 @@ export const PicBackgroundTop = styled.div`
   }
 `;
 
-export const StyledNimiBig = styled(NimiHeaderWave)`
+export const StyledNimiBig = styled.div`
+  background: url(${NimiHeaderWaveUrl}) no-repeat;
   margin-top: 15px;
   position: absolute;
   z-index: 1;
+  width: 105px;
+  height: 35px;
 `;
 
 export const ProfilePicture = styled.div<{

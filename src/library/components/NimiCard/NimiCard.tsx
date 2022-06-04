@@ -26,7 +26,7 @@ import {
   NimiLinkImage,
 } from './styled';
 import { getExplorerAddressLink, getNimiLinkLabel, shortenAddress } from '../../utils';
-import { blockchainLogoUrl, nimiLinkDetailsExtended } from '../../contstants';
+import { blockchainLogoUrl, nimiLinkDetailsExtended } from '../../constants';
 
 interface NimiCardProps {
   nimi: Nimi;
