@@ -1,5 +1,5 @@
-import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
+import { FC, SVGProps } from 'react';
 
 import { nimiCard } from './validators';
 import { Nimi } from './types';
@@ -23,7 +23,6 @@ import {
   Divider,
   StyledExternalLink,
   StyledNimiBig,
-  NimiLinkImage,
 } from './styled';
 import { getExplorerAddressLink, getNimiLinkLabel, shortenAddress } from '../../utils';
 import { blockchainLogoUrl, nimiLinkDetailsExtended } from '../../constants';
@@ -32,10 +31,15 @@ interface NimiCardProps {
   nimi: Nimi;
 }
 
+function renderSVG(logo?: FC<SVGProps<SVGSVGElement>>) {
+  if (!logo) return;
+  const Logo = logo;
+
+  return <Logo height={22} width={22} />;
+}
+
 export function NimiCard({ nimi }: NimiCardProps) {
   const validateNimi = nimiCard.validateSync(nimi);
-
-  const { t } = useTranslation();
 
   const { ensAddress, displayName, displayImageUrl, addresses, description, ensName, links } = validateNimi;
 
@@ -58,7 +62,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
         <DescriptionWrapper>{description}</DescriptionWrapper>
         {links && links.length > 0 && (
           <Section>
-            <SectionTitle>{t('socials')}</SectionTitle>
+            <SectionTitle>Socials</SectionTitle>
             <SectionItemContainerGrid>
               {links.map(({ label, type, url }) => (
                 <SectionItemLink
@@ -68,9 +72,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
                   title={label}
                   key={`${type}-${url}`}
                 >
-                  {nimiLinkDetailsExtended[type].logo && (
-                    <NimiLinkImage alt={label} src={nimiLinkDetailsExtended[type].logo} />
-                  )}
+                  {renderSVG(nimiLinkDetailsExtended[type].logo)}
                   {getNimiLinkLabel({ label, type, url })}
                 </SectionItemLink>
               ))}
@@ -79,7 +81,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
         )}
         {addresses && addresses.length > 0 && (
           <Section>
-            <SectionTitle>{t('addresses')}</SectionTitle>
+            <SectionTitle>Addresses</SectionTitle>
             <SectionItemContainer>
               {addresses.map(({ address, blockchain }) => (
                 <SectionItemLink
@@ -89,9 +91,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
                   rel="noopener noreferrer"
                   title={`View ${address} address on the explorer`}
                 >
-                  {blockchainLogoUrl[blockchain] && (
-                    <NimiLinkImage alt={blockchain} src={blockchainLogoUrl[blockchain]} />
-                  )}
+                  {renderSVG(blockchainLogoUrl[blockchain])}
                   {shortenAddress(address, 7, 9)}
                 </SectionItemLink>
               ))}

@@ -1,23 +1,24 @@
-import LensterLogo from '../assets/svg/links/lenster.svg';
-import InstagramLogo from '../assets/svg/links/instagram.svg';
-import TwitterLogo from '../assets/svg/links/twitter.svg';
-import EmailLogo from '../assets/svg/links/mail.svg';
-import LinkedInLogo from '../assets/svg/links/linkedIn.svg';
-import WebsiteLogo from '../assets/svg/links/website.svg';
-import TelegramLogo from '../assets/svg/links/telegram.svg';
-import GitHubMarkLogo from '../assets/svg/links/github.svg';
+import { FC, SVGProps } from 'react';
+import { ReactComponent as LensterLogo } from '../assets/svg/links/lenster.svg';
+import { ReactComponent as InstagramLogo } from '../assets/svg/links/instagram.svg';
+import { ReactComponent as TwitterLogo } from '../assets/svg/links/twitter.svg';
+import { ReactComponent as EmailLogo } from '../assets/svg/links/mail.svg';
+import { ReactComponent as LinkedInLogo } from '../assets/svg/links/linkedIn.svg';
+import { ReactComponent as WebsiteLogo } from '../assets/svg/links/website.svg';
+import { ReactComponent as TelegramLogo } from '../assets/svg/links/telegram.svg';
+import { ReactComponent as GitHubMarkLogo } from '../assets/svg/links/github.svg';
 
-import EtherLogoUrl from '../assets/svg/blockchain/ether.svg';
-import BitcoinLogoUrl from '../assets/svg/blockchain/bitcoin.svg';
-import LitecoinLogoUrl from '../assets/svg/blockchain/litecoin.svg';
-import DogecoinLogoUrl from '../assets/svg/blockchain/dogecoin.svg';
-import PolygonLogoUrl from '../assets/svg/blockchain/polygon.svg';
+import { ReactComponent as EtherLogoUrl } from '../assets/svg/blockchain/ether.svg';
+import { ReactComponent as BitcoinLogoUrl } from '../assets/svg/blockchain/bitcoin.svg';
+import { ReactComponent as LitecoinLogoUrl } from '../assets/svg/blockchain/litecoin.svg';
+import { ReactComponent as DogecoinLogoUrl } from '../assets/svg/blockchain/dogecoin.svg';
+import { ReactComponent as PolygonLogoUrl } from '../assets/svg/blockchain/polygon.svg';
 import { NimiBlockchain, NimiLink } from '../components/NimiCard';
 
 export const nimiLinkDetailsExtended: Record<
   NimiLink,
   {
-    logo?: string;
+    logo?: FC<SVGProps<SVGSVGElement>>;
     prepend: string;
   }
 > = {
@@ -39,7 +40,7 @@ export const nimiLinkDetailsExtended: Record<
 /**
  * Blockchain logo mapping
  */
-export const blockchainLogoUrl: Record<NimiBlockchain, string> = {
+export const blockchainLogoUrl: Record<NimiBlockchain, FC<SVGProps<SVGSVGElement>>> = {
   ethereum: EtherLogoUrl,
   bitcoin: BitcoinLogoUrl,
   litecoin: LitecoinLogoUrl,
