@@ -25,5 +25,6 @@
     "sourceRoot": "src/library",
     "rootDir": "src/library"
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "**/*.stories.tsx"]
 }

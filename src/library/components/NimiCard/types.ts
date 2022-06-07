@@ -8,17 +8,19 @@ export const linkTypeList = [
   'facebook',
   'instagram',
   'youtube',
+  'website',
   'email',
   'discord',
+  'lenster',
 ] as const;
 
 /**
  * Generated type of linkTypeList
  */
-export type NimiLinkType = typeof linkTypeList[number];
+export type NimiLink = typeof linkTypeList[number];
 
-export interface NimiLink {
-  type: NimiLinkType;
+export interface NimiLinkBaseDetails {
+  type: NimiLink;
   label?: string;
   url: string;
 }
@@ -27,17 +29,51 @@ export interface NimiLink {
  * List of supported networks
  * Order matters
  */
-export const blockchainList = ['ethereum', 'bitcoin', 'polygon', 'bnb-chain', 'dogecoin'] as const;
+export const blockchainList = ['ethereum', 'bitcoin', 'litecoin', 'polygon', 'dogecoin'] as const;
 
 /**
  * Generated type of blockchainList
  */
-export type Blockchain = typeof blockchainList[number];
+export type NimiBlockchain = typeof blockchainList[number];
 
 export interface NimiBlockchainAddress {
   address: string;
-  blockchain: Blockchain;
+  blockchain: NimiBlockchain;
 }
+
+/**
+ * Blockchain information
+ */
+export interface NimiBlockchainDetails {
+  name: string;
+  explorerAddressUrl: string[];
+}
+
+/**
+ * Additional information about the Nimi blockchains
+ */
+export const nimiBlockchainDetails: Record<NimiBlockchain, NimiBlockchainDetails> = {
+  ethereum: {
+    name: 'Ethereum',
+    explorerAddressUrl: ['https://etherscan.io/address/'],
+  },
+  bitcoin: {
+    name: 'Bitcoin',
+    explorerAddressUrl: ['https://blockstream.info/address/'],
+  },
+  litecoin: {
+    name: 'Litecoin',
+    explorerAddressUrl: ['https://blockchair.com/litecoin/address/'],
+  },
+  polygon: {
+    name: 'Polygon',
+    explorerAddressUrl: ['https://polygonscan.com/address/'],
+  },
+  dogecoin: {
+    name: 'Dogecoin',
+    explorerAddressUrl: ['https://dogechain.info/address/'],
+  },
+};
 
 /**
  * Base defintion of a Nimi Card
@@ -48,6 +84,6 @@ export interface Nimi {
   displayImageUrl?: string;
   description?: string;
   ensName: string;
-  links: NimiLink[];
+  links: NimiLinkBaseDetails[];
   addresses: NimiBlockchainAddress[];
 }

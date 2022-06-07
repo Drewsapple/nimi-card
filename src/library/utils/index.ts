@@ -1,12 +1,4 @@
-import { Blockchain } from '../components/NimiCard/types';
-
-const BLOCKCHAIN_ADDRESS_EXPLORER_URL: Record<Blockchain, string> = {
-  ethereum: 'https://etherscan.io/address/',
-  bitcoin: 'https://blockstream.info/address/',
-  polygon: 'https://explorer.polygon.io/address/',
-  'bnb-chain': 'https://bscscan.com/address/',
-  dogecoin: 'https://dogechain.info/address/',
-};
+import { NimiBlockchain, nimiBlockchainDetails, NimiLinkBaseDetails } from '../components/NimiCard/types';
 
 /**
  * Given a blockchain and address, return the explorer url
@@ -14,8 +6,8 @@ const BLOCKCHAIN_ADDRESS_EXPLORER_URL: Record<Blockchain, string> = {
  * @param address - address to get the explorer url for
  * @returns the explorer url
  */
-export function getExplorerAddressLink(blockchain: Blockchain, address: string): string {
-  return BLOCKCHAIN_ADDRESS_EXPLORER_URL[blockchain] + address;
+export function getExplorerAddressLink(blockchain: NimiBlockchain, address: string): string {
+  return nimiBlockchainDetails[blockchain].explorerAddressUrl[0] + address;
 }
 
 /**
@@ -28,4 +20,18 @@ export function getExplorerAddressLink(blockchain: Blockchain, address: string):
  */
 export function shortenAddress(address: string, charsBefore = 4, charsAfter = 4): string {
   return `${address.substring(0, charsBefore + 2)}...${address.substring(42 - charsAfter)}`;
+}
+
+/**
+ * Handles the Nimi link label/title/text
+ * @param nimi - the Nimi link
+ * @returns
+ */
+export function getNimiLinkLabel(nimi: NimiLinkBaseDetails): string {
+  if (nimi.type === 'website') {
+    const { hostname } = new URL(nimi.url);
+    return hostname;
+  }
+
+  return nimi.url;
 }

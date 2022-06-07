@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-import { blockchainList, NimiLink, linkTypeList, Nimi, NimiBlockchainAddress } from './types';
+import { blockchainList, linkTypeList, Nimi, NimiBlockchainAddress, NimiLinkBaseDetails } from './types';
 
 /**
  * Display name validator
@@ -44,10 +44,10 @@ export const blockchainAddresses = Yup.array().of(blockchainWallet);
 /**
  * A single link definition and validator
  */
-export const link: Yup.SchemaOf<NimiLink> = Yup.object({
+export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
   type: Yup.mixed().oneOf(Array.from(linkTypeList)).required(),
   label: Yup.string().optional(),
-  url: Yup.string().url().required(),
+  url: Yup.string().required(),
 });
 
 /**

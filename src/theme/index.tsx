@@ -53,6 +53,7 @@ export function colors(darkMode = false): Colors {
     bg6: '#171621',
     bg7: '#2D3040',
     bg8: '#191A24',
+    shadow1: '#2F80ED',
 
     //specialty colors
     modalBG: darkMode ? 'rgba(0,0,0,.425)' : 'rgba(0,0,0,0.3)',
@@ -163,7 +164,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /** Full-width and height */
 body, html, #root {
-  height: 100%;
+  min-height:100vh;
   width: 100%;
 }
 
