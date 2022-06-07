@@ -26,7 +26,10 @@ export default [
       },
     ],
     plugins: [
-      svgr(),
+      svgr({
+        exportType: 'named',
+        namedExport: 'ReactComponent',
+      }),
       resolve({
         browser: true,
       }),

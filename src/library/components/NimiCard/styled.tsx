@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { ExternalLink } from '../../components/ExternalLink';
-import NimiLogoMark from '../../assets/svg/nimi-logo-mark.svg';
-import NimiHeaderWaveUrl from '../../assets/svg/nimi-header-wave.svg';
+// import { ReactComponent as NimiHeaderWave } from '../../assets/svg/nimi-header-wave.svg';
 
 const NIMI_CARDS_WIDTH = 570;
 
@@ -60,7 +59,6 @@ export const PicBackgroundTop = styled.div`
 `;
 
 export const StyledNimiBig = styled.div`
-  background: url(${NimiHeaderWaveUrl}) no-repeat;
   margin-top: 15px;
   position: absolute;
   z-index: 1;
@@ -71,7 +69,7 @@ export const StyledNimiBig = styled.div`
 export const ProfilePicture = styled.div<{
   image?: string;
 }>(
-  ({ image = NimiLogoMark }) => `
+  ({ image = 'https://gateway.pinata.cloud/ipfs/QmRwFR4CXRWHd9cXy8xFbUcPHw5oeczg9HsEiP4qt96MZ9' }) => `
   background-image: url(${image});
   background-position: center, center;
   background-size: cover;

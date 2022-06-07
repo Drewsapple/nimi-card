@@ -1,4 +1,5 @@
 import { FC, SVGProps } from 'react';
+
 import { ReactComponent as LensterLogo } from '../assets/svg/links/lenster.svg';
 import { ReactComponent as InstagramLogo } from '../assets/svg/links/instagram.svg';
 import { ReactComponent as TwitterLogo } from '../assets/svg/links/twitter.svg';
@@ -13,7 +14,7 @@ import { ReactComponent as BitcoinLogoUrl } from '../assets/svg/blockchain/bitco
 import { ReactComponent as LitecoinLogoUrl } from '../assets/svg/blockchain/litecoin.svg';
 import { ReactComponent as DogecoinLogoUrl } from '../assets/svg/blockchain/dogecoin.svg';
 import { ReactComponent as PolygonLogoUrl } from '../assets/svg/blockchain/polygon.svg';
-import { NimiBlockchain, NimiLink } from '../components/NimiCard';
+import { NimiBlockchain, NimiLink } from '../components/NimiCard/types';
 
 export const nimiLinkDetailsExtended: Record<
   NimiLink,

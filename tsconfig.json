@@ -20,9 +20,13 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "noImplicitAny": false,
-    "useUnknownInCatchVariables": false
+    "useUnknownInCatchVariables": false,
+    "declaration": true,
+    "declarationDir": "types"
   },
   "include": [
     "src"
-  ]
+  ],
+  "exclude": ["node_modules", "dist", "**/*.stories.tsx"],
+
 }
