@@ -1,12 +1,13 @@
 import React from 'react';
 import {
-  ThemeProvider as StyledComponentsThemeProvider,
   createGlobalStyle,
   css,
   DefaultTheme,
+  ThemeProvider as StyledComponentsThemeProvider,
 } from 'styled-components';
-import { Colors } from './styled';
+
 import backgroundImageUrl from '../assets/images/nimi-header-background.png';
+import { Colors } from './styled';
 
 export const MEDIA_WIDTHS = {
   fromExtraSmall: 500,

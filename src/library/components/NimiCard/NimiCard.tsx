@@ -1,31 +1,30 @@
-import styled from 'styled-components';
 import { FC, SVGProps } from 'react';
+import styled from 'styled-components';
 
-import { nimiCard } from './validators';
-import { Nimi } from './types';
-
+import { blockchainLogoUrl, nimiLinkDetailsExtended } from '../../constants';
+import { getExplorerAddressLink, getNimiLinkLabel, shortenAddress } from '../../utils';
 import {
-  StyledWrapper,
-  StyledInnerWrapper,
   AddressBar,
-  SectionItemContainer,
-  SectionItemContainerGrid,
-  SectionItemLink,
   DescriptionWrapper,
   DisplayName,
+  Divider,
+  EnsName,
   Footer,
   PicBackgroundTop,
   ProfilePicture,
   ProfilePictureContainer,
   Section,
+  SectionItemContainer,
+  SectionItemContainerGrid,
+  SectionItemLink,
   SectionTitle,
-  EnsName,
-  Divider,
   StyledExternalLink,
+  StyledInnerWrapper,
   StyledNimiBig,
+  StyledWrapper,
 } from './styled';
-import { getExplorerAddressLink, getNimiLinkLabel, shortenAddress } from '../../utils';
-import { blockchainLogoUrl, nimiLinkDetailsExtended } from '../../constants';
+import { Nimi } from './types';
+import { nimiCard } from './validators';
 
 interface NimiCardProps {
   nimi: Nimi;
