@@ -10,6 +10,7 @@
   },
   "ignorePatterns": [
     "node_modules/**/*",
+    "cypress/**/*",
     "scripts/*.js",
     "config-overrides.js",
     "src/**/generated/**/*",
@@ -35,6 +36,8 @@
   "extends": [
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
     "plugin:react-hooks/recommended",
     "plugin:prettier/recommended"
   ],
@@ -45,6 +48,9 @@
     "react/react-in-jsx-scope": "off", // React 17+
     "react/prop-types": "off",
     "object-shorthand": ["error", "always"],
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "no-unused-vars": "off",
+    "react/display-name": "off",
     "@typescript-eslint/member-delimiter-style": [
       "error",
       {
@@ -58,21 +64,45 @@
         }
       }
     ],
-    "no-restricted-imports": [
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+    "import/no-unresolved": "off",
+    "import/order": [
       "error",
       {
-        "paths": [
+        "groups": ["internal", ["builtin", "external"], ["parent", "sibling"]],
+        "pathGroups": [
           {
-            "name": "ethers",
-            "message": "Please import from '@ethersproject/module' directly to support tree-shaking."
+            "pattern": "@swapr/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@ethersproject/**",
+            "group": "internal"
           }
         ],
-        "patterns": [
-          {
-            "group": ["**/dist"],
-            "message": "Do not import from dist/ - this is an implementation detail, and breaks tree-shaking."
-          }
-        ]
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "caseInsensitive": true,
+          "order": "asc"
+        }
+      }
+    ],
+    "sort-imports": [
+      "error",
+      {
+        "allowSeparatedGroups": true,
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
       }
     ]
   }
