@@ -153,20 +153,12 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-html, input, textarea, button {
-  font-family: 'Baloo 2', cursive;
-  font-display: fallback;
+html, body, input, label, textarea, button {
+  font-family: 'Archivo', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Baloo 2', cursive;
-  font-display: fallback;
-}
-
-/** Full-width and height */
-body, html, #root {
-  min-height:100vh;
-  width: 100%;
+  font-family: 'Archivo', sans-serif;
 }
 
 body {
