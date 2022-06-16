@@ -67,7 +67,7 @@
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.0.0",
     "react-i18next": "^11.16.7",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^5.0.1",
     "rollup": "^2.74.1",
     "rollup-plugin-dts": "^4.2.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
