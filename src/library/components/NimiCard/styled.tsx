@@ -144,7 +144,7 @@ export const VerticalSeparator = styled.div`
 `;
 
 export const DescriptionWrapper = styled.div`
-  font-size: 14px;
+  font-size: 16px;
   color: #000000;
   overflow-wrap: break-word;
   margin: 19px;
