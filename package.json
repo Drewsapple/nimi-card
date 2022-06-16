@@ -14,7 +14,9 @@
     "lint:fix": "npm run lint -- --fix",
     "ipfs:build": "cross-env PUBLIC_URL=\".\" yarn build",
     "ipfs:publish": "ipfs-deploy build -p infura -O",
-    "bundle": "rollup -c"
+    "prebundle": "rm -rf dist",
+    "bundle": "npm run prebundle && rollup -c",
+    "prepublishOnly": "npm run lint && npm run build && npm run bundle"
   },
   "eslintConfig": {
     "extends": [
