@@ -3,6 +3,7 @@
   "version": "0.5.0-beta.0",
   "private": false,
   "dependencies": {
+    "cross-env": "^7.0.3",
     "yup": "^0.32.11"
   },
   "scripts": {
@@ -12,7 +13,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint \"./src/**/*.{ts,tsx,js}\"",
     "lint:fix": "npm run lint -- --fix",
-    "ipfs:build": "cross-env PUBLIC_URL=\".\" yarn build",
+    "ipfs:build": "cross-env PUBLIC_URL=\".\" GENERATE_SOURCEMAP=false react-scripts build",
     "ipfs:publish": "ipfs-deploy build -p infura -O",
     "prebundle": "rm -rf dist",
     "bundle": "npm run prebundle && rollup -c",
