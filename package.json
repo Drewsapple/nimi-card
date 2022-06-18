@@ -17,7 +17,7 @@
     "ipfs:publish": "ipfs-deploy build -p infura -O",
     "prebundle": "rm -rf dist",
     "bundle": "npm run prebundle && rollup -c",
-    "prepublishOnly": "npm run lint && npm run build && npm run bundle"
+    "prepublishOnly": "npm run lint && npm run ipfs:build && npm run bundle"
   },
   "eslintConfig": {
     "extends": [
