@@ -25,7 +25,7 @@ export function App() {
   const [error, setError] = useState<Error>();
 
   useEffect(() => {
-    const dataPath = process.env.NODE_ENV === 'production' ? '/data.json' : '/data.json';
+    const dataPath = process.env.NODE_ENV === 'production' ? './data.json' : './data.json';
 
     fetch(dataPath, {
       method: 'GET',
