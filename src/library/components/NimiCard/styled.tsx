@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
+import { ReactComponent as StyledNimiBigSvg } from '../../assets/svg/nimi-text.svg';
 import { ExternalLink } from '../../components/ExternalLink';
+
 // import { ReactComponent as NimiHeaderWave } from '../../assets/svg/nimi-header-wave.svg';
 
 const NIMI_CARDS_WIDTH = 570;
@@ -49,22 +51,29 @@ export const ProfilePictureContainer = styled.div`
 
 export const PicBackgroundTop = styled.div`
   background: linear-gradient(111.35deg, #4368ea -25.85%, #c490dd 73.38%);
-  opacity: 0.8;
+
   position: absolute;
+
   border-radius: 0px 0px 200px 200px;
   height: 188px;
   width: 100%;
   @media (min-width: ${NIMI_CARDS_WIDTH}px) {
-    width: 70vw;
+    border-radius: 50%;
+    width: 100vw;
+    bottom: 78vh;
+    height: 100vw;
   }
 `;
 
-export const StyledNimiBig = styled.div`
-  margin-top: 15px;
+export const StyledNimiBig = styled(StyledNimiBigSvg)`
+  margin-top: 22px;
   position: absolute;
   z-index: 1;
-  width: 105px;
-  height: 35px;
+
+  @media (min-width: ${NIMI_CARDS_WIDTH}px) {
+    width: 105px;
+    height: 35px;
+  }
 `;
 
 export const ProfilePicture = styled.div<{
