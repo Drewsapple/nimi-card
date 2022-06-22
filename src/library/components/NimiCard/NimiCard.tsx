@@ -97,8 +97,8 @@ export function NimiCard({ nimi }: NimiCardProps) {
             </SectionItemContainer>
           </Section>
         )}
+        <Footer />
       </StyledInnerWrapper>
-      <Footer />
     </StyledWrapper>
   );
 }

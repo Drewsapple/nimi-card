@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { ReactComponent as StyledNimiBigSvg } from '../../assets/svg/nimi-text.svg';
+import { ReactComponent as Shitter } from '../../assets/svg/shitter.svg';
 import { ExternalLink } from '../../components/ExternalLink';
 
 // import { ReactComponent as NimiHeaderWave } from '../../assets/svg/nimi-header-wave.svg';
@@ -208,13 +209,14 @@ export const SectionItemLink = styled.a`
   align-items: center;
 `;
 
-export const Footer = styled.footer`
-  background: linear-gradient(291.35deg, #4368ea -25.85%, #c490dd 73.38%);
+export const Footer = styled(Shitter)`
+  /* background: linear-gradient(291.35deg, #4368ea -25.85%, #c490dd 73.38%);
   border-radius: 200px 200px 0px 0px;
   opacity: 0.8;
   width: 100%;
-
-  height: 75px;
+  height: 75px; */
+  width: 100%;
+  height: fit-content;
 `;
 
 /**
