@@ -40,7 +40,8 @@ function renderSVG(logo?: FC<SVGProps<SVGSVGElement>>) {
 export function NimiCard({ nimi }: NimiCardProps) {
   const validateNimi = nimiCard.validateSync(nimi);
 
-  const { ensAddress, displayName, displayImageUrl, addresses, description, ensName, links } = validateNimi;
+  const { ensAddress, displayName, displayImageUrl, image, addresses, description, ensName, links } =
+    validateNimi as Nimi;
 
   return (
     <StyledWrapper>
@@ -48,7 +49,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
       <StyledNimiBig />
       <StyledInnerWrapper>
         <ProfilePictureContainer>
-          <ProfilePicture image={displayImageUrl} />
+          <ProfilePicture image={image ? image.url : displayImageUrl} />
         </ProfilePictureContainer>
         <DisplayName>{displayName}</DisplayName>
         <AddressBar>
@@ -83,13 +84,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
             <SectionTitle>Addresses</SectionTitle>
             <SectionItemContainer>
               {addresses.map(({ address, blockchain }) => (
-                <SectionItemLink
-                  key={`${blockchain}-${address}`}
-                  href={getExplorerAddressLink(blockchain, address)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={`View ${address} address on the explorer`}
-                >
+                <SectionItemLink key={`${blockchain}-${address}`} title={`Copy this address to clipboard`}>
                   {renderSVG(blockchainLogoUrl[blockchain])}
                   {shortenAddress(address, 7, 9)}
                 </SectionItemLink>
