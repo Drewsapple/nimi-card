@@ -62,6 +62,19 @@ export const nimiCard: Yup.SchemaOf<Nimi> = Yup.object().shape({
   displayName,
   ensAddress,
   displayImageUrl,
+  image: Yup.mixed()
+    .oneOf([
+      Yup.object().shape({
+        type: Yup.mixed().oneOf(['image']).required(),
+        url: Yup.string().required(),
+      }),
+      Yup.object().shape({
+        type: Yup.mixed().oneOf(['erc721']).required(),
+        contract: Yup.string().required(),
+        tokenId: Yup.number().required(),
+      }),
+    ])
+    .optional(),
   description,
   ensName,
   links,
