@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
+import { ToastProvider } from './library/components/Toast';
 import { App } from './pages/App';
 import { FixedGlobalStyle, ThemedGlobalStyle, ThemeProvider } from './theme';
 
@@ -11,7 +12,9 @@ root.render(
     <FixedGlobalStyle />
     <ThemeProvider>
       <ThemedGlobalStyle />
-      <App />
+      <ToastProvider>
+        <App />
+      </ToastProvider>
     </ThemeProvider>
   </StrictMode>
 );
