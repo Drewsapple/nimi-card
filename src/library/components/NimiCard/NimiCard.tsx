@@ -2,8 +2,8 @@ import { FC, SVGProps } from 'react';
 import styled from 'styled-components';
 
 import { blockchainLogoUrl, nimiLinkDetailsExtended } from '../../constants';
+import { useToast } from '../../toast';
 import { getExplorerAddressLink, getNimiLinkLabel, shortenAddress } from '../../utils';
-import { useToast } from '../Toast';
 import {
   AddressBar,
   DescriptionWrapper,

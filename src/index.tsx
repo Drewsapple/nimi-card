@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import { ToastProvider } from './library/components/Toast';
+import { ToastProvider } from './library/toast';
 import { App } from './pages/App';
 import { FixedGlobalStyle, ThemedGlobalStyle, ThemeProvider } from './theme';
 
