@@ -2,6 +2,7 @@ import { FC, SVGProps } from 'react';
 import styled from 'styled-components';
 
 import { blockchainLogoUrl, nimiLinkDetailsExtended } from '../../constants';
+import { useToast } from '../../toast';
 import { getExplorerAddressLink, getNimiLinkLabel, shortenAddress } from '../../utils';
 import {
   AddressBar,
@@ -39,6 +40,11 @@ function renderSVG(logo?: FC<SVGProps<SVGSVGElement>>) {
 
 export function NimiCard({ nimi }: NimiCardProps) {
   const validateNimi = nimiCard.validateSync(nimi);
+  const toast = useToast();
+  const copyTextShowToast = (address: string) => {
+    navigator.clipboard.writeText(address);
+    toast.open('Address copied to the clipboard!');
+  };
 
   const { ensAddress, displayName, displayImageUrl, image, addresses, description, ensName, links } =
     validateNimi as Nimi;
@@ -84,7 +90,11 @@ export function NimiCard({ nimi }: NimiCardProps) {
             <SectionTitle>Addresses</SectionTitle>
             <SectionItemContainer>
               {addresses.map(({ address, blockchain }) => (
-                <SectionItemLink key={`${blockchain}-${address}`} title={`Copy this address to clipboard`}>
+                <SectionItemLink
+                  onClick={() => copyTextShowToast(address)}
+                  key={`${blockchain}-${address}`}
+                  title={`Copy this address to clipboard`}
+                >
                   {renderSVG(blockchainLogoUrl[blockchain])}
                   {shortenAddress(address, 7, 9)}
                 </SectionItemLink>

@@ -4,6 +4,7 @@
   "private": false,
   "dependencies": {
     "cross-env": "^7.0.3",
+    "nanoid": "^4.0.0",
     "yup": "^0.32.11"
   },
   "scripts": {
