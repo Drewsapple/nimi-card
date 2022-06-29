@@ -48,7 +48,7 @@ function renderWidgets(nimiWidgetList: NimiCardProps['nimi']['widgets']) {
         case NimiWidgetType.POAP:
           return (
             <Section key={widget.type + '-' + widget.address}>
-              <SectionTitle>POAP</SectionTitle>
+              <SectionTitle>POAPs</SectionTitle>
               <POAPWidget address={widget.address} />
             </Section>
           );
