@@ -29,6 +29,9 @@ export interface Nimi {
    * ENS name of the Nimi. nimi.eth.
    */
   ensAddress: string;
+  /**
+   * List of Nimi Links
+   */
   links: NimiLinkBaseDetails[];
   /**
    * Nimi Blockchain addresses
@@ -37,5 +40,5 @@ export interface Nimi {
   /**
    * Supported widgets
    */
-  widgets?: NimiWidget[];
+  widgets: NimiWidget[];
 }

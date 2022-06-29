@@ -1,5 +1,5 @@
 export enum NimiWidgetType {
-  POAP = 'PAOP',
+  POAP = 'POAP',
 }
 
 /**

@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 
 import { blockchainList, linkTypeList, Nimi, NimiBlockchainAddress, NimiLinkBaseDetails } from '../types';
+import { NimiWidgetType } from '../types/NimiWidget';
 import { ethereumAddress } from './blockchainAddress';
 import { nimiImageUrl } from './image';
 
@@ -72,7 +73,7 @@ export const nimiCard: Yup.SchemaOf<Nimi> = Yup.object().shape({
   widgets: Yup.array()
     .of(
       Yup.object({
-        type: Yup.mixed().oneOf(['poap']).required(),
+        type: Yup.mixed().oneOf([NimiWidgetType.POAP]).required(),
         address: Yup.string().required(),
       })
     )
