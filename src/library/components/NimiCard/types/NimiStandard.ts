@@ -1,13 +1,13 @@
 import { NimiBlockchainAddress } from './NimiBlockchain';
 import { NimiImage } from './NimiImage';
 import { NimiLinkBaseDetails } from './NimiLink';
+import { NimiWidget } from './NimiWidget';
 
 /**
  * Base defintion of a Nimi Card
  */
 export interface Nimi {
   displayName: string;
-  ensAddress: string;
   /**
    * @deprecated use `image` instead
    */
@@ -17,8 +17,25 @@ export interface Nimi {
    * @since 0.6.0
    */
   image?: NimiImage;
+  /**
+   * Nimi description
+   */
   description?: string;
+  /**
+   * ENS name of the Nimi. nimi.eth.
+   */
   ensName: string;
+  /**
+   * ENS name of the Nimi. nimi.eth.
+   */
+  ensAddress: string;
   links: NimiLinkBaseDetails[];
+  /**
+   * Nimi Blockchain addresses
+   */
   addresses: NimiBlockchainAddress[];
+  /**
+   * Supported widgets
+   */
+  widgets?: NimiWidget[];
 }

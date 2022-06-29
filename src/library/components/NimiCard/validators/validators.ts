@@ -1,6 +1,8 @@
 import * as Yup from 'yup';
 
-import { blockchainList, linkTypeList, Nimi, NimiBlockchainAddress, NimiLinkBaseDetails } from './types';
+import { blockchainList, linkTypeList, Nimi, NimiBlockchainAddress, NimiLinkBaseDetails } from '../types';
+import { ethereumAddress } from './blockchainAddress';
+import { nimiImageUrl } from './image';
 
 /**
  * Display name validator
@@ -15,7 +17,7 @@ export const ensName = Yup.string().min(3, 'Minimum 3 characters').max(255, 'Max
 /**
  * The Ethereum address that holds the ENS
  */
-export const ensAddress = Yup.string().length(42).required();
+export const ensAddress = ethereumAddress.required();
 
 /**
  *
@@ -60,23 +62,19 @@ export const links = Yup.array().of(link);
  */
 export const nimiCard: Yup.SchemaOf<Nimi> = Yup.object().shape({
   displayName,
+  ensName,
   ensAddress,
   displayImageUrl,
-  image: Yup.mixed()
-    .oneOf([
-      Yup.object().shape({
-        type: Yup.mixed().oneOf(['image']).required(),
-        url: Yup.string().required(),
-      }),
-      Yup.object().shape({
-        type: Yup.mixed().oneOf(['erc721']).required(),
-        contract: Yup.string().required(),
-        tokenId: Yup.number().required(),
-      }),
-    ])
-    .optional(),
+  image: Yup.mixed().oneOf([nimiImageUrl, nimiImageUrl]).optional(),
   description,
-  ensName,
   links,
   addresses: blockchainAddresses,
+  widgets: Yup.array()
+    .of(
+      Yup.object({
+        type: Yup.mixed().oneOf(['poap']).required(),
+        address: Yup.string().required(),
+      })
+    )
+    .optional(),
 });

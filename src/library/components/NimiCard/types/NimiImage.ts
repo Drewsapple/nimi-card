@@ -7,7 +7,7 @@ export interface NimiImageCommon {
   url: string;
 }
 
-export interface ImageERC721 extends NimiImageCommon {
+export interface NimiImageERC721 extends NimiImageCommon {
   type: NimiImageType.ERC721;
   /**
    * The NFT contract address
@@ -23,7 +23,7 @@ export interface ImageERC721 extends NimiImageCommon {
   tokenUri: string;
 }
 
-export interface ImageUrl extends NimiImageCommon {
+export interface NimiImageUrl extends NimiImageCommon {
   type: NimiImageType.URL;
   url: string;
 }
@@ -31,4 +31,4 @@ export interface ImageUrl extends NimiImageCommon {
 /**
  * Nimi Image
  */
-export type NimiImage = ImageERC721 | ImageUrl;
+export type NimiImage = NimiImageERC721 | NimiImageUrl;
