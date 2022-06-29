@@ -9,6 +9,12 @@
   ],
   "description": "Host your personal page on your ENS domain! Nimi 0.1.alpha live on Ethereum Mainnet :) #devconnect #ETHAmsterdam",
   "ensAddress": "0x4e675ceB415fC41700fb821fF3B43cE5C8B9a83B",
+  "widgets": [
+    {
+      "type": "POAP",
+      "address": "0xF006779eAbE823F8EEd05464A1628383af1f7afb"
+    }
+  ],
   "ensName": "nimi.eth",
   "links": [
     {
