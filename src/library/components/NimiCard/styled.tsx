@@ -197,6 +197,7 @@ export const SectionItemLink = styled.a`
   font-weight: 400;
   color: rgba(47, 128, 237, 1);
   align-items: center;
+  cursor: pointer;
 `;
 
 export const Footer = styled.footer`
