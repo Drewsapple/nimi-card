@@ -1,3 +1,4 @@
+import isValidUrl from '../../utils/isValidUrl';
 import { NimiBlockchain, nimiBlockchainDetails, NimiLinkBaseDetails } from '../components/NimiCard/types';
 
 /**
@@ -28,10 +29,10 @@ export function shortenAddress(address: string, charsBefore = 4, charsAfter = 4)
  * @returns
  */
 export function getNimiLinkLabel(nimi: NimiLinkBaseDetails): string {
-  // if (nimi.type === 'website') {
-  //   const { hostname } = new URL(nimi.url);
-  //   return hostname;
-  // }
+  if (nimi.type === 'website' && isValidUrl(nimi.url)) {
+    const { hostname } = new URL(nimi.url);
+    return hostname;
+  }
 
   return nimi.url;
 }
