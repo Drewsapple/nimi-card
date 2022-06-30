@@ -123,6 +123,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
             </SectionItemContainer>
           </Section>
         )}
+        {renderWidgets(nimi.widgets)}
         <Footer />
       </StyledInnerWrapper>
     </StyledWrapper>

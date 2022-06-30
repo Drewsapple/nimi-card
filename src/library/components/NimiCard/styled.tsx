@@ -214,14 +214,9 @@ export const SectionItemLink = styled.a`
 `;
 
 export const Footer = styled(AnimatedFooter)`
-  /* background: linear-gradient(291.35deg, #4368ea -25.85%, #c490dd 73.38%);
-  border-radius: 200px 200px 0px 0px;
-  opacity: 0.8;
-  width: 100%;
-  height: 75px; */
   margin-top: auto;
   width: 100%;
-  min-height: 76px;
+  min-height: 110px;
 `;
 
 /**
