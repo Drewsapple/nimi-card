@@ -38,6 +38,9 @@ export const StyledWrapper = styled.div`
 export const StyledInnerWrapper = styled.div`
   padding: 0px 20px;
   margin-top: 215px;
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
   @media (max-width: ${NIMI_CARDS_WIDTH}px) {
     max-width: 100vw;
   }
@@ -61,7 +64,7 @@ export const PicBackgroundTop = styled.div`
   @media (min-width: ${NIMI_CARDS_WIDTH}px) {
     border-radius: 50%;
     width: 100vw;
-    bottom: 78vh;
+    bottom: calc(100vh - 210px);
     height: 100vw;
   }
 `;
@@ -215,8 +218,8 @@ export const Footer = styled(AnimatedFooter)`
   opacity: 0.8;
   width: 100%;
   height: 75px; */
+  margin-top: auto;
   width: 100%;
-  height: fit-content;
 `;
 
 /**
