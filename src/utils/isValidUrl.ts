@@ -3,7 +3,7 @@
  * @param urlString
  */
 export default function isValidUrl(urlString: string): boolean {
-  let url;
+  let url: URL;
 
   try {
     url = new URL(urlString);
