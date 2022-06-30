@@ -201,7 +201,13 @@ export const SectionItemContainerGrid = styled.div`
     grid-column-gap: 32px;
   }
 `;
-
+export const NimiTextFooter = styled(StyledNimiBigSvg)`
+  min-height: 25px;
+  z-index: 1;
+  width: 100%;
+  position: relative;
+  top: 81px;
+`;
 export const SectionItemLink = styled.a`
   display: flex;
   flex-direction: row;
