@@ -3,9 +3,13 @@
  * @param urlString
  */
 export default function isValidUrl(urlString: string): boolean {
+  let url;
+
   try {
-    return Boolean(new URL(urlString));
-  } catch (e) {
+    url = new URL(urlString);
+  } catch (_) {
     return false;
   }
+
+  return url.protocol === 'http:' || url.protocol === 'https:';
 }
