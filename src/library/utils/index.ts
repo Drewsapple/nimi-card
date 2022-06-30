@@ -1,4 +1,5 @@
 import { NimiBlockchain, nimiBlockchainDetails, NimiLinkBaseDetails } from '../components/NimiCard/types';
+
 /**
  * Returns true if value is proper url
  * @param urlString

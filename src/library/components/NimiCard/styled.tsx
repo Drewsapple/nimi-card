@@ -4,8 +4,6 @@ import { ReactComponent as AnimatedFooter } from '../../assets/svg/animated-foot
 import { ReactComponent as StyledNimiBigSvg } from '../../assets/svg/nimi-text.svg';
 import { ExternalLink } from '../../components/ExternalLink';
 
-// import { ReactComponent as NimiHeaderWave } from '../../assets/svg/nimi-header-wave.svg';
-
 const NIMI_CARDS_WIDTH = 570;
 
 export const StyledWrapper = styled.div`
