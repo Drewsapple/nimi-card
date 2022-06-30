@@ -220,6 +220,7 @@ export const Footer = styled(AnimatedFooter)`
   height: 75px; */
   margin-top: auto;
   width: 100%;
+  min-height: 76px;
 `;
 
 /**
