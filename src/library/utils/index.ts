@@ -1,4 +1,4 @@
-import isValidUrl from '../../utils/isValidUrl';
+import { isValidUrl } from '../../utils/isValidUrl';
 import { NimiBlockchain, nimiBlockchainDetails, NimiLinkBaseDetails } from '../components/NimiCard/types';
 
 /**

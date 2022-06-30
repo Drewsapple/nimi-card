@@ -2,7 +2,7 @@
  * Returns true if value is proper url
  * @param urlString
  */
-export default function isValidUrl(urlString: string): boolean {
+export function isValidUrl(urlString: string): boolean {
   let url: URL;
 
   try {
