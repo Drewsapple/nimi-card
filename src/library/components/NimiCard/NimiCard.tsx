@@ -2,7 +2,9 @@ import { FC, SVGProps } from 'react';
 import styled from 'styled-components';
 
 import { blockchainLogoUrl, nimiLinkDetailsExtended } from '../../constants';
+import { useToast } from '../../toast';
 import { getExplorerAddressLink, getNimiLinkLabel, shortenAddress } from '../../utils';
+import { Component as POAPWidget } from '../../widgets/paop';
 import {
   AddressBar,
   DescriptionWrapper,
@@ -24,6 +26,7 @@ import {
   StyledWrapper,
 } from './styled';
 import { Nimi } from './types';
+import { NimiWidgetType } from './types/NimiWidget';
 import { nimiCard } from './validators';
 
 interface NimiCardProps {
@@ -37,10 +40,35 @@ function renderSVG(logo?: FC<SVGProps<SVGSVGElement>>) {
   return <Logo height={22} width={22} />;
 }
 
+function renderWidgets(nimiWidgetList: NimiCardProps['nimi']['widgets']) {
+  return (
+    nimiWidgetList &&
+    nimiWidgetList.map((widget) => {
+      switch (widget.type) {
+        case NimiWidgetType.POAP:
+          return (
+            <Section key={widget.type + '-' + widget.address}>
+              <SectionTitle>POAPs</SectionTitle>
+              <POAPWidget address={widget.address} />
+            </Section>
+          );
+        default:
+          return null;
+      }
+    })
+  );
+}
+
 export function NimiCard({ nimi }: NimiCardProps) {
   const validateNimi = nimiCard.validateSync(nimi);
+  const toast = useToast();
+  const copyTextShowToast = (address: string) => {
+    navigator.clipboard.writeText(address);
+    toast.open('Address copied to the clipboard!');
+  };
 
-  const { ensAddress, displayName, displayImageUrl, addresses, description, ensName, links } = validateNimi;
+  const { ensAddress, displayName, displayImageUrl, image, addresses, description, ensName, links } =
+    validateNimi as Nimi;
 
   return (
     <StyledWrapper>
@@ -48,7 +76,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
       <StyledNimiBig />
       <StyledInnerWrapper>
         <ProfilePictureContainer>
-          <ProfilePicture image={displayImageUrl} />
+          <ProfilePicture image={image ? image.url : displayImageUrl} />
         </ProfilePictureContainer>
         <DisplayName>{displayName}</DisplayName>
         <AddressBar>
@@ -84,11 +112,9 @@ export function NimiCard({ nimi }: NimiCardProps) {
             <SectionItemContainer>
               {addresses.map(({ address, blockchain }) => (
                 <SectionItemLink
+                  onClick={() => copyTextShowToast(address)}
                   key={`${blockchain}-${address}`}
-                  href={getExplorerAddressLink(blockchain, address)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={`View ${address} address on the explorer`}
+                  title={`Copy this address to clipboard`}
                 >
                   {renderSVG(blockchainLogoUrl[blockchain])}
                   {shortenAddress(address, 7, 9)}
