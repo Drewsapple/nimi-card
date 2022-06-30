@@ -15,7 +15,7 @@
 
     <text fill="url(#path-gradient)" clip-path="url(#path-clip)" font-family="sans-serif" font-size="12" dy="-2.5">
         <textPath xlink:href="#path" >
-            THIS PERSONAL SPACE IS OWNED & SECURED ON WEB3 • THIS PERSONAL SPACE IS OWNED & SECURED ON WEB3 • THIS PERSONAL SPACE IS OWNED & SECURED ON WEB3 •THIS PERSONAL SPACE IS OWNED &amp; SECURED ON WEB3 • THIS PERSONAL SPACE IS OWNED &amp; SECURED ON WEB3 •
+            THIS PERSONAL SPACE IS OWNED &amp; SECURED ON WEB3 • THIS PERSONAL SPACE IS OWNED &amp;SECURED ON WEB3 • THIS PERSONAL SPACE IS OWNED &amp; SECURED ON WEB3 •THIS PERSONAL SPACE IS OWNED &amp; SECURED ON WEB3 • THIS PERSONAL SPACE IS OWNED &amp; SECURED ON WEB3 •
             <animate
             attributeName="startOffset"
             from="0%" to="28.33%"
