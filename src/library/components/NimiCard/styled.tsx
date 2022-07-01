@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
+import { ReactComponent as AnimatedFooter } from '../../assets/svg/animated-footer.svg';
+import { ReactComponent as StyledNimiBigSvg } from '../../assets/svg/nimi-text.svg';
 import { ExternalLink } from '../../components/ExternalLink';
-// import { ReactComponent as NimiHeaderWave } from '../../assets/svg/nimi-header-wave.svg';
 
 const NIMI_CARDS_WIDTH = 570;
 
@@ -35,6 +36,9 @@ export const StyledWrapper = styled.div`
 export const StyledInnerWrapper = styled.div`
   padding: 0px 20px;
   margin-top: 215px;
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
   @media (max-width: ${NIMI_CARDS_WIDTH}px) {
     max-width: 100vw;
   }
@@ -49,22 +53,29 @@ export const ProfilePictureContainer = styled.div`
 
 export const PicBackgroundTop = styled.div`
   background: linear-gradient(111.35deg, #4368ea -25.85%, #c490dd 73.38%);
-  opacity: 0.8;
+
   position: absolute;
+
   border-radius: 0px 0px 200px 200px;
   height: 188px;
   width: 100%;
   @media (min-width: ${NIMI_CARDS_WIDTH}px) {
-    width: 70vw;
+    border-radius: 50%;
+    width: 100vw;
+    bottom: calc(100vh - 210px);
+    height: 100vw;
   }
 `;
 
-export const StyledNimiBig = styled.div`
-  margin-top: 15px;
+export const StyledNimiBig = styled(StyledNimiBigSvg)`
+  margin-top: 22px;
   position: absolute;
   z-index: 1;
-  width: 105px;
-  height: 35px;
+
+  @media (min-width: ${NIMI_CARDS_WIDTH}px) {
+    width: 105px;
+    height: 35px;
+  }
 `;
 
 export const ProfilePicture = styled.div<{
@@ -188,7 +199,13 @@ export const SectionItemContainerGrid = styled.div`
     grid-column-gap: 32px;
   }
 `;
-
+export const NimiTextFooter = styled(StyledNimiBigSvg)`
+  min-height: 25px;
+  z-index: 1;
+  width: 100%;
+  position: relative;
+  top: 81px;
+`;
 export const SectionItemLink = styled.a`
   display: flex;
   flex-direction: row;
@@ -200,13 +217,10 @@ export const SectionItemLink = styled.a`
   cursor: pointer;
 `;
 
-export const Footer = styled.footer`
-  background: linear-gradient(291.35deg, #4368ea -25.85%, #c490dd 73.38%);
-  border-radius: 200px 200px 0px 0px;
-  opacity: 0.8;
+export const Footer = styled(AnimatedFooter)`
+  margin-top: auto;
   width: 100%;
-
-  height: 75px;
+  min-height: 110px;
 `;
 
 /**

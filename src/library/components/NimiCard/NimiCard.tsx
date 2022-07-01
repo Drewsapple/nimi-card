@@ -12,6 +12,7 @@ import {
   Divider,
   EnsName,
   Footer,
+  NimiTextFooter,
   PicBackgroundTop,
   ProfilePicture,
   ProfilePictureContainer,
@@ -124,8 +125,9 @@ export function NimiCard({ nimi }: NimiCardProps) {
           </Section>
         )}
         {renderWidgets(nimi.widgets)}
+        <NimiTextFooter />
+        <Footer />
       </StyledInnerWrapper>
-      <Footer />
     </StyledWrapper>
   );
 }

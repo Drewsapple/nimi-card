@@ -1,6 +1,22 @@
 import { NimiBlockchain, nimiBlockchainDetails, NimiLinkBaseDetails } from '../components/NimiCard/types';
 
 /**
+ * Returns true if value is proper url
+ * @param urlString
+ */
+export function isValidUrl(urlString: string): boolean {
+  let url: URL;
+
+  try {
+    url = new URL(urlString);
+  } catch (_) {
+    return false;
+  }
+
+  return url.protocol === 'http:' || url.protocol === 'https:';
+}
+
+/**
  * Given a blockchain and address, return the explorer url
  * @param blockchain - blockchain to get the explorer url for
  * @param address - address to get the explorer url for
@@ -28,7 +44,7 @@ export function shortenAddress(address: string, charsBefore = 4, charsAfter = 4)
  * @returns
  */
 export function getNimiLinkLabel(nimi: NimiLinkBaseDetails): string {
-  if (nimi.type === 'website') {
+  if (nimi.type === 'website' && isValidUrl(nimi.url)) {
     const { hostname } = new URL(nimi.url);
     return hostname;
   }
