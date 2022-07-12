@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { ReactComponent as AnimatedFooter } from '../../assets/svg/animated-footer.svg';
 import { ReactComponent as StyledNimiBigSvg } from '../../assets/svg/nimi-text.svg';
-import { ExternalLink } from '../../components/ExternalLink';
+import { ExternalLink } from '../ExternalLink';
 
 const NIMI_CARDS_WIDTH = 570;
 
@@ -34,13 +34,12 @@ export const StyledWrapper = styled.div`
 `;
 
 export const StyledInnerWrapper = styled.div`
-  padding: 0px 20px;
   margin-top: 215px;
-  height: 100vh;
   display: flex;
   flex-flow: column;
   @media (max-width: ${NIMI_CARDS_WIDTH}px) {
     max-width: 100vw;
+    padding: 0px 20px;
   }
 `;
 
@@ -63,7 +62,7 @@ export const PicBackgroundTop = styled.div`
     border-radius: 50%;
     width: 100vw;
     bottom: calc(100vh - 210px);
-    height: 100vw;
+    height: 100vh;
   }
 `;
 
@@ -119,15 +118,23 @@ export const DisplayName = styled.div`
   color: #000000;
 `;
 export const EnsName = styled.div`
+  display: flex;
   font-size: 22px;
+  height: 16px;
+  cursor: pointer;
   font-weight: 600;
-  line-height: 22px;
+  padding-left: 12px;
+  width: 50%;
+  line-height: 16px;
   letter-spacing: 0em;
   text-align: left;
+  gap: 4px;
+  color: #383838;
 `;
 export const Divider = styled.div`
   height: 18px;
   width: 1.5px;
+  position: absolute;
   background-color: #000000;
 `;
 
@@ -143,6 +150,15 @@ export const StyledExternalLink = styled(ExternalLink)`
   font-weight: 400;
   font-size: 17.8976px;
   line-height: 100%;
+  text-transform: uppercase;
+  width: 50%;
+  height: 16px;
+  padding-right: 12px;
+  text-align: end;
+  color: ${({ theme }) => theme.shadow1};
+  display: flex;
+  gap: 7px;
+  justify-content: end;
 `;
 
 export const VerticalSeparator = styled.div`
@@ -179,48 +195,56 @@ export const Section = styled.section`
 export const SectionTitle = styled.h3`
   font-family: inherit;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 28px;
   line-height: 100%;
+`;
+export const PoapTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 32px;
 `;
 
 export const SectionItemContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const SectionItemContainerGrid = styled.div`
-  display: grid;
-  grid-row-gap: 27px;
-  @media (min-width: ${NIMI_CARDS_WIDTH}px) {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-    grid-column-gap: 32px;
-  }
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 31px;
+  justify-content: center;
 `;
 export const NimiTextFooter = styled(StyledNimiBigSvg)`
+  position: absolute;
   min-height: 25px;
+  bottom: 25px;
   z-index: 1;
-  width: 100%;
-  position: relative;
-  top: 81px;
+  left: 50%;
+  transform: translate(-50%, 0);
 `;
-export const SectionItemLink = styled.a`
+export const AddressButton = styled.div`
   display: flex;
-  flex-direction: row;
-  gap: 8px;
-  font-size: 17px;
-  font-weight: 400;
-  color: rgba(47, 128, 237, 1);
+  justify-content: space-around;
   align-items: center;
   cursor: pointer;
+  width: 50px;
+  height: 50px;
+  padding: 6px;
+  border-radius: 20px;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), #ffffff;
+  box-shadow: 0px 5px 18px rgba(156, 149, 233, 0.2);
 `;
 
 export const Footer = styled(AnimatedFooter)`
   margin-top: auto;
   width: 100%;
-  min-height: 110px;
+  min-height: 93px;
+  display: flex; ;
 `;
 
 /**
@@ -229,4 +253,21 @@ export const Footer = styled(AnimatedFooter)`
 export const NimiLinkImage = styled.img`
   width: 22px;
   height: 22px;
+`;
+
+export const ShadowButton = styled.div<{ color: string }>`
+  display: flex;
+  height: 42px;
+  padding: 12px 16px;
+  width: fit-content;
+  gap: 8.7px;
+  align-items: center;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), #ffffff;
+  box-shadow: 0px 5px 18px rgba(156, 149, 233, 0.2);
+  border-radius: 20px;
+  color: ${({ theme, color }) => theme[color]};
+`;
+export const FooterWrapper = styled.div`
+  position: relative;
+  bottom: 0;
 `;

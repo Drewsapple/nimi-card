@@ -85,6 +85,7 @@ export function colors(darkMode = false): Colors {
     yellow2: '#F3841E',
     blue1: '#2172E5',
     gray1: '#737798',
+    purple: '#8E85E0',
     // dont wanna forget these blue yet
     // blue4: darkMode ? '#153d6f70' : '#C4D9F8',
     // blue5: darkMode ? '#153d6f70' : '#EBF4FF',

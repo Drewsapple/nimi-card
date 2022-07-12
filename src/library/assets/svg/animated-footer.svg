@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-15 -15 578 113">
     <defs>
+    
         <linearGradient id="path-gradient" x1="480" y1="244" x2="324" y2="-61"
                         gradientUnits="userSpaceOnUse">
             <stop offset="0" stop-color="#4368EA"/>
@@ -8,8 +9,10 @@
         <clipPath id="path-clip">
             <rect x="-15" y="-15" width="578" height="125" />
         </clipPath>
+        
         <path id="path" d="M547.143 110.243L0.398926 110.243C0.398931 49.8518 49.356 0.894709 109.748 0.894714L437.794 0.894743C498.186 0.894748 547.143 49.8518 547.143 110.243Z"/>
     </defs>
+    
     <use xlink:href="#path" opacity="1" fill="url(#path-gradient)" />
 
     <text fill="url(#path-gradient)" clip-path="url(#path-clip)"  font-size="12" dy="-2.5">

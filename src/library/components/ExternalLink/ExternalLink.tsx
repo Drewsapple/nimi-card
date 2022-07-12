@@ -17,7 +17,7 @@ const StyledLink = styled.a<ExternalLinkProps>(
     outline: none;
     text-decoration: ${underlined ? 'underline' : 'none'};
   }
-
+ 
   :active {
     text-decoration: none;
   }

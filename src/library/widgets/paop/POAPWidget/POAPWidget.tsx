@@ -33,7 +33,13 @@ export function POAPWidget({ address }: POAPWidgetProps) {
       ) : (
         <StyledPOAPList>
           {paopList.map((paop) => (
-            <StyledPOAPItem key={`${paop.tokenId}-${paop.event.id}`}>
+            <StyledPOAPItem
+              as="a"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={`https://app.poap.xyz/token/${paop.tokenId}`}
+              key={`${paop.tokenId}-${paop.event.id}`}
+            >
               <img src={paop.event.image_url} />
             </StyledPOAPItem>
           ))}

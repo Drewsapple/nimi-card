@@ -1,26 +1,32 @@
 import { FC, SVGProps } from 'react';
 import styled from 'styled-components';
 
+import { ReactComponent as EthereumLogo } from '../../assets/svg/blockchain/ethereum.svg';
+import { ReactComponent as CopyClipboard } from '../../assets/svg/common/copy-clipboard.svg';
+import { ReactComponent as ExternalLinkSvg } from '../../assets/svg/common/external-link.svg';
 import { blockchainLogoUrl, nimiLinkDetailsExtended } from '../../constants';
 import { useToast } from '../../toast';
 import { getExplorerAddressLink, getNimiLinkLabel, shortenAddress } from '../../utils';
 import { Component as POAPWidget } from '../../widgets/paop';
 import {
   AddressBar,
+  AddressButton,
   DescriptionWrapper,
   DisplayName,
   Divider,
   EnsName,
   Footer,
+  FooterWrapper,
   NimiTextFooter,
   PicBackgroundTop,
+  PoapTitle,
   ProfilePicture,
   ProfilePictureContainer,
   Section,
   SectionItemContainer,
   SectionItemContainerGrid,
-  SectionItemLink,
   SectionTitle,
+  ShadowButton,
   StyledExternalLink,
   StyledInnerWrapper,
   StyledNimiBig,
@@ -41,7 +47,7 @@ function renderSVG(logo?: FC<SVGProps<SVGSVGElement>>) {
   return <Logo height={22} width={22} />;
 }
 
-function renderWidgets(nimiWidgetList: NimiCardProps['nimi']['widgets']) {
+function renderWidgets(nimiWidgetList: NimiCardProps['nimi']['widgets'], ensName: string) {
   return (
     nimiWidgetList &&
     nimiWidgetList.map((widget) => {
@@ -49,7 +55,19 @@ function renderWidgets(nimiWidgetList: NimiCardProps['nimi']['widgets']) {
         case NimiWidgetType.POAP:
           return (
             <Section key={widget.type + '-' + widget.address}>
-              <SectionTitle>POAPs</SectionTitle>
+              <PoapTitle>
+                <SectionTitle>POAPs</SectionTitle>
+                <ShadowButton
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  as="a"
+                  href={`https://app.poap.xyz/scan/${ensName}`}
+                  color="purple"
+                >
+                  View Full Collection <ExternalLinkSvg />
+                </ShadowButton>
+              </PoapTitle>
+
               <POAPWidget address={widget.address} />
             </Section>
           );
@@ -63,9 +81,9 @@ function renderWidgets(nimiWidgetList: NimiCardProps['nimi']['widgets']) {
 export function NimiCard({ nimi }: NimiCardProps) {
   const validateNimi = nimiCard.validateSync(nimi);
   const toast = useToast();
-  const copyTextShowToast = (address: string) => {
-    navigator.clipboard.writeText(address);
-    toast.open('Address copied to the clipboard!');
+  const copyTextShowToast = (value: string, text: string) => {
+    navigator.clipboard.writeText(value);
+    toast.open(text);
   };
 
   const { ensAddress, displayName, displayImageUrl, image, addresses, description, ensName, links } =
@@ -81,53 +99,55 @@ export function NimiCard({ nimi }: NimiCardProps) {
         </ProfilePictureContainer>
         <DisplayName>{displayName}</DisplayName>
         <AddressBar>
-          <EnsName>{ensName}</EnsName>
-          <Divider />
           <StyledExternalLink color="shadow1" href={getExplorerAddressLink('ethereum', ensAddress)}>
-            {shortenAddress(ensAddress, 2, 4)}
+            <EthereumLogo /> {shortenAddress(ensAddress, 2, 4)}
           </StyledExternalLink>
+          <Divider />
+          <EnsName onClick={() => copyTextShowToast(ensName, 'ENS name copied to clipboard!')}>
+            {ensName}
+            <CopyClipboard />
+          </EnsName>
         </AddressBar>
         <DescriptionWrapper>{description}</DescriptionWrapper>
         {links && links.length > 0 && (
-          <Section>
-            <SectionTitle>Socials</SectionTitle>
-            <SectionItemContainerGrid>
-              {links.map(({ label, type, url }) => (
-                <SectionItemLink
-                  href={nimiLinkDetailsExtended[type].prepend + url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={label}
-                  key={`${type}-${url}`}
-                >
-                  {renderSVG(nimiLinkDetailsExtended[type].logo)}
-                  {getNimiLinkLabel({ label, type, url })}
-                </SectionItemLink>
-              ))}
-            </SectionItemContainerGrid>
-          </Section>
+          <SectionItemContainerGrid>
+            {links.map(({ label, type, url }) => (
+              <ShadowButton
+                as="a"
+                color="shadow1"
+                href={nimiLinkDetailsExtended[type].prepend + url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={label}
+                key={`${type}-${url}`}
+              >
+                {renderSVG(nimiLinkDetailsExtended[type].logo)}
+                {getNimiLinkLabel({ label, type, url })}
+              </ShadowButton>
+            ))}
+          </SectionItemContainerGrid>
         )}
+        {renderWidgets(nimi.widgets, ensName)}
         {addresses && addresses.length > 0 && (
           <Section>
-            <SectionTitle>Addresses</SectionTitle>
             <SectionItemContainer>
               {addresses.map(({ address, blockchain }) => (
-                <SectionItemLink
-                  onClick={() => copyTextShowToast(address)}
+                <AddressButton
+                  onClick={() => copyTextShowToast(address, 'Address copied to the clipboard!')}
                   key={`${blockchain}-${address}`}
                   title={`Copy this address to clipboard`}
                 >
                   {renderSVG(blockchainLogoUrl[blockchain])}
-                  {shortenAddress(address, 7, 9)}
-                </SectionItemLink>
+                </AddressButton>
               ))}
             </SectionItemContainer>
           </Section>
         )}
-        {renderWidgets(nimi.widgets)}
+      </StyledInnerWrapper>
+      <FooterWrapper>
         <NimiTextFooter />
         <Footer />
-      </StyledInnerWrapper>
+      </FooterWrapper>
     </StyledWrapper>
   );
 }
