@@ -5,7 +5,6 @@ import { ReactComponent as EthereumLogo } from '../../assets/svg/blockchain/ethe
 import { ReactComponent as CopyClipboard } from '../../assets/svg/common/copy-clipboard.svg';
 import { ReactComponent as ExternalLinkSvg } from '../../assets/svg/common/external-link.svg';
 import { ReactComponent as LimoText } from '../../assets/svg/limo-text.svg';
-import { ReactComponent as GithubLogo } from '../../assets/svg/links/github.svg';
 import { ReactComponent as TwitterLogo } from '../../assets/svg/links/twitter.svg';
 import { ReactComponent as NimiText } from '../../assets/svg/nimi-text.svg';
 import { ReactComponent as NimiLanding } from '../../assets/svg/NimiLanding.svg';
@@ -101,6 +100,7 @@ const MainLandingWrapper = styled.div`
   gap: 24px;
   justify-content: center;
   flex-direction: column;
+  margin-top: 32px;
   margin-bottom: 24px;
 `;
 const CommemorationText = styled.div`
@@ -117,12 +117,7 @@ const StyledTwitterLogo = styled(TwitterLogo)`
     fill: #8e85e0;
   }
 `;
-const StyledGithubLogo = styled(GithubLogo)`
-  margin-left: 42px;
-  path {
-    fill: #8e85e0;
-  }
-`;
+
 const LinksAndSocials = styled.div`
   color: #383838;
   font-weight: 500;
@@ -176,12 +171,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
         </AddressBar>
         <DescriptionWrapper>{description}</DescriptionWrapper>
         {isLanding && (
-          <ClaimYourNimi
-            as="a"
-            href={`https://nimi.eth.limo/#/domains/${ensName}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <ClaimYourNimi as="a" href="https://nimi.eth.limo/" target="_blank" rel="noopener noreferrer">
             Claim Your <StyledNimiText width={'45'} height={'15'} /> Profile
           </ClaimYourNimi>
         )}
@@ -241,13 +231,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
           </Section>
         )}
         {isLanding && (
-          <ClaimYourNimi
-            as="a"
-            href={`https://nimi.eth.limo/#/domains/${ensName}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            isBig
-          >
+          <ClaimYourNimi as="a" href="https://nimi.eth.limo/" target="_blank" rel="noopener noreferrer" isBig>
             Claim Your <StyledNimiText width={'45'} height={'15'} /> Profile
           </ClaimYourNimi>
         )}
@@ -271,9 +255,9 @@ export function NimiCard({ nimi }: NimiCardProps) {
               <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/0xNimi">
                 <StyledTwitterLogo width={20} height={19} />
               </a>
-              <a target="_blank" rel="noopener noreferrer" href="https://github.com/nimi-app">
+              {/* <a target="_blank" rel="noopener noreferrer" href="https://github.com/nimi-app">
                 <StyledGithubLogo width={19} height={15} />
-              </a>
+              </a> */}
             </LandingFooter>
           </MainLandingWrapper>
         ) : (
