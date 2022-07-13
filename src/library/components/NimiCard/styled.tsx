@@ -258,6 +258,7 @@ export const NimiLinkImage = styled.img`
 export const ShadowButton = styled.div<{ color: string }>`
   display: flex;
   height: 42px;
+  cursor: pointer;
   padding: 12px 16px;
   width: fit-content;
   gap: 8.7px;
