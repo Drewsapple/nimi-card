@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { ReactComponent as NimiLogoMarkSvg } from '../library/assets/svg/nimi-logo-mark.svg';
 import { Nimi, NimiCard, Container as NimiCardContainer } from '../library/components/NimiCard';
+import { Providers } from '../library/providers';
 
 const StyledCenteredContainer = styled.div`
   width: 100%;
@@ -19,6 +20,9 @@ const StyledNimiLogoMarkSvg = styled(NimiLogoMarkSvg)`
   max-width: 200px;
 `;
 
+/**
+ * Main React Application component.
+ */
 export function App() {
   const [nimi, setNimi] = useState<Nimi>();
   const [isLoading, setIsLoading] = useState(true);
@@ -71,7 +75,9 @@ export function App() {
   return (
     <Suspense fallback={null}>
       <NimiCardContainer>
-        <NimiCard nimi={nimi} />
+        <Providers>
+          <NimiCard nimi={nimi} />
+        </Providers>
       </NimiCardContainer>
     </Suspense>
   );
