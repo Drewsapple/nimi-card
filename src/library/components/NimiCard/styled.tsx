@@ -197,10 +197,10 @@ export const ClaimYourNimi = styled.div<{ isBig?: boolean }>`
   justify-content: center;
 `;
 
-export const Section = styled.section`
+export const Section = styled.section<{ padding?: string }>`
   display: flex;
   flex-direction: column;
-  padding: 38px 36px;
+  padding: ${({ padding }) => (padding ? padding : '38px 36px')};
   background: #ffffff;
   box-shadow: 0px 8px 35px #e9e0ff;
   border-radius: 25px;

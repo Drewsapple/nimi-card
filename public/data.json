@@ -16,31 +16,5 @@
     }
   ],
   "ensName": "nimi.eth",
-  "links": [
-    {
-      "label": "Twitter",
-      "type": "twitter",
-      "url": "0xNimi"
-    },
-    {
-      "label": "Github",
-      "type": "github",
-      "url": "nimi-app"
-    },
-    {
-      "label": "Telegram",
-      "type": "telegram",
-      "url": "0xNimi"
-    },
-    {
-      "label": "Website",
-      "type": "website",
-      "url": "https://nimi.eth.limo"
-    },
-    {
-      "label": "Website",
-      "type": "website",
-      "url": "smilenostress@gmail.com"
-    }
-  ]
+  "links": []
 }

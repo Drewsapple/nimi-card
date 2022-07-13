@@ -123,7 +123,21 @@ const StyledGithubLogo = styled(GithubLogo)`
     fill: #8e85e0;
   }
 `;
-
+const LinksAndSocials = styled.div`
+  color: #383838;
+  font-weight: 500;
+  font-size: 27.8408px;
+  text-align: center;
+  line-height: 100%;
+`;
+const NoLinks = styled.div`
+  font-weight: 500;
+  text-align: center;
+  font-size: 14px;
+  line-height: 21px;
+  margin-top: 32px;
+  color: #757575;
+`;
 export function NimiCard({ nimi }: NimiCardProps) {
   const validateNimi = nimiCard.validateSync(nimi);
   const toast = useToast();
@@ -203,6 +217,12 @@ export function NimiCard({ nimi }: NimiCardProps) {
               </>
             ))}
           </SectionItemContainerGrid>
+        )}
+        {staticIsLanding && links && links.length === 0 && (
+          <Section padding="56px 36px">
+            <LinksAndSocials>Links & Socials</LinksAndSocials>
+            <NoLinks>No Links Found :(</NoLinks>
+          </Section>
         )}
         {renderWidgets(nimi.widgets, ensName)}
         {addresses && addresses.length > 0 && (
