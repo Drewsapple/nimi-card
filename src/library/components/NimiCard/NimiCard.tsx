@@ -112,18 +112,32 @@ export function NimiCard({ nimi }: NimiCardProps) {
         {links && links.length > 0 && (
           <SectionItemContainerGrid>
             {links.map(({ label, type, url }) => (
-              <ShadowButton
-                as="a"
-                color="shadow1"
-                href={nimiLinkDetailsExtended[type].prepend + url}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={label}
-                key={`${type}-${url}`}
-              >
-                {renderSVG(nimiLinkDetailsExtended[type].logo)}
-                {getNimiLinkLabel({ label, type, url })}
-              </ShadowButton>
+              <>
+                {type === 'website' ? (
+                  <ShadowButton
+                    color="shadow1"
+                    title={label}
+                    key={`${type}-${url}`}
+                    onClick={() => copyTextShowToast(url, 'Website copied to the clipboard!')}
+                  >
+                    {renderSVG(nimiLinkDetailsExtended[type].logo)}
+                    {getNimiLinkLabel({ label, type, url })}
+                  </ShadowButton>
+                ) : (
+                  <ShadowButton
+                    as="a"
+                    color="shadow1"
+                    href={nimiLinkDetailsExtended[type].prepend + url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={label}
+                    key={`${type}-${url}`}
+                  >
+                    {renderSVG(nimiLinkDetailsExtended[type].logo)}
+                    {getNimiLinkLabel({ label, type, url })}
+                  </ShadowButton>
+                )}
+              </>
             ))}
           </SectionItemContainerGrid>
         )}
