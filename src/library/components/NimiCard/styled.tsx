@@ -180,11 +180,27 @@ export const DescriptionWrapper = styled.div`
   letter-spacing: 0em;
   text-align: left;
 `;
+export const ClaimYourNimi = styled.div<{ isBig?: boolean }>`
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  font-weight: 600;
+  margin: 32px auto;
+  font-size: 18px;
+  line-height: 21px;
+  color: #ffff;
+  background: linear-gradient(111.35deg, #4368ea -25.85%, #c490dd 73.38%);
+  border-radius: 50px;
+  padding: 12px 27px;
+  width: ${({ isBig }) => (isBig ? '355px' : 'fit-content')};
+  height: ${({ isBig }) => isBig && '63px'};
+  justify-content: center;
+`;
 
-export const Section = styled.section`
+export const Section = styled.section<{ padding?: string }>`
   display: flex;
   flex-direction: column;
-  padding: 38px 36px;
+  padding: ${({ padding }) => (padding ? padding : '38px 36px')};
   background: #ffffff;
   box-shadow: 0px 8px 35px #e9e0ff;
   border-radius: 25px;

@@ -9,6 +9,7 @@
   ],
   "description": "Host your personal page on your ENS domain! Nimi 0.1.alpha live on Ethereum Mainnet :) #devconnect #ETHAmsterdam",
   "ensAddress": "0x4e675ceB415fC41700fb821fF3B43cE5C8B9a83B",
+  "isLanding": true,
   "widgets": [
     {
       "type": "POAP",
@@ -16,31 +17,5 @@
     }
   ],
   "ensName": "nimi.eth",
-  "links": [
-    {
-      "label": "Twitter",
-      "type": "twitter",
-      "url": "0xNimi"
-    },
-    {
-      "label": "Github",
-      "type": "github",
-      "url": "nimi-app"
-    },
-    {
-      "label": "Telegram",
-      "type": "telegram",
-      "url": "0xNimi"
-    },
-    {
-      "label": "Website",
-      "type": "website",
-      "url": "https://nimi.eth.limo"
-    },
-    {
-      "label": "Website",
-      "type": "website",
-      "url": "smilenostress@gmail.com"
-    }
-  ]
+  "links": []
 }
