@@ -257,10 +257,10 @@ export function NimiCard({ nimi }: NimiCardProps) {
             </LandingFooter>
           </MainLandingWrapper>
         ) : (
-          <>
+          <a target="_blank" rel="noopener noreferrer" href="https://nimi.eth.limo/">
             <NimiTextFooter />
             <Footer />
-          </>
+          </a>
         )}
       </FooterWrapper>
     </StyledWrapper>
