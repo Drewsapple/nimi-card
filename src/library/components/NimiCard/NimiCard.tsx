@@ -150,7 +150,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
     navigator.clipboard.writeText(value);
     toast.open(text);
   };
-  const isLanding = nimi.isLanding;
+  const isLanding = nimi.isLanding && nimi.isLanding === true;
 
   const { ensAddress, displayName, displayImageUrl, image, addresses, description, ensName, links } =
     validateNimi as Nimi;
