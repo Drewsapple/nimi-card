@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { ReactComponent as EthereumLogo } from '../../assets/svg/blockchain/ethereum.svg';
 import { ReactComponent as CopyClipboard } from '../../assets/svg/common/copy-clipboard.svg';
 import { ReactComponent as ExternalLinkSvg } from '../../assets/svg/common/external-link.svg';
+import { ReactComponent as NimiText } from '../../assets/svg/nimi-text.svg';
 import { blockchainLogoUrl, nimiLinkDetailsExtended } from '../../constants';
 import { useToast } from '../../toast';
 import { getExplorerAddressLink, getNimiLinkLabel, shortenAddress } from '../../utils';
@@ -11,6 +12,7 @@ import { Component as POAPWidget } from '../../widgets/paop';
 import {
   AddressBar,
   AddressButton,
+  ClaimYourNimi,
   DescriptionWrapper,
   DisplayName,
   Divider,
@@ -77,6 +79,9 @@ function renderWidgets(nimiWidgetList: NimiCardProps['nimi']['widgets'], ensName
     })
   );
 }
+const StyledNimiText = styled(NimiText)`
+  margin: 0 6px;
+`;
 
 export function NimiCard({ nimi }: NimiCardProps) {
   const validateNimi = nimiCard.validateSync(nimi);
@@ -85,14 +90,20 @@ export function NimiCard({ nimi }: NimiCardProps) {
     navigator.clipboard.writeText(value);
     toast.open(text);
   };
+  const staticIsLanding = true;
 
   const { ensAddress, displayName, displayImageUrl, image, addresses, description, ensName, links } =
     validateNimi as Nimi;
 
   return (
     <StyledWrapper>
-      <PicBackgroundTop />
-      <StyledNimiBig />
+      {!staticIsLanding && (
+        <>
+          <PicBackgroundTop />
+          <StyledNimiBig />
+        </>
+      )}
+
       <StyledInnerWrapper>
         <ProfilePictureContainer>
           <ProfilePicture image={image ? image.url : displayImageUrl} />
@@ -109,6 +120,17 @@ export function NimiCard({ nimi }: NimiCardProps) {
           </EnsName>
         </AddressBar>
         <DescriptionWrapper>{description}</DescriptionWrapper>
+        {staticIsLanding && (
+          <ClaimYourNimi
+            as="a"
+            href={`https://nimi.eth.limo/#/domains/${ensName}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Claim Your <StyledNimiText width={'45'} height={'15'} /> Profile
+          </ClaimYourNimi>
+        )}
+
         {links && links.length > 0 && (
           <SectionItemContainerGrid>
             {links.map(({ label, type, url }) => (
@@ -156,6 +178,17 @@ export function NimiCard({ nimi }: NimiCardProps) {
               ))}
             </SectionItemContainer>
           </Section>
+        )}
+        {staticIsLanding && (
+          <ClaimYourNimi
+            as="a"
+            href={`https://nimi.eth.limo/#/domains/${ensName}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            isBig
+          >
+            Claim Your <StyledNimiText width={'45'} height={'15'} /> Profile
+          </ClaimYourNimi>
         )}
       </StyledInnerWrapper>
       <FooterWrapper>
