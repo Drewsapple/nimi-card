@@ -166,6 +166,7 @@ body {
   background-image: url("${backgroundImageUrl}");
   background-position: center;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 button {
