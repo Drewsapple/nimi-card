@@ -13,6 +13,10 @@ export interface Nimi {
    */
   displayImageUrl?: string;
   /**
+   * Checks if its Landing page
+   */
+  isLanding?: boolean;
+  /**
    * Additional information about the Nimi Image
    * @since 0.6.0
    */

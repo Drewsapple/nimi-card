@@ -145,14 +145,14 @@ export function NimiCard({ nimi }: NimiCardProps) {
     navigator.clipboard.writeText(value);
     toast.open(text);
   };
-  const staticIsLanding = true;
+  const isLanding = nimi.isLanding;
 
   const { ensAddress, displayName, displayImageUrl, image, addresses, description, ensName, links } =
     validateNimi as Nimi;
 
   return (
     <StyledWrapper>
-      {!staticIsLanding && (
+      {!isLanding && (
         <>
           <PicBackgroundTop />
           <StyledNimiBig />
@@ -175,7 +175,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
           </EnsName>
         </AddressBar>
         <DescriptionWrapper>{description}</DescriptionWrapper>
-        {staticIsLanding && (
+        {isLanding && (
           <ClaimYourNimi
             as="a"
             href={`https://nimi.eth.limo/#/domains/${ensName}`}
@@ -218,7 +218,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
             ))}
           </SectionItemContainerGrid>
         )}
-        {staticIsLanding && links && links.length === 0 && (
+        {isLanding && links && links.length === 0 && (
           <Section padding="56px 36px">
             <LinksAndSocials>Links & Socials</LinksAndSocials>
             <NoLinks>No Links Found :(</NoLinks>
@@ -240,7 +240,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
             </SectionItemContainer>
           </Section>
         )}
-        {staticIsLanding && (
+        {isLanding && (
           <ClaimYourNimi
             as="a"
             href={`https://nimi.eth.limo/#/domains/${ensName}`}
@@ -253,7 +253,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
         )}
       </StyledInnerWrapper>
       <FooterWrapper>
-        {staticIsLanding ? (
+        {isLanding ? (
           <MainLandingWrapper>
             <LandingFooter>
               <a target="_blank" rel="noopener noreferrer" href="https://eth.limo/">
