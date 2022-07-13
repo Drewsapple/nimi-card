@@ -190,12 +190,12 @@ export function NimiCard({ nimi }: NimiCardProps) {
           <SectionItemContainerGrid>
             {links.map(({ label, type, url }) => (
               <>
-                {type === 'website' ? (
+                {type === 'email' ? (
                   <ShadowButton
                     color="shadow1"
                     title={label}
                     key={`${type}-${url}`}
-                    onClick={() => copyTextShowToast(url, 'Website copied to the clipboard!')}
+                    onClick={() => copyTextShowToast(url, 'Email copied to the clipboard!')}
                   >
                     {renderSVG(nimiLinkDetailsExtended[type].logo)}
                     {getNimiLinkLabel({ label, type, url })}
