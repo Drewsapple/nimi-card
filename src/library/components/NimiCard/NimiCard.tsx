@@ -171,7 +171,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
         </AddressBar>
         <DescriptionWrapper>{description}</DescriptionWrapper>
         {isLanding && (
-          <ClaimYourNimi as="a" href="https://nimi.eth.limo/" target="_blank" rel="noopener noreferrer">
+          <ClaimYourNimi as="a" href="https://nimi.link/" target="_blank" rel="noopener noreferrer">
             Claim Your <StyledNimiText width={'45'} height={'15'} /> Profile
           </ClaimYourNimi>
         )}
@@ -231,7 +231,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
           </Section>
         )}
         {isLanding && (
-          <ClaimYourNimi as="a" href="https://nimi.eth.limo/" target="_blank" rel="noopener noreferrer" isBig>
+          <ClaimYourNimi as="a" href="https://nimi.link/" target="_blank" rel="noopener noreferrer" isBig>
             Claim Your <StyledNimiText width={'45'} height={'15'} /> Profile
           </ClaimYourNimi>
         )}
@@ -244,7 +244,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
                 <LimoText />
               </a>
               <XICOn />
-              <a target="_blank" rel="noopener noreferrer" href="https://nimi.eth.limo/">
+              <a target="_blank" rel="noopener noreferrer" href="https://nimi.link/">
                 <NimiLanding />
               </a>
             </LandingFooter>
@@ -261,7 +261,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
             </LandingFooter>
           </MainLandingWrapper>
         ) : (
-          <a target="_blank" rel="noopener noreferrer" href="https://nimi.eth.limo/">
+          <a target="_blank" rel="noopener noreferrer" href="https://nimi.link/">
             <NimiTextFooter />
             <Footer />
           </a>
