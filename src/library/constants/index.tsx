@@ -5,6 +5,7 @@ import { ReactComponent as DogecoinLogoUrl } from '../assets/svg/blockchain/doge
 import { ReactComponent as EtherLogoUrl } from '../assets/svg/blockchain/ether.svg';
 import { ReactComponent as LitecoinLogoUrl } from '../assets/svg/blockchain/litecoin.svg';
 import { ReactComponent as PolygonLogoUrl } from '../assets/svg/blockchain/polygon.svg';
+import { ReactComponent as DiscordLogo } from '../assets/svg/links/discord.svg';
 import { ReactComponent as GitHubMarkLogo } from '../assets/svg/links/github.svg';
 import { ReactComponent as InstagramLogo } from '../assets/svg/links/instagram.svg';
 import { ReactComponent as LensterLogo } from '../assets/svg/links/lenster.svg';
@@ -34,7 +35,7 @@ export const nimiLinkDetailsExtended: Record<
   reddit: { prepend: 'https://reddit.com/user/' },
   facebook: { prepend: 'https://facebook.com/' },
   youtube: { prepend: 'https://youtube.com/' },
-  discord: { prepend: 'https://discord.com/users/' },
+  discord: { logo: DiscordLogo, prepend: 'https://discord.com/users/' },
 };
 
 /**
