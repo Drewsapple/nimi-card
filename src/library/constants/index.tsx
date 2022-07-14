@@ -34,7 +34,7 @@ export const nimiLinkDetailsExtended: Record<
   reddit: { prepend: 'https://reddit.com/user/' },
   facebook: { prepend: 'https://facebook.com/' },
   youtube: { prepend: 'https://youtube.com/' },
-  discord: { prepend: 'https://discord.com/' },
+  discord: { prepend: 'https://discord.com/users/' },
 };
 
 /**
