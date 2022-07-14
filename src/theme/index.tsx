@@ -6,7 +6,6 @@ import {
   ThemeProvider as StyledComponentsThemeProvider,
 } from 'styled-components';
 
-import backgroundImageUrl from '../assets/images/nimi-header-background.png';
 import { Colors } from './styled';
 
 export const MEDIA_WIDTHS = {
@@ -163,7 +162,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body {
-  background-image: url("${backgroundImageUrl}");
+  background-image: url("https://bafybeif5c6xz6ryiyrtm4r6amwiftwrw2kf3llipy6dco27hp3ilftthtm.ipfs.dweb.link/nimi-header-background.d73a42cfaca4acf944f4.png");
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
@@ -179,14 +178,9 @@ a {
 `;
 
 export const ThemedGlobalStyle = createGlobalStyle`
-html {
+body {
   color: ${({ theme }) => theme.text1};
   background-color: ${({ theme }) => theme.bg1};
-  color-scheme: 'light';
-}
-
-body {
   min-height: 100vh;
-  background-repeat: no-repeat;
 }
 `;
