@@ -7,12 +7,37 @@ Nimi Card App codebase. Exports a React component that takes an `Nimi` profile, 
 ```typescript
 export interface Nimi {
   displayName: string;
-  displayImageUrl: string;
-  description: string;
-  ensAddress: string;
+  displayImageUrl?: string;
+  image?: NimiImage;
+  description?: string;
   ensName: string;
-  links: NimiLink[];
+  ensAddress: string;
+  links: NimiLinkBaseDetails[];
   addresses: NimiBlockchainAddress[];
+  widgets: NimiWidget[];
+}
+```
+
+# Usage
+
+
+Import the `CardApp` component that provides the essential wrappers for the Nimi Card to function.
+
+```typescript
+// app.tsx
+import {  CardApp, Nimi } from 'nimi-card'
+
+export function App() {
+  const nimi: NimiCard = {
+    displayName: 'nimi.eth',
+    ensName: 'nimi.eth',
+    ensAddress: '0x0.....';
+    links: [],
+    addresses: [],
+    widgets: []
+  }
+
+  return <CardApp nimi={nimi} />;
 }
 ```
 
