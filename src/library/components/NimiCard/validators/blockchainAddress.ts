@@ -1,11 +1,20 @@
-import { isAddress } from '@ethersproject/address';
+import { isAddress as isEVMAddress } from '@ethersproject/address';
 
+import { validate as isBitcoinAddress } from 'bitcoin-address-validation';
 import * as Yup from 'yup';
 
-export const ethereumAddress = Yup.string()
+export const evmAddress = Yup.string()
   .required()
   .test({
-    name: 'isEthereumAddress',
-    test: (value) => isAddress(value as string),
-    message: '${path} is not an Ethereum address',
+    name: 'isEVMAddress',
+    test: (value) => isEVMAddress(value as string),
+    message: '${path} is not an EVM address',
+  });
+
+export const bitcoinAddress = Yup.string()
+  .required()
+  .test({
+    name: 'isBitcoinAddress',
+    test: (value) => isBitcoinAddress(value as string),
+    message: '${path} is not a Bitcoin address',
   });

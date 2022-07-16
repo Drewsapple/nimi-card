@@ -1,5 +1,5 @@
-import { NimiBlockchain, nimiBlockchainDetails, NimiLinkBaseDetails } from '../components/NimiCard/types';
-
+import { NimiBlockchain, NimiLinkBaseDetails } from '../components/NimiCard/types';
+import { NIMI_BLOCKCHAIN_DETAILS } from '../constants';
 /**
  * Returns true if value is proper url
  * @param urlString
@@ -23,7 +23,7 @@ export function isValidUrl(urlString: string): boolean {
  * @returns the explorer url
  */
 export function getExplorerAddressLink(blockchain: NimiBlockchain, address: string): string {
-  return nimiBlockchainDetails[blockchain].explorerAddressUrl[0] + address;
+  return NIMI_BLOCKCHAIN_DETAILS[blockchain].explorerAddressUrl[0] + address;
 }
 
 /**

@@ -1,8 +1,8 @@
 import * as Yup from 'yup';
 
-import { blockchainList, linkTypeList, Nimi, NimiBlockchainAddress, NimiLinkBaseDetails } from '../types';
+import { linkTypeList, Nimi, NimiBlockchain, NimiBlockchainAddress, NimiLinkBaseDetails } from '../types';
 import { NimiWidgetType } from '../types/NimiWidget';
-import { ethereumAddress } from './blockchainAddress';
+import { bitcoinAddress as bitcoinAddressValidator, evmAddress as evmAddressValidator } from './blockchainAddress';
 import { nimiImageUrl } from './image';
 
 /**
@@ -23,7 +23,7 @@ export const isLanding = Yup.boolean().optional();
 /**
  * The Ethereum address that holds the ENS
  */
-export const ensAddress = ethereumAddress.required();
+export const ensAddress = evmAddressValidator.required();
 
 /**
  *
@@ -40,8 +40,21 @@ export const displayImageUrl = Yup.string().url('Invalid URL').optional();
  * A single Blockchain address
  */
 export const blockchainWallet: Yup.SchemaOf<NimiBlockchainAddress> = Yup.object({
-  blockchain: Yup.mixed().oneOf(Array.from(blockchainList)).required(),
-  address: Yup.string().required(),
+  blockchain: Yup.mixed().oneOf(Object.keys(NimiBlockchain)).required(),
+  address: Yup.string()
+    .required()
+    .when({
+      is: NimiBlockchain.ETHEREUM,
+      then: evmAddressValidator,
+    })
+    .when({
+      is: NimiBlockchain.POLYGON,
+      then: evmAddressValidator,
+    })
+    .when({
+      is: NimiBlockchain.BITCOIN,
+      then: bitcoinAddressValidator,
+    }),
 });
 
 /**
