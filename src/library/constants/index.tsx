@@ -14,7 +14,7 @@ import { ReactComponent as EmailLogo } from '../assets/svg/links/mail.svg';
 import { ReactComponent as TelegramLogo } from '../assets/svg/links/telegram.svg';
 import { ReactComponent as TwitterLogo } from '../assets/svg/links/twitter.svg';
 import { ReactComponent as WebsiteLogo } from '../assets/svg/links/website.svg';
-import { NimiBlockchain, NimiLink } from '../components/NimiCard/types';
+import { NimiBlockchain, NimiBlockchainDetails, NimiLink } from '../components/NimiCard/types';
 
 export const nimiLinkDetailsExtended: Record<
   NimiLink,
@@ -41,10 +41,36 @@ export const nimiLinkDetailsExtended: Record<
 /**
  * Blockchain logo mapping
  */
-export const blockchainLogoUrl: Record<NimiBlockchain, FC<SVGProps<SVGSVGElement>>> = {
-  ethereum: EtherLogoUrl,
-  bitcoin: BitcoinLogoUrl,
-  litecoin: LitecoinLogoUrl,
-  dogecoin: DogecoinLogoUrl,
-  polygon: PolygonLogoUrl,
+export const NIMI_BLOCKCHAIN_LOGO_URL: Record<NimiBlockchain, FC<SVGProps<SVGSVGElement>>> = {
+  [NimiBlockchain.ETHEREUM]: EtherLogoUrl,
+  [NimiBlockchain.BITCOIN]: BitcoinLogoUrl,
+  [NimiBlockchain.LITECOIN]: LitecoinLogoUrl,
+  [NimiBlockchain.DOGECOIN]: DogecoinLogoUrl,
+  [NimiBlockchain.POLYGON]: PolygonLogoUrl,
+};
+
+/**
+ * Additional information about the Nimi blockchains
+ */
+export const NIMI_BLOCKCHAIN_DETAILS: Record<NimiBlockchain, NimiBlockchainDetails> = {
+  [NimiBlockchain.ETHEREUM]: {
+    name: 'Ethereum',
+    explorerAddressUrl: ['https://etherscan.io/address/'],
+  },
+  [NimiBlockchain.BITCOIN]: {
+    name: 'Bitcoin',
+    explorerAddressUrl: ['https://blockstream.info/address/'],
+  },
+  [NimiBlockchain.LITECOIN]: {
+    name: 'Litecoin',
+    explorerAddressUrl: ['https://blockchair.com/litecoin/address/'],
+  },
+  [NimiBlockchain.POLYGON]: {
+    name: 'Polygon',
+    explorerAddressUrl: ['https://polygonscan.com/address/'],
+  },
+  [NimiBlockchain.DOGECOIN]: {
+    name: 'Dogecoin',
+    explorerAddressUrl: ['https://dogechain.info/address/'],
+  },
 };

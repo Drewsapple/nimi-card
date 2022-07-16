@@ -8,7 +8,7 @@ import { ReactComponent as LimoText } from '../../assets/svg/limo-text.svg';
 import { ReactComponent as TwitterLogo } from '../../assets/svg/links/twitter.svg';
 import { ReactComponent as NimiLanding } from '../../assets/svg/NimiLanding.svg';
 import { ReactComponent as XIcon } from '../../assets/svg/x-icon.svg';
-import { blockchainLogoUrl, nimiLinkDetailsExtended } from '../../constants';
+import { NIMI_BLOCKCHAIN_LOGO_URL, nimiLinkDetailsExtended } from '../../constants';
 import { useToast } from '../../toast';
 import { getExplorerAddressLink, getNimiLinkLabel, shortenAddress } from '../../utils';
 import { Component as POAPWidget } from '../../widgets/paop';
@@ -37,7 +37,7 @@ import {
   StyledNimiBig,
   StyledWrapper,
 } from './styled';
-import { Nimi } from './types';
+import { Nimi, NimiBlockchain } from './types';
 import { NimiWidgetType } from './types/NimiWidget';
 import { nimiCard } from './validators';
 
@@ -170,7 +170,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
         </ProfilePictureContainer>
         <DisplayName>{displayName}</DisplayName>
         <AddressBar>
-          <StyledExternalLink color="shadow1" href={getExplorerAddressLink('ethereum', ensAddress)}>
+          <StyledExternalLink color="shadow1" href={getExplorerAddressLink(NimiBlockchain.ETHEREUM, ensAddress)}>
             <EthereumLogo /> {shortenAddress(ensAddress, 2, 4)}
           </StyledExternalLink>
           <Divider />
@@ -234,7 +234,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
                   key={`${blockchain}-${address}`}
                   title={`Copy this address to clipboard`}
                 >
-                  {renderSVG(blockchainLogoUrl[blockchain])}
+                  {renderSVG(NIMI_BLOCKCHAIN_LOGO_URL[blockchain])}
                 </AddressButton>
               ))}
             </SectionItemContainer>

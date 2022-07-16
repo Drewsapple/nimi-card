@@ -4,6 +4,7 @@
   "private": false,
   "dependencies": {
     "@ethersproject/address": "^5.6.1",
+    "bitcoin-address-validation": "^2.2.1",
     "cross-env": "^7.0.3",
     "nanoid": "^4.0.0",
     "yup": "^0.32.11"
