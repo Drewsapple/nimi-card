@@ -283,6 +283,9 @@ export const ShadowButton = styled.div<{ color: string }>`
   box-shadow: 0px 5px 18px rgba(156, 149, 233, 0.2);
   border-radius: 20px;
   color: ${({ theme, color }) => theme[color]};
+  @media (max-width: ${NIMI_CARDS_WIDTH}px) {
+    font-size: 8px;
+  }
 `;
 export const FooterWrapper = styled.div`
   position: relative;

@@ -9,8 +9,9 @@ export const StyledPOAPList = styled.div`
 `;
 
 export const StyledPOAPItem = styled.div`
+  width: 30%;
   > img {
-    width: 106px;
+    width: 100%;
     border-radius: 50%;
   }
 `;
