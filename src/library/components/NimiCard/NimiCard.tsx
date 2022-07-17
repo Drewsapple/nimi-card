@@ -11,7 +11,7 @@ import { ReactComponent as XIcon } from '../../assets/svg/x-icon.svg';
 import { NIMI_BLOCKCHAIN_LOGO_URL, nimiLinkDetailsExtended } from '../../constants';
 import { useToast } from '../../toast';
 import { getExplorerAddressLink, getNimiLinkLabel, shortenAddress } from '../../utils';
-import { Component as POAPWidget } from '../../widgets/paop';
+import { Component as POAPWidget } from '../../widgets/poap';
 import {
   AddressBar,
   AddressButton,
