@@ -1,4 +1,5 @@
-import { FC, SVGProps } from 'react';
+import { FC, SVGProps, useState } from 'react';
+import { QRCode } from 'react-qrcode-logo';
 import styled from 'styled-components';
 
 import { ReactComponent as EthereumLogo } from '../../assets/svg/blockchain/ethereum.svg';
@@ -7,6 +8,7 @@ import { ReactComponent as ExternalLinkSvg } from '../../assets/svg/common/exter
 import { ReactComponent as LimoText } from '../../assets/svg/limo-text.svg';
 import { ReactComponent as TwitterLogo } from '../../assets/svg/links/twitter.svg';
 import { ReactComponent as NimiLanding } from '../../assets/svg/NimiLanding.svg';
+import { ReactComponent as QrCodeLogo } from '../../assets/svg/qr-code.svg';
 import { ReactComponent as XIcon } from '../../assets/svg/x-icon.svg';
 import { NIMI_BLOCKCHAIN_LOGO_URL, nimiLinkDetailsExtended } from '../../constants';
 import { useToast } from '../../toast';
@@ -143,9 +145,35 @@ const NoLinks = styled.div`
   margin-top: 32px;
   color: #757575;
 `;
+
+const StyledQrCode = styled(QRCode)``;
+const StyledQrCodeWrapper = styled.div`
+  background-position: center, center;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  border-radius: 200px;
+  height: 185px;
+  background-color: white;
+  width: 185px;
+  margin-top: -140px;
+  z-index: 1;
+`;
+
+const QrCodeSvg = styled(QrCodeLogo)`
+  position: absolute;
+
+  z-index: 1;
+  margin-left: 64px;
+
+  margin-top: -6px;
+`;
 export function NimiCard({ nimi }: NimiCardProps) {
   const validateNimi = nimiCard.validateSync(nimi);
   const toast = useToast();
+  const [isQrCode, setIsQrCode] = useState(true);
   const copyTextShowToast = (value: string, text: string) => {
     navigator.clipboard.writeText(value);
     toast.open(text);
@@ -165,9 +193,17 @@ export function NimiCard({ nimi }: NimiCardProps) {
       )}
 
       <StyledInnerWrapper>
-        <ProfilePictureContainer>
-          <ProfilePicture image={image ? image.url : displayImageUrl} />
+        <ProfilePictureContainer onClick={() => setIsQrCode(!isQrCode)}>
+          {isQrCode ? (
+            <StyledQrCodeWrapper>
+              <StyledQrCode size={120} eyeRadius={15} qrStyle="dots" value={`https://${ensName}.limo`} />
+            </StyledQrCodeWrapper>
+          ) : (
+            <ProfilePicture image={image ? image.url : displayImageUrl} />
+          )}
+          <QrCodeSvg />
         </ProfilePictureContainer>
+
         <DisplayName>{displayName}</DisplayName>
         <AddressBar>
           <StyledExternalLink color="shadow1" href={getExplorerAddressLink(NimiBlockchain.ETHEREUM, ensAddress)}>

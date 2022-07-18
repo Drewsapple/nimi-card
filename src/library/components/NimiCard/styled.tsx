@@ -86,8 +86,8 @@ export const ProfilePicture = styled.div<{
   background-size: cover;
   border: 8px solid #FFFFFF;
   border-radius: 200px;
-  height: 250px;
-  width: 250px;
+  height: 185px;
+  width: 185px;
   margin-top: -140px;
   z-index: 1;
 `
