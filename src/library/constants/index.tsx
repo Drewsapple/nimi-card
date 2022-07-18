@@ -38,6 +38,8 @@ export const nimiLinkDetailsExtended: Record<
   discord: { logo: DiscordLogo, prepend: 'https://discord.com/users/' },
 };
 
+export const NIMI_CARDS_WIDTH = 570;
+
 /**
  * Blockchain logo mapping
  */

@@ -2,9 +2,8 @@ import styled from 'styled-components';
 
 import { ReactComponent as AnimatedFooter } from '../../assets/svg/animated-footer.svg';
 import { ReactComponent as StyledNimiBigSvg } from '../../assets/svg/nimi-text.svg';
+import { NIMI_CARDS_WIDTH } from '../../constants';
 import { ExternalLink } from '../ExternalLink';
-
-const NIMI_CARDS_WIDTH = 570;
 
 export const StyledWrapper = styled.div`
   display: flex;
