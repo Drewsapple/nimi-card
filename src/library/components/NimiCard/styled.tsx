@@ -49,6 +49,8 @@ export const ProfilePictureContainer = styled.div`
   flex-direction: column;
   width: 100%;
   align-items: center;
+  transform-style: preserve-3d;
+  perspective: 5000px;
 `;
 
 export const PicBackgroundTop = styled.div`
