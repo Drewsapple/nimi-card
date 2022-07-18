@@ -2,6 +2,7 @@ import { FC, SVGProps, useState } from 'react';
 import { QRCode } from 'react-qrcode-logo';
 import styled from 'styled-components';
 
+import { ReactComponent as Avatar } from '../../assets/svg/avatar-logo.svg';
 import { ReactComponent as EthereumLogo } from '../../assets/svg/blockchain/ethereum.svg';
 import { ReactComponent as CopyClipboard } from '../../assets/svg/common/copy-clipboard.svg';
 import { ReactComponent as ExternalLinkSvg } from '../../assets/svg/common/external-link.svg';
@@ -146,7 +147,6 @@ const NoLinks = styled.div`
   color: #757575;
 `;
 
-const StyledQrCode = styled(QRCode)``;
 const StyledQrCodeWrapper = styled.div`
   background-position: center, center;
   display: flex;
@@ -164,10 +164,14 @@ const StyledQrCodeWrapper = styled.div`
 
 const QrCodeSvg = styled(QrCodeLogo)`
   position: absolute;
-
   z-index: 1;
   margin-left: 64px;
-
+  margin-top: -6px;
+`;
+const AvatarSvg = styled(Avatar)`
+  position: absolute;
+  z-index: 1;
+  margin-left: 64px;
   margin-top: -6px;
 `;
 export function NimiCard({ nimi }: NimiCardProps) {
@@ -195,13 +199,18 @@ export function NimiCard({ nimi }: NimiCardProps) {
       <StyledInnerWrapper>
         <ProfilePictureContainer onClick={() => setIsQrCode(!isQrCode)}>
           {isQrCode ? (
-            <StyledQrCodeWrapper>
-              <StyledQrCode size={120} eyeRadius={15} qrStyle="dots" value={`https://${ensName}.limo`} />
-            </StyledQrCodeWrapper>
+            <>
+              <StyledQrCodeWrapper>
+                <QRCode size={120} eyeRadius={15} qrStyle="dots" value={`https://${ensName}.limo`} />
+              </StyledQrCodeWrapper>
+              <AvatarSvg />
+            </>
           ) : (
-            <ProfilePicture image={image ? image.url : displayImageUrl} />
+            <>
+              <ProfilePicture image={image ? image.url : displayImageUrl} />
+              <QrCodeSvg />
+            </>
           )}
-          <QrCodeSvg />
         </ProfilePictureContainer>
 
         <DisplayName>{displayName}</DisplayName>

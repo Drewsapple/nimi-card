@@ -45,6 +45,7 @@ export const StyledInnerWrapper = styled.div`
 
 export const ProfilePictureContainer = styled.div`
   display: flex;
+  cursor: pointer;
   flex-direction: column;
   width: 100%;
   align-items: center;
