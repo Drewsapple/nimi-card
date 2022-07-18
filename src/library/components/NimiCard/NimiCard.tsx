@@ -261,7 +261,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
               </a>
             </LandingFooter>
             <CommemorationText>
-              A collaboration between ETH.Limo & Nimi To make the web more decentrlized
+              A collaboration between ETH.Limo & Nimi To make the web more decentralized
             </CommemorationText>
             <LandingFooter>
               <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/0xNimi">
