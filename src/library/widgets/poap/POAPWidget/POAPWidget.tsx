@@ -7,10 +7,13 @@ import { StyledPOAPItem, StyledPOAPList } from './POAPWidget.styled';
 
 export type POAPWidgetProps = PropsWithChildren<{
   address: string;
+  numberOfPOAPs?: number;
 }>;
 
-export function POAPWidget({ address }: POAPWidgetProps) {
-  const [paopList, setPaopList] = useState<POAPToken[]>([]);
+const defaultNumberOfPOAPs = 8;
+
+export function POAPWidget({ address, numberOfPOAPs = defaultNumberOfPOAPs }: POAPWidgetProps) {
+  const [poapList, setPoapList] = useState<POAPToken[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -19,12 +22,12 @@ export function POAPWidget({ address }: POAPWidgetProps) {
     fetchPOAPs(address)
       .then((res) => {
         unstable_batchedUpdates(() => {
-          setPaopList(res.slice(0, 9));
+          setPoapList(res.slice(0, numberOfPOAPs));
           setIsLoading(false);
         });
       })
       .catch((err) => console.error(err));
-  }, [address]);
+  }, [address, numberOfPOAPs]);
 
   return (
     <div>
@@ -32,15 +35,15 @@ export function POAPWidget({ address }: POAPWidgetProps) {
         <div>Loading...</div>
       ) : (
         <StyledPOAPList>
-          {paopList.map((paop) => (
+          {poapList.map((poap) => (
             <StyledPOAPItem
               as="a"
               target="_blank"
               rel="noopener noreferrer"
-              href={`https://app.poap.xyz/token/${paop.tokenId}`}
-              key={`${paop.tokenId}-${paop.event.id}`}
+              href={`https://app.poap.xyz/token/${poap.tokenId}`}
+              key={`${poap.tokenId}-${poap.event.id}`}
             >
-              <img src={paop.event.image_url} />
+              <img src={poap.event.image_url} />
             </StyledPOAPItem>
           ))}
         </StyledPOAPList>

@@ -11,7 +11,7 @@ import { ReactComponent as XIcon } from '../../assets/svg/x-icon.svg';
 import { NIMI_BLOCKCHAIN_LOGO_URL, nimiLinkDetailsExtended } from '../../constants';
 import { useToast } from '../../toast';
 import { getExplorerAddressLink, getNimiLinkLabel, shortenAddress } from '../../utils';
-import { Component as POAPWidget } from '../../widgets/paop';
+import { Component as POAPWidget } from '../../widgets/poap';
 import {
   AddressBar,
   AddressButton,
@@ -190,12 +190,14 @@ export function NimiCard({ nimi }: NimiCardProps) {
           <SectionItemContainerGrid>
             {links.map(({ label, type, url }) => (
               <>
-                {type === 'email' ? (
+                {type === 'email' || type === 'discord' ? (
                   <ShadowButton
                     color="shadow1"
                     title={label}
                     key={`${type}-${url}`}
-                    onClick={() => copyTextShowToast(url, 'Email copied to the clipboard!')}
+                    onClick={() =>
+                      copyTextShowToast(url, `${type.charAt(0).toUpperCase() + type.slice(1)} copied to the clipboard!`)
+                    }
                   >
                     {renderSVG(nimiLinkDetailsExtended[type].logo)}
                     {getNimiLinkLabel({ label, type, url })}
@@ -259,7 +261,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
               </a>
             </LandingFooter>
             <CommemorationText>
-              A collaboration between ETH.Limo & Nimi To make the web more decentrlized
+              A collaboration between ETH.Limo & Nimi To make the web more decentralized
             </CommemorationText>
             <LandingFooter>
               <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/0xNimi">

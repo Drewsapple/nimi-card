@@ -1,7 +1,7 @@
 export * from './interfaces';
 import { NimiWidgetDefinition } from './interfaces';
-import { widget as paopWidgetDefinition } from './paop';
+import { widget as poapWidgetDefinition } from './poap';
 
 export const widgets: Record<string, NimiWidgetDefinition> = {
-  [paopWidgetDefinition.id]: paopWidgetDefinition,
+  [poapWidgetDefinition.id]: poapWidgetDefinition,
 };
