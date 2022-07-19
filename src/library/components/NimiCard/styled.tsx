@@ -262,7 +262,7 @@ export const AddressButton = styled.div`
 export const Footer = styled(AnimatedFooter)`
   margin-top: auto;
   width: 100%;
-  min-height: 93px;
+  min-height: 81px;
   display: flex; ;
 `;
 
