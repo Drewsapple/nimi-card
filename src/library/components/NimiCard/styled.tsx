@@ -241,7 +241,7 @@ export const SectionItemContainerGrid = styled.div`
 export const NimiTextFooter = styled(StyledNimiBigSvg)`
   position: absolute;
   min-height: 25px;
-  bottom: 25px;
+  bottom: 18px;
   z-index: 1;
   left: 50%;
   transform: translate(-50%, 0);
