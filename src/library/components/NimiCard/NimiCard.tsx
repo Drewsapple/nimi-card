@@ -204,7 +204,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
           {isQrCode ? (
             <>
               <StyledQrCodeWrapper>
-                <StyledQrCode size={120} eyeRadius={15} qrStyle="dots" value={`https://${ensName}.limo`} />
+                <StyledQrCode size={110} eyeRadius={15} qrStyle="dots" value={`https://${ensName}.limo`} />
                 <AvatarSvg />
               </StyledQrCodeWrapper>
             </>
