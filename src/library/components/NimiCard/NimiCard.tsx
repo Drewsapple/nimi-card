@@ -1,6 +1,5 @@
 import { FC, SVGProps, useState } from 'react';
 import { QRCode } from 'react-qrcode-logo';
-import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
 
 import { ReactComponent as Avatar } from '../../assets/svg/avatar-logo.svg';
@@ -166,8 +165,8 @@ const StyledQrCodeWrapper = styled.div`
 const QrCodeSvg = styled(QrCodeLogo)`
   position: absolute;
   z-index: 1;
-  margin-left: 135px;
-  margin-top: -49px;
+  margin-left: 138px;
+  margin-top: -4px;
 `;
 const AvatarSvg = styled(Avatar)`
   position: absolute;
@@ -176,61 +175,6 @@ const AvatarSvg = styled(Avatar)`
   margin-top: 140px;
 `;
 
-const FrontContainer = styled.div`
-  position: absolute;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  &.front-face-transition-enter {
-    transform: rotateY(180deg);
-  }
-  &.front-face-transition-enter-active {
-    transition: all 1000ms ease;
-    transform: rotateY(0deg);
-  }
-  &.front-face-transition-enter-done {
-    transform: rotateY(0deg);
-  }
-
-  &.front-face-transition-exit {
-    transform: rotateY(0deg);
-  }
-
-  &.front-face-transition-exit-active {
-    transform: rotateY(180deg);
-    transition: all 1000ms ease;
-  }
-
-  &.front-face-transition-exit-done {
-    transform: rotateY(180deg);
-  }
-`;
-const BackFaceTranstion = styled.div`
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  &.back-face-transition-enter {
-    transform: rotateY(-180deg);
-  }
-  &.back-face-transition-enter-active {
-    transform: rotateY(0deg);
-    transition: all 1000ms ease;
-  }
-  &.back-face-transition-enter-done {
-    transform: rotateY(0deg);
-  }
-
-  &.back-face-transition-exit {
-    transform: rotateY(0deg);
-  }
-
-  &.back-face-transition-exit-active {
-    transform: rotateY(-180deg);
-    transition: all 1000ms ease;
-  }
-
-  &.back-face-transition-exit-done {
-    transform: rotateY(-180deg);
-  }
-`;
 export function NimiCard({ nimi }: NimiCardProps) {
   const validateNimi = nimiCard.validateSync(nimi);
   const toast = useToast();
@@ -255,20 +199,19 @@ export function NimiCard({ nimi }: NimiCardProps) {
 
       <StyledInnerWrapper>
         <ProfilePictureContainer onClick={() => setIsQrCode(!isQrCode)}>
-          <CSSTransition classNames="back-face-transition" timeout={1000} in={isQrCode}>
-            <BackFaceTranstion>
+          {isQrCode ? (
+            <>
               <StyledQrCodeWrapper>
                 <QRCode size={120} eyeRadius={15} qrStyle="dots" value={`https://${ensName}.limo`} />
                 <AvatarSvg />
               </StyledQrCodeWrapper>
-            </BackFaceTranstion>
-          </CSSTransition>
-          <CSSTransition classNames="front-face-transition" timeout={1000} in={!isQrCode}>
-            <FrontContainer>
+            </>
+          ) : (
+            <>
               <ProfilePicture image={image ? image.url : displayImageUrl} />
               <QrCodeSvg />
-            </FrontContainer>
-          </CSSTransition>
+            </>
+          )}
         </ProfilePictureContainer>
 
         <DisplayName>{displayName}</DisplayName>
