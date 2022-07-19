@@ -234,7 +234,7 @@ const BackFaceTranstion = styled.div`
 export function NimiCard({ nimi }: NimiCardProps) {
   const validateNimi = nimiCard.validateSync(nimi);
   const toast = useToast();
-  const [isQrCode, setIsQrCode] = useState(true);
+  const [isQrCode, setIsQrCode] = useState(false);
   const copyTextShowToast = (value: string, text: string) => {
     navigator.clipboard.writeText(value);
     toast.open(text);
@@ -255,20 +255,19 @@ export function NimiCard({ nimi }: NimiCardProps) {
 
       <StyledInnerWrapper>
         <ProfilePictureContainer onClick={() => setIsQrCode(!isQrCode)}>
-          <CSSTransition classNames="front-face-transition" timeout={1000} in={!isQrCode}>
-            <FrontContainer>
+          <CSSTransition classNames="back-face-transition" timeout={1000} in={isQrCode}>
+            <BackFaceTranstion>
               <StyledQrCodeWrapper>
                 <QRCode size={120} eyeRadius={15} qrStyle="dots" value={`https://${ensName}.limo`} />
                 <AvatarSvg />
               </StyledQrCodeWrapper>
-            </FrontContainer>
+            </BackFaceTranstion>
           </CSSTransition>
-
-          <CSSTransition classNames="back-face-transition" timeout={1000} in={isQrCode}>
-            <BackFaceTranstion>
+          <CSSTransition classNames="front-face-transition" timeout={1000} in={!isQrCode}>
+            <FrontContainer>
               <ProfilePicture image={image ? image.url : displayImageUrl} />
               <QrCodeSvg />
-            </BackFaceTranstion>
+            </FrontContainer>
           </CSSTransition>
         </ProfilePictureContainer>
 
