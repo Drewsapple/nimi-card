@@ -174,7 +174,9 @@ const AvatarSvg = styled(Avatar)`
   margin-left: 138px;
   margin-top: 140px;
 `;
-
+const StyledQrCode = styled(QRCode)`
+  border-radius: 15px;
+`;
 export function NimiCard({ nimi }: NimiCardProps) {
   const validateNimi = nimiCard.validateSync(nimi);
   const toast = useToast();
@@ -202,7 +204,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
           {isQrCode ? (
             <>
               <StyledQrCodeWrapper>
-                <QRCode size={120} eyeRadius={15} qrStyle="dots" value={`https://${ensName}.limo`} />
+                <StyledQrCode size={120} eyeRadius={15} qrStyle="dots" value={`https://${ensName}.limo`} />
                 <AvatarSvg />
               </StyledQrCodeWrapper>
             </>
