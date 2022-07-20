@@ -34,7 +34,26 @@ export const description = Yup.string().max(300, 'Maximum 300 characters').optio
 /**
  * Profile image url
  */
-export const displayImageUrl = Yup.string().url('Invalid URL').optional();
+export const displayImageUrl = Yup.string()
+  .test({
+    name: 'isURL',
+    message: '${path} must be a valid URL',
+    test: (value) => {
+      if (value) {
+        const url = new URL(value as string);
+
+        // data:image/png;base64,
+        const allowedProtocols = ['http:', 'https:', 'data:'];
+
+        if (!allowedProtocols.includes(url.protocol.toLowerCase())) {
+          throw new Error('Invalid protocol');
+        }
+      }
+
+      return true;
+    },
+  })
+  .optional();
 
 /**
  * A single Blockchain address
