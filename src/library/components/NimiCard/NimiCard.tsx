@@ -175,6 +175,7 @@ const AvatarSvg = styled(Avatar)`
   margin-top: 140px;
 `;
 const StyledQrCode = styled(QRCode)`
+  box-shadow: 0px 26px 56px -20px rgba(74, 48, 140, 0.25);
   border-radius: 15px;
 `;
 export function NimiCard({ nimi }: NimiCardProps) {
