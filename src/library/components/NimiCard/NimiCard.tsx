@@ -244,7 +244,10 @@ export function NimiCard({ nimi }: NimiCardProps) {
                     title={label}
                     key={`${type}-${url}`}
                     onClick={() =>
-                      copyTextShowToast(url, `${type.charAt(0).toUpperCase() + type.slice(1)} copied to the clipboard!`)
+                      copyTextShowToast(
+                        generateLink({ label, type, url }),
+                        `${type.charAt(0).toUpperCase() + type.slice(1)} copied to the clipboard!`
+                      )
                     }
                   >
                     {renderSVG(nimiLinkDetailsExtended[type].logo)}
