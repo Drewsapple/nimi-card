@@ -48,7 +48,6 @@ export function getNimiLinkLabel(nimi: NimiLinkBaseDetails): string {
     const { hostname } = new URL(nimi.url);
     return hostname;
   } else if (isValidUrl(nimi.url)) {
-    console.log('HIT THE SSOPPP WHOAAA', nimi);
     const parts = nimi.url.split('/');
     return parts[parts.length - 1];
   }
@@ -57,12 +56,12 @@ export function getNimiLinkLabel(nimi: NimiLinkBaseDetails): string {
 }
 
 /**
- * Handles the Nimi link label/title/text
+ * If its a link returns a link else prepends the base url for given social link
  * @param nimi - the Nimi link
- * @returns
+ * @returns url
  */
-export function generateLink(type, url): string {
-  if ((type !== 'website' || type !== 'email') && isValidUrl(url)) {
+export function generateLink({ type, url }: NimiLinkBaseDetails): string {
+  if (isValidUrl(url)) {
     return url;
   }
   return nimiLinkDetailsExtended[type].prepend + url;

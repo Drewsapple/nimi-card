@@ -254,7 +254,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
                   <ShadowButton
                     as="a"
                     color="shadow1"
-                    href={generateLink(type, url)}
+                    href={generateLink({ label, type, url })}
                     target="_blank"
                     rel="noopener noreferrer"
                     title={label}

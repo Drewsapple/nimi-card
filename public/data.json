@@ -21,6 +21,8 @@
     { "type": "email", "label": "Email", "url": "smilenostress@gmail.com" },
     { "type": "website", "label": "Website", "url": "https://binah.eth.limo" },
     { "type": "twitter", "label": "Twitter", "url": "https://twitter.com/0xViolet" },
-    { "type": "linkedin", "label": "Github", "url": "https://linkedin.com/in/Mi-lan" }
+    { "type": "linkedin", "label": "Github", "url": "https://linkedin.com/in/Mi-lan" },
+    { "type": "github", "label": "Github", "url": "https://github.com/Mi-lan" },
+    { "type": "lenster", "label": "Lenster", "url": "luduvigo.lens" }
   ]
 }
