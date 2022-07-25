@@ -13,7 +13,7 @@ import { ReactComponent as QrCodeLogo } from '../../assets/svg/qr-code.svg';
 import { ReactComponent as XIcon } from '../../assets/svg/x-icon.svg';
 import { NIMI_BLOCKCHAIN_LOGO_URL, nimiLinkDetailsExtended } from '../../constants';
 import { useToast } from '../../toast';
-import { getExplorerAddressLink, getNimiLinkLabel, shortenAddress } from '../../utils';
+import { generateLink, getExplorerAddressLink, getNimiLinkLabel, shortenAddress } from '../../utils';
 import { Component as POAPWidget } from '../../widgets/poap';
 import {
   AddressBar,
@@ -254,7 +254,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
                   <ShadowButton
                     as="a"
                     color="shadow1"
-                    href={nimiLinkDetailsExtended[type].prepend + url}
+                    href={generateLink(type, url)}
                     target="_blank"
                     rel="noopener noreferrer"
                     title={label}

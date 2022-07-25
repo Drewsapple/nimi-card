@@ -16,5 +16,11 @@
     }
   ],
   "ensName": "nimi.eth",
-  "links": [{ "type": "discord", "label": "Discord", "url": "Violet#6640" }]
+  "links": [
+    { "type": "discord", "label": "Discord", "url": "Violet#6640" },
+    { "type": "email", "label": "Email", "url": "smilenostress@gmail.com" },
+    { "type": "website", "label": "Website", "url": "https://binah.eth.limo" },
+    { "type": "twitter", "label": "Twitter", "url": "https://twitter.com/0xViolet" },
+    { "type": "linkedin", "label": "Github", "url": "https://linkedin.com/in/Mi-lan" }
+  ]
 }

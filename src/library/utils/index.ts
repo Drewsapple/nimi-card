@@ -1,5 +1,5 @@
 import { NimiBlockchain, NimiLinkBaseDetails } from '../components/NimiCard/types';
-import { NIMI_BLOCKCHAIN_DETAILS } from '../constants';
+import { NIMI_BLOCKCHAIN_DETAILS, nimiLinkDetailsExtended } from '../constants';
 /**
  * Returns true if value is proper url
  * @param urlString
@@ -47,7 +47,23 @@ export function getNimiLinkLabel(nimi: NimiLinkBaseDetails): string {
   if (nimi.type === 'website' && isValidUrl(nimi.url)) {
     const { hostname } = new URL(nimi.url);
     return hostname;
+  } else if (isValidUrl(nimi.url)) {
+    console.log('HIT THE SSOPPP WHOAAA', nimi);
+    const parts = nimi.url.split('/');
+    return parts[parts.length - 1];
   }
 
   return nimi.url;
+}
+
+/**
+ * Handles the Nimi link label/title/text
+ * @param nimi - the Nimi link
+ * @returns
+ */
+export function generateLink(type, url): string {
+  if ((type !== 'website' || type !== 'email') && isValidUrl(url)) {
+    return url;
+  }
+  return nimiLinkDetailsExtended[type].prepend + url;
 }
