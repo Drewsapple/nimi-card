@@ -40,7 +40,7 @@ import {
   StyledNimiBig,
   StyledWrapper,
 } from './styled';
-import { Nimi, NimiBlockchain } from './types';
+import { Nimi, NimiBlockchain, NimiLinkType } from './types';
 import { NimiWidgetType } from './types/NimiWidget';
 import { nimiCard } from './validators';
 
@@ -237,32 +237,35 @@ export function NimiCard({ nimi }: NimiCardProps) {
 
         {links && links.length > 0 && (
           <SectionItemContainerGrid>
-            {links.map(({ label, type, url }) => (
+            {links.map(({ label, type, content }) => (
               <>
-                {type === 'email' || type === 'discord' ? (
+                {type === NimiLinkType.EMAIL || type === NimiLinkType.DISCORD ? (
                   <ShadowButton
                     color="shadow1"
                     title={label}
-                    key={`${type}-${url}`}
+                    key={`${type}-${content}`}
                     onClick={() =>
-                      copyTextShowToast(url, `${type.charAt(0).toUpperCase() + type.slice(1)} copied to the clipboard!`)
+                      copyTextShowToast(
+                        content,
+                        `${type.charAt(0).toUpperCase() + type.slice(1)} copied to the clipboard!`
+                      )
                     }
                   >
                     {renderSVG(nimiLinkDetailsExtended[type].logo)}
-                    {getNimiLinkLabel({ label, type, url })}
+                    {getNimiLinkLabel({ label, type, content })}
                   </ShadowButton>
                 ) : (
                   <ShadowButton
                     as="a"
                     color="shadow1"
-                    href={nimiLinkDetailsExtended[type].prepend + url}
+                    href={nimiLinkDetailsExtended[type].prepend + content}
                     target="_blank"
                     rel="noopener noreferrer"
                     title={label}
-                    key={`${type}-${url}`}
+                    key={`${type}-${content}`}
                   >
                     {renderSVG(nimiLinkDetailsExtended[type].logo)}
-                    {getNimiLinkLabel({ label, type, url })}
+                    {getNimiLinkLabel({ label, type, content })}
                   </ShadowButton>
                 )}
               </>
