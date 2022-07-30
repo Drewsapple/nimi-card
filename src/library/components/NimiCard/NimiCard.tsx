@@ -40,7 +40,7 @@ import {
   StyledNimiBig,
   StyledWrapper,
 } from './styled';
-import { Nimi, NimiBlockchain } from './types';
+import { Nimi, NimiBlockchain, NimiLinkType } from './types';
 import { NimiWidgetType } from './types/NimiWidget';
 import { nimiCard } from './validators';
 
@@ -175,6 +175,7 @@ const AvatarSvg = styled(Avatar)`
   margin-top: 140px;
 `;
 const StyledQrCode = styled(QRCode)`
+  box-shadow: 0px 26px 56px -20px rgba(74, 48, 140, 0.25);
   border-radius: 15px;
 `;
 export function NimiCard({ nimi }: NimiCardProps) {
@@ -236,39 +237,44 @@ export function NimiCard({ nimi }: NimiCardProps) {
 
         {links && links.length > 0 && (
           <SectionItemContainerGrid>
-            {links.map(({ label, type, url }) => (
-              <>
-                {type === 'email' || type === 'discord' ? (
-                  <ShadowButton
-                    color="shadow1"
-                    title={label}
-                    key={`${type}-${url}`}
-                    onClick={() =>
-                      copyTextShowToast(
-                        generateLink({ label, type, url }),
-                        `${type.charAt(0).toUpperCase() + type.slice(1)} copied to the clipboard!`
-                      )
-                    }
-                  >
-                    {renderSVG(nimiLinkDetailsExtended[type].logo)}
-                    {getNimiLinkLabel({ label, type, url })}
-                  </ShadowButton>
-                ) : (
-                  <ShadowButton
-                    as="a"
-                    color="shadow1"
-                    href={generateLink({ label, type, url })}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={label}
-                    key={`${type}-${url}`}
-                  >
-                    {renderSVG(nimiLinkDetailsExtended[type].logo)}
-                    {getNimiLinkLabel({ label, type, url })}
-                  </ShadowButton>
-                )}
-              </>
-            ))}
+            {links.map(({ label, title, type, content }) => {
+              // Title should have presdence over label
+              title = title ? title : label;
+
+              return (
+                <>
+                  {type === NimiLinkType.EMAIL || type === NimiLinkType.DISCORD ? (
+                    <ShadowButton
+                      color="shadow1"
+                      title={title}
+                      key={`${type}-${content}`}
+                      onClick={() =>
+                        copyTextShowToast(
+                          generateLink({ label, type, content }),
+                          `${type.charAt(0).toUpperCase() + type.slice(1)} copied to the clipboard!`
+                        )
+                      }
+                    >
+                      {renderSVG(nimiLinkDetailsExtended[type].logo)}
+                      {getNimiLinkLabel({ title, type, content })}
+                    </ShadowButton>
+                  ) : (
+                    <ShadowButton
+                      as="a"
+                      color="shadow1"
+                      href={generateLink({ title, type, content })}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={title}
+                      key={`${type}-${content}`}
+                    >
+                      {renderSVG(nimiLinkDetailsExtended[type].logo)}
+                      {getNimiLinkLabel({ title, type, content })}
+                    </ShadowButton>
+                  )}
+                </>
+              );
+            })}
           </SectionItemContainerGrid>
         )}
         {isLanding && links && links.length === 0 && (

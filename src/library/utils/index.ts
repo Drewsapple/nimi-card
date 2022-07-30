@@ -1,4 +1,4 @@
-import { NimiBlockchain, NimiLinkBaseDetails } from '../components/NimiCard/types';
+import { NimiBlockchain, NimiLinkBaseDetails, NimiLinkType } from '../components/NimiCard/types';
 import { NIMI_BLOCKCHAIN_DETAILS, nimiLinkDetailsExtended } from '../constants';
 /**
  * Returns true if value is proper url
@@ -44,15 +44,15 @@ export function shortenAddress(address: string, charsBefore = 4, charsAfter = 4)
  * @returns
  */
 export function getNimiLinkLabel(nimi: NimiLinkBaseDetails): string {
-  if (nimi.type === 'website' && isValidUrl(nimi.url)) {
-    const { hostname } = new URL(nimi.url);
+  if (nimi.type === NimiLinkType.URL && isValidUrl(nimi.content)) {
+    const { hostname } = new URL(nimi.content);
     return hostname;
-  } else if (isValidUrl(nimi.url)) {
-    const parts = nimi.url.split('/');
+  } else if (isValidUrl(nimi.content)) {
+    const parts = nimi.content.split('/');
     return parts[parts.length - 1];
   }
 
-  return nimi.url;
+  return nimi.content;
 }
 
 /**
@@ -60,9 +60,9 @@ export function getNimiLinkLabel(nimi: NimiLinkBaseDetails): string {
  * @param nimi - the Nimi link
  * @returns url
  */
-export function generateLink({ type, url }: NimiLinkBaseDetails): string {
-  if (isValidUrl(url)) {
-    return url;
+export function generateLink({ type, content }: NimiLinkBaseDetails): string {
+  if (isValidUrl(content)) {
+    return content;
   }
-  return nimiLinkDetailsExtended[type].prepend + url;
+  return nimiLinkDetailsExtended[type].prepend + content;
 }

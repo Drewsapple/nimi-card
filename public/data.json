@@ -17,12 +17,12 @@
   ],
   "ensName": "nimi.eth",
   "links": [
-    { "type": "discord", "label": "Discord", "url": "https://discord.com/users/Violet#6640" },
-    { "type": "email", "label": "Email", "url": "smilenostress@gmail.com" },
-    { "type": "website", "label": "Website", "url": "https://binah.eth.limo" },
-    { "type": "twitter", "label": "Twitter", "url": "https://twitter.com/0xViolet" },
-    { "type": "linkedin", "label": "Github", "url": "https://linkedin.com/in/Mi-lan" },
-    { "type": "github", "label": "Github", "url": "https://github.com/Mi-lan" },
-    { "type": "lenster", "label": "Lenster", "url": "luduvigo.lens" }
+    { "type": "DISCORD", "label": "Discord", "content": "https://discord.com/users/Violet#6640" },
+    { "type": "EMAIL", "label": "Email", "content": "smilenostress@gmail.com" },
+    { "type": "URL", "label": "Website", "content": "https://binah.eth.limo" },
+    { "type": "TWITTER", "label": "Twitter", "content": "https://twitter.com/0xViolet" },
+    { "type": "LINKEDIN", "label": "Github", "content": "https://linkedin.com/in/Mi-lan" },
+    { "type": "GITHUB", "label": "Github", "content": "https://github.com/Mi-lan" },
+    { "type": "LENSTER", "label": "Lenster", "content": "luduvigo.lens" }
   ]
 }
