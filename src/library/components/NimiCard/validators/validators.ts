@@ -6,6 +6,7 @@ import { NimiWidgetType } from '../types/NimiWidget';
 import { validators as addressValidators, evmAddress as evmAddressValidator } from './blockchainAddress';
 import { isDiscordUsername } from './discord';
 import { nimiImageUrl } from './image';
+import { isLensterUsername } from './lenster';
 
 /**
  * Display name validator
@@ -123,6 +124,14 @@ export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
         if (this.parent.type === NimiLinkType.DISCORD) {
           if (!isDiscordUsername(value)) {
             throw new Error('Invalid Discord username');
+          }
+          return true;
+        }
+
+        // Lenster
+        if (this.parent.type === NimiLinkType.LENSTER) {
+          if (!isLensterUsername(value)) {
+            throw new Error('Invalid Lenster username');
           }
           return true;
         }

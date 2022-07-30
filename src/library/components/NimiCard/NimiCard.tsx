@@ -13,7 +13,7 @@ import { ReactComponent as QrCodeLogo } from '../../assets/svg/qr-code.svg';
 import { ReactComponent as XIcon } from '../../assets/svg/x-icon.svg';
 import { NIMI_BLOCKCHAIN_LOGO_URL, nimiLinkDetailsExtended } from '../../constants';
 import { useToast } from '../../toast';
-import { getExplorerAddressLink, getNimiLinkLabel, shortenAddress } from '../../utils';
+import { generateLink, getExplorerAddressLink, getNimiLinkLabel, shortenAddress } from '../../utils';
 import { Component as POAPWidget } from '../../widgets/poap';
 import {
   AddressBar,
@@ -237,39 +237,44 @@ export function NimiCard({ nimi }: NimiCardProps) {
 
         {links && links.length > 0 && (
           <SectionItemContainerGrid>
-            {links.map(({ label, type, content }) => (
-              <>
-                {type === NimiLinkType.EMAIL || type === NimiLinkType.DISCORD ? (
-                  <ShadowButton
-                    color="shadow1"
-                    title={label}
-                    key={`${type}-${content}`}
-                    onClick={() =>
-                      copyTextShowToast(
-                        content,
-                        `${type.charAt(0).toUpperCase() + type.slice(1)} copied to the clipboard!`
-                      )
-                    }
-                  >
-                    {renderSVG(nimiLinkDetailsExtended[type].logo)}
-                    {getNimiLinkLabel({ label, type, content })}
-                  </ShadowButton>
-                ) : (
-                  <ShadowButton
-                    as="a"
-                    color="shadow1"
-                    href={nimiLinkDetailsExtended[type].prepend + content}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={label}
-                    key={`${type}-${content}`}
-                  >
-                    {renderSVG(nimiLinkDetailsExtended[type].logo)}
-                    {getNimiLinkLabel({ label, type, content })}
-                  </ShadowButton>
-                )}
-              </>
-            ))}
+            {links.map(({ label, title, type, content }) => {
+              // Title should have presdence over label
+              title = title ? title : label;
+
+              return (
+                <>
+                  {type === NimiLinkType.EMAIL || type === NimiLinkType.DISCORD ? (
+                    <ShadowButton
+                      color="shadow1"
+                      title={title}
+                      key={`${type}-${content}`}
+                      onClick={() =>
+                        copyTextShowToast(
+                          generateLink({ label, type, content }),
+                          `${type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()} copied to the clipboard!`
+                        )
+                      }
+                    >
+                      {renderSVG(nimiLinkDetailsExtended[type].logo)}
+                      {getNimiLinkLabel({ title, type, content })}
+                    </ShadowButton>
+                  ) : (
+                    <ShadowButton
+                      as="a"
+                      color="shadow1"
+                      href={generateLink({ title, type, content })}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={title}
+                      key={`${type}-${content}`}
+                    >
+                      {renderSVG(nimiLinkDetailsExtended[type].logo)}
+                      {getNimiLinkLabel({ title, type, content })}
+                    </ShadowButton>
+                  )}
+                </>
+              );
+            })}
           </SectionItemContainerGrid>
         )}
         {isLanding && links && links.length === 0 && (
