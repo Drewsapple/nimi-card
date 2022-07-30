@@ -251,7 +251,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
                       onClick={() =>
                         copyTextShowToast(
                           generateLink({ label, type, content }),
-                          `${type.charAt(0).toUpperCase() + type.slice(1)} copied to the clipboard!`
+                          `${type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()} copied to the clipboard!`
                         )
                       }
                     >
