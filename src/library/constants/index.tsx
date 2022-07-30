@@ -14,28 +14,63 @@ import { ReactComponent as EmailLogo } from '../assets/svg/links/mail.svg';
 import { ReactComponent as TelegramLogo } from '../assets/svg/links/telegram.svg';
 import { ReactComponent as TwitterLogo } from '../assets/svg/links/twitter.svg';
 import { ReactComponent as WebsiteLogo } from '../assets/svg/links/website.svg';
-import { NimiBlockchain, NimiBlockchainDetails, NimiLink } from '../components/NimiCard/types';
+import { NimiBlockchain, NimiBlockchainDetails, NimiLinkType } from '../components/NimiCard/types';
 
 export const nimiLinkDetailsExtended: Record<
-  NimiLink,
+  NimiLinkType,
   {
     logo?: FC<SVGProps<SVGSVGElement>>;
     prepend: string;
   }
 > = {
-  twitter: { logo: TwitterLogo, prepend: 'https://twitter.com/' },
-  lenster: { logo: LensterLogo, prepend: 'https://lenster.xyz/u/' },
-  email: { logo: EmailLogo, prepend: '' },
-  instagram: { logo: InstagramLogo, prepend: 'https://instagram.com/' },
-  linkedin: { logo: LinkedInLogo, prepend: 'https://linkedin.com/in/' },
-  website: { logo: WebsiteLogo, prepend: '' },
-  telegram: { logo: TelegramLogo, prepend: 'https://t.me/' },
-  github: { logo: GitHubMarkLogo, prepend: 'https://github.com/' },
-  medium: { prepend: 'https://medium.com/@' },
-  reddit: { prepend: 'https://reddit.com/user/' },
-  facebook: { prepend: 'https://facebook.com/' },
-  youtube: { prepend: 'https://youtube.com/' },
-  discord: { logo: DiscordLogo, prepend: 'https://discord.com/users/' },
+  [NimiLinkType.TWITTER]: {
+    logo: TwitterLogo,
+    prepend: 'https://twitter.com/',
+  },
+  [NimiLinkType.LENSTER]: {
+    logo: LensterLogo,
+    prepend: 'https://lenster.xyz/u/',
+  },
+  [NimiLinkType.EMAIL]: {
+    logo: EmailLogo,
+    prepend: '',
+  },
+  [NimiLinkType.INSTAGRAM]: {
+    logo: InstagramLogo,
+    prepend: 'https://instagram.com/',
+  },
+  [NimiLinkType.LINKEDIN]: {
+    logo: LinkedInLogo,
+    prepend: 'https://linkedin.com/in/',
+  },
+  [NimiLinkType.URL]: {
+    logo: WebsiteLogo,
+    prepend: '',
+  },
+  [NimiLinkType.TELEGRAM]: {
+    logo: TelegramLogo,
+    prepend: 'https://t.me/',
+  },
+  [NimiLinkType.GITHUB]: {
+    logo: GitHubMarkLogo,
+    prepend: 'https://github.com/',
+  },
+  [NimiLinkType.MEDIUM]: {
+    prepend: 'https://medium.com/@',
+  },
+  [NimiLinkType.REDDIT]: {
+    prepend: 'https://reddit.com/user/',
+  },
+  [NimiLinkType.YOUTUBE_CHANNEL]: {
+    prepend: 'https://youtube.com/',
+  },
+  [NimiLinkType.DISCORD]: {
+    logo: DiscordLogo,
+    prepend: 'https://discord.com/users/',
+  },
+  [NimiLinkType.TWITCH]: {
+    prepend: 'https://twitch.tv/',
+  },
 };
 
 /**

@@ -1,26 +1,74 @@
-export const linkTypeList = [
-  'twitter',
-  'github',
-  'medium',
-  'linkedin',
-  'reddit',
-  'telegram',
-  'facebook',
-  'instagram',
-  'youtube',
-  'website',
-  'email',
-  'discord',
-  'lenster',
-] as const;
-
-/**
- * Generated type of linkTypeList
- */
-export type NimiLink = typeof linkTypeList[number];
+export enum NimiLinkType {
+  /**
+   * Generic link to a webpage
+   */
+  URL = 'URL',
+  /**
+   * Email address
+   */
+  EMAIL = 'EMAIL',
+  /**
+   * Twitter
+   */
+  TWITTER = 'TWITTER',
+  /**
+   * Instagram page
+   */
+  INSTAGRAM = 'INSTAGRAM',
+  /**
+   * LinkedIn page
+   */
+  LINKEDIN = 'LINKEDIN',
+  /**
+   * YouTube channel
+   */
+  YOUTUBE_CHANNEL = 'YOUTUBE_CHANNEL',
+  /**
+   * Twitch Channel
+   */
+  TWITCH = 'TWITCH',
+  /**
+   * GitHub Profile
+   */
+  GITHUB = 'GITHUB',
+  /**
+   * Medium Profile
+   */
+  MEDIUM = 'MEDIUM',
+  /**
+   * Lenster Profile
+   */
+  LENSTER = 'LENSTER',
+  /**
+   * Telegram Profile
+   */
+  TELEGRAM = 'TELEGRAM',
+  /**
+   * Reddit Profile
+   */
+  REDDIT = 'REDDIT',
+  /**
+   * Discord Profile
+   */
+  DISCORD = 'DISCORD',
+}
 
 export interface NimiLinkBaseDetails {
-  type: NimiLink;
+  /**
+   * Link Type
+   */
+  type: NimiLinkType;
+  /**
+   * Link label
+   * @deprecated use `title` instead
+   */
   label?: string;
-  url: string;
+  /**
+   * Link title
+   */
+  title?: string;
+  /**
+   * Link value
+   */
+  content: string;
 }

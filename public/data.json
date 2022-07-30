@@ -16,5 +16,5 @@
     }
   ],
   "ensName": "nimi.eth",
-  "links": [{ "type": "discord", "label": "Discord", "url": "Violet#6640" }]
+  "links": [{ "type": "DISCORD", "label": "Discord", "content": "Violet#6640" }]
 }
