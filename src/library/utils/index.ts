@@ -49,7 +49,8 @@ export function getNimiLinkLabel(nimi: NimiLinkBaseDetails): string {
     return hostname;
   } else if (isValidUrl(nimi.content)) {
     const parts = nimi.content.split('/');
-    return parts[parts.length - 1];
+    //handle the case when user enters slash at the end like this one "https://twitter.com/0xViolet/"
+    return parts[parts.length - 1].length === 0 ? parts[parts.length - 2] : parts[parts.length - 1];
   }
 
   return nimi.content;

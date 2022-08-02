@@ -40,6 +40,8 @@ export function App() {
       .then(async (response) => {
         if (response.ok) {
           const json = (await response.json()) as Nimi;
+          if (json.links) json.links = json.links.filter(({ content }) => content !== '');
+
           unstable_batchedUpdates(() => {
             setNimi(json);
             setIsLoading(false);
