@@ -132,17 +132,5 @@
         </svg>
       </div>
     </div>
-    <script>
-      const textPath = document.querySelector('#animated-text-path');
-      let p = 0;
-      textPathAnimationLoop();
-      function textPathAnimationLoop() {
-        if (!textPath) return;
-        p += 0.07; // change to tweak the speed
-        if (p > 29.7) p = 0;
-        textPath.setAttribute('startOffset', p + '%');
-        window.requestAnimationFrame(textPathAnimationLoop);
-      }
-    </script>
   </body>
 </html>
