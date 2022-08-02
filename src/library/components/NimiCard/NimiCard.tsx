@@ -82,7 +82,7 @@ function renderWidgets(nimiWidgetList: NimiCardProps['nimi']['widgets'], ensName
                   href={`https://app.poap.xyz/scan/${ensName}`}
                   color="purple"
                 >
-                  View Full Collection <ExternalLinkSvg />
+                  Full Collection <ExternalLinkSvg />
                 </ShadowButton>
               </PoapTitle>
 

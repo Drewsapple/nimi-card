@@ -283,7 +283,7 @@ export const ShadowButton = styled.div<{ color: string }>`
   border-radius: 20px;
   color: ${({ theme, color }) => theme[color]};
   @media (max-width: ${NIMI_CARDS_WIDTH}px) {
-    font-size: 8px;
+    font-size: 14px;
   }
 `;
 export const FooterWrapper = styled.div`
