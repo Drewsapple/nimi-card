@@ -206,6 +206,14 @@ export const Section = styled.section<{ padding?: string }>`
   width: 100%;
   margin-bottom: 40px;
 `;
+export const PoapSection = styled(Section)`
+  @media (max-width: ${NIMI_CARDS_WIDTH}px) {
+    position: relative;
+    width: calc(100% + 40px);
+    left: -20px;
+    border-radius: 0px;
+  }
+`;
 
 export const SectionTitle = styled.h3`
   font-family: inherit;
@@ -284,6 +292,7 @@ export const ShadowButton = styled.div<{ color: string }>`
   color: ${({ theme, color }) => theme[color]};
   @media (max-width: ${NIMI_CARDS_WIDTH}px) {
     font-size: 14px;
+    gap: none;
   }
 `;
 export const FooterWrapper = styled.div`

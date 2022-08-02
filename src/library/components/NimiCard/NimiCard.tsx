@@ -24,6 +24,7 @@ import {
   FooterWrapper,
   NimiTextFooter,
   PicBackgroundTop,
+  PoapSection,
   PoapTitle,
   ProfilePicture,
   ProfilePictureContainer,
@@ -72,7 +73,7 @@ function renderWidgets(nimiWidgetList: NimiCardProps['nimi']['widgets'], ensName
       switch (widget.type) {
         case NimiWidgetType.POAP:
           return (
-            <Section key={widget.type + '-' + widget.address}>
+            <PoapSection key={widget.type + '-' + widget.address}>
               <PoapTitle>
                 <SectionTitle>POAPs</SectionTitle>
                 <ShadowButton
@@ -87,7 +88,7 @@ function renderWidgets(nimiWidgetList: NimiCardProps['nimi']['widgets'], ensName
               </PoapTitle>
 
               <POAPWidget address={widget.address} />
-            </Section>
+            </PoapSection>
           );
         default:
           return null;
