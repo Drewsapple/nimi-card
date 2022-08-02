@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { ReactComponent as AnimatedFooter } from '../../assets/svg/animated-footer.svg';
+import { ReactComponent as DefaultNimi } from '../../assets/svg/default-nimi.svg';
 import { ReactComponent as StyledNimiBigSvg } from '../../assets/svg/nimi-text.svg';
 import { ExternalLink } from '../ExternalLink';
 
@@ -84,7 +85,7 @@ export const StyledNimiBig = styled(StyledNimiBigSvg)`
 export const ProfilePicture = styled.div<{
   image?: string;
 }>(
-  ({ image = 'https://gateway.pinata.cloud/ipfs/QmRwFR4CXRWHd9cXy8xFbUcPHw5oeczg9HsEiP4qt96MZ9' }) => `
+  ({ image = `data:image/svg+xml;utf8,${DefaultNimi}` }) => `
   background-image: url(${image});
   background-position: center, center;
   background-size: cover;
