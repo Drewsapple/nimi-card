@@ -73,6 +73,7 @@ export const StyledNimiBig = styled(StyledNimiBigSvg)`
   margin-top: 22px;
   position: absolute;
   z-index: 1;
+  cursor: pointer;
 
   @media (min-width: ${NIMI_CARDS_WIDTH}px) {
     width: 105px;

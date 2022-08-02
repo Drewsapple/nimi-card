@@ -196,7 +196,8 @@ export function NimiCard({ nimi }: NimiCardProps) {
       {!isLanding && (
         <>
           <PicBackgroundTop />
-          <StyledNimiBig />
+
+          <StyledNimiBig onClick={() => window.open('https://nimi.link/', '_black')} />
         </>
       )}
 
