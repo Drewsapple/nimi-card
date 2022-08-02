@@ -43,14 +43,32 @@ export const StyledInnerWrapper = styled.div`
   }
 `;
 
-export const ProfilePictureContainer = styled.div`
+export const ProfilePictureContent = styled.div`
+  perspective: 1000px;
+`;
+
+export const ProfilePictureContainer = styled.div<{ isRotate?: boolean }>`
+  position: relative;
   display: flex;
   cursor: pointer;
   flex-direction: column;
   width: 100%;
   align-items: center;
   transform-style: preserve-3d;
+  transform: rotateY(${(props) => (props.isRotate ? '180deg' : 'rotateY(0)')});
+  transition: 0.3s ease;
+  height: 45px;
   perspective: 5000px;
+`;
+
+export const ProfilePictureWreapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 185px;
+  width: 185px;
+  backface-visibility: hidden;
 `;
 
 export const PicBackgroundTop = styled.div`
@@ -92,7 +110,6 @@ export const ProfilePicture = styled.div<{
   border-radius: 200px;
   height: 185px;
   width: 185px;
-  margin-top: -140px;
   z-index: 1;
 `
 );

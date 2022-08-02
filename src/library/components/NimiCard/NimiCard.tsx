@@ -30,6 +30,8 @@ import {
   PoapTitle,
   ProfilePicture,
   ProfilePictureContainer,
+  ProfilePictureContent,
+  ProfilePictureWreapper,
   Section,
   SectionItemContainer,
   SectionItemContainerGrid,
@@ -148,31 +150,34 @@ const NoLinks = styled.div`
 `;
 
 const StyledQrCodeWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) rotateY(180deg);
   background-position: center, center;
   display: flex;
-  overflow: hidden;
   justify-content: center;
   align-items: center;
   background-size: cover;
-  border-radius: 200px;
+  border-radius: 50%;
   height: 185px;
   background-color: white;
   width: 185px;
-  margin-top: -140px;
+  backface-visibility: hidden;
   z-index: 1;
 `;
 
 const QrCodeSvg = styled(QrCodeLogo)`
   position: absolute;
   z-index: 1;
-  margin-left: 138px;
-  margin-top: -4px;
+  bottom: 0;
+  right: 0;
 `;
 const AvatarSvg = styled(Avatar)`
   position: absolute;
   z-index: 1;
-  margin-left: 138px;
-  margin-top: 140px;
+  right: 0;
+  bottom: 0;
 `;
 const StyledQrCode = styled(QRCode)`
   box-shadow: 0px 26px 56px -20px rgba(74, 48, 140, 0.25);
@@ -201,21 +206,18 @@ export function NimiCard({ nimi }: NimiCardProps) {
       )}
 
       <StyledInnerWrapper>
-        <ProfilePictureContainer onClick={() => setIsQrCode(!isQrCode)}>
-          {isQrCode ? (
-            <>
-              <StyledQrCodeWrapper>
-                <StyledQrCode size={110} eyeRadius={15} qrStyle="squares" value={`https://${ensName}.limo`} />
-                <AvatarSvg />
-              </StyledQrCodeWrapper>
-            </>
-          ) : (
-            <>
+        <ProfilePictureContent>
+          <ProfilePictureContainer onClick={() => setIsQrCode(!isQrCode)} isRotate={isQrCode}>
+            <ProfilePictureWreapper>
               <ProfilePicture image={image ? image.url : displayImageUrl} />
               <QrCodeSvg />
-            </>
-          )}
-        </ProfilePictureContainer>
+            </ProfilePictureWreapper>
+            <StyledQrCodeWrapper>
+              <StyledQrCode size={110} eyeRadius={15} qrStyle="squares" value={`https://${ensName}.limo`} />
+              <AvatarSvg />
+            </StyledQrCodeWrapper>
+          </ProfilePictureContainer>
+        </ProfilePictureContent>
 
         <DisplayName>{displayName}</DisplayName>
         <AddressBar>
