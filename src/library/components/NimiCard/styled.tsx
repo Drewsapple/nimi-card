@@ -245,10 +245,14 @@ export const SectionItemContainerGrid = styled.div`
 export const NimiTextFooter = styled(StyledNimiBigSvg)`
   position: absolute;
   min-height: 25px;
-  bottom: 18px;
+  bottom: 20px;
   z-index: 1;
   left: 50%;
   transform: translate(-50%, 0);
+
+  @media (max-width: ${NIMI_CARDS_WIDTH}px) {
+    bottom: 12px;
+  }
 `;
 export const AddressButton = styled.div`
   display: flex;
