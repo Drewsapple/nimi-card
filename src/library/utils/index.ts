@@ -1,4 +1,4 @@
-import { NimiBlockchain, NimiLinkBaseDetails, NimiLinkType } from '../components/NimiCard/types';
+import { Nimi, NimiBlockchain, NimiLinkBaseDetails, NimiLinkType } from '../components/NimiCard/types';
 import { NIMI_BLOCKCHAIN_DETAILS, nimiLinkDetailsExtended } from '../constants';
 /**
  * Returns true if value is proper url
@@ -66,4 +66,15 @@ export function generateLink({ type, content }: NimiLinkBaseDetails): string {
     return content;
   }
   return nimiLinkDetailsExtended[type].prepend + content;
+}
+
+/**
+ * Filters empty links
+ * @param nimi - Nimi object
+ * @returns Filtered nimi object
+ */
+export function filterEmptyLinks(nimi: Nimi): Nimi {
+  if (nimi.links) nimi.links = nimi.links.filter(({ content }) => content !== '');
+
+  return nimi;
 }

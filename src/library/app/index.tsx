@@ -1,5 +1,6 @@
 import { Nimi, NimiCard } from '../components/NimiCard';
 import { Providers } from '../providers';
+import { filterEmptyLinks } from '../utils';
 
 export interface CardAppProps {
   nimi: Nimi;
@@ -10,11 +11,10 @@ export interface CardAppProps {
  * Providers, necessary data, and rendering.
  */
 export function CardApp({ nimi }: CardAppProps) {
-  //filter empty links
-  if (nimi.links) nimi.links = nimi.links.filter(({ content }) => content !== '');
+  const filteredNimi = filterEmptyLinks(nimi);
   return (
     <Providers>
-      <NimiCard nimi={nimi} />
+      <NimiCard nimi={filteredNimi} />
     </Providers>
   );
 }
