@@ -10,6 +10,8 @@ export interface CardAppProps {
  * Providers, necessary data, and rendering.
  */
 export function CardApp({ nimi }: CardAppProps) {
+  //filter empty links
+  if (nimi.links) nimi.links = nimi.links.filter(({ content }) => content !== '');
   return (
     <Providers>
       <NimiCard nimi={nimi} />
