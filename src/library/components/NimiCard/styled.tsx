@@ -296,4 +296,5 @@ export const ShadowButton = styled.div<{ color: string }>`
 export const FooterWrapper = styled.div`
   position: relative;
   bottom: 0;
+  width: 100%;
 `;
