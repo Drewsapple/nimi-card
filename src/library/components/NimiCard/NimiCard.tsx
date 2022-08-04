@@ -193,14 +193,16 @@ export function NimiCard({ nimi }: NimiCardProps) {
 
   useEffect(() => {
     const textPath = document.querySelector('#animated-text-path');
-    let p = 0;
+    let p = 30;
     textPathAnimationLoop();
     function textPathAnimationLoop() {
       if (!textPath) return;
       p += 0.07; // change to tweak the speed
-      if (p > 29.7) p = 0;
+      if (p > 32.6) p = 0;
       textPath.setAttribute('startOffset', p + '%');
-      window.requestAnimationFrame(textPathAnimationLoop);
+      setTimeout(() => {
+        window.requestAnimationFrame(textPathAnimationLoop);
+      }, 1000 / 60);
     }
   }, []);
 

@@ -94,6 +94,7 @@ export const ProfilePicture = styled.div<{
   border-radius: 200px;
   height: 185px;
   width: 185px;
+  font-weight: 600;
   margin-top: -140px;
   z-index: 1;
 `
@@ -266,6 +267,8 @@ export const Footer = styled(AnimatedFooter)`
   margin-top: auto;
   width: 100%;
   min-height: 81px;
+  font-weight: 600;
+  font-family: 'Archivo', sans-serif !important;
   display: flex; ;
 `;
 
