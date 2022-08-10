@@ -73,6 +73,16 @@ describe('Validators', () => {
       });
     });
 
+    test('throws when Discord username is a URL', () => {
+      const linkPayload: NimiLinkBaseDetails = {
+        type: 'DISCORD' as NimiLinkType,
+        label: '',
+        content: 'https://discord.com/users/Violet#6640',
+        title: '',
+      };
+      expect(link.validate(linkPayload)).rejects.toThrow();
+    });
+
     test('throws when the link type is not registered ', () => {
       const linkPayload: NimiLinkBaseDetails = {
         type: 'NOT_REGISTERED' as any,
