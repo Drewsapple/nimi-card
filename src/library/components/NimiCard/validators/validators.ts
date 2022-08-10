@@ -1,13 +1,21 @@
 import isEmail from 'validator/lib/isEmail';
 import * as Yup from 'yup';
-import { isValidUrl } from '../../../utils';
 
+import { isValidUrl } from '../../../utils';
 import { Nimi, NimiBlockchain, NimiBlockchainAddress, NimiLinkBaseDetails, NimiLinkType } from '../types';
 import { NimiWidgetType } from '../types/NimiWidget';
 import { validators as addressValidators, evmAddress as evmAddressValidator } from './blockchainAddress';
 import { isDiscordUsername } from './discord';
+import { isGithubUsername } from './github';
 import { nimiImageUrl } from './image';
+import { isInstagramUsername } from './instagram';
 import { isLensterUsername } from './lenster';
+import { isLinkedInUsername } from './linkedin';
+import { isMediumUsername } from './medium';
+import { isRedditUsername } from './reddit';
+import { isTelegramUsername } from './telegram';
+import { isTwitterUsername } from './twitter';
+import { isYoutubeUsername } from './youtube';
 
 /**
  * Display name validator
@@ -115,6 +123,14 @@ export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
           throw new Error('Invalid NimiLinkType');
         }
 
+        // URL
+        if (linkType === NimiLinkType.URL) {
+          if (!isValidUrl(value as any)) {
+            throw new Error('Invalid URL');
+          }
+          return true;
+        }
+
         // Email
         if (linkType === NimiLinkType.EMAIL) {
           if (!isEmail(value)) {
@@ -123,10 +139,58 @@ export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
           return true;
         }
 
-        // Discord
-        if (linkType === NimiLinkType.DISCORD) {
-          if (!isDiscordUsername(value)) {
-            throw new Error('Invalid Discord username');
+        //Twitter
+        if (linkType === NimiLinkType.TWITTER) {
+          if (!isTwitterUsername(value)) {
+            throw new Error('Invalid twitter username');
+          }
+          return true;
+        }
+
+        //Instagram
+        if (linkType === NimiLinkType.INSTAGRAM) {
+          if (!isInstagramUsername(value)) {
+            throw new Error('Invalid instagram username');
+          }
+          return true;
+        }
+
+        //LinkedIn
+        if (linkType === NimiLinkType.LINKEDIN) {
+          if (!isLinkedInUsername(value)) {
+            throw new Error('Invalid linkedin username');
+          }
+          return true;
+        }
+
+        //Youtube
+        if (linkType === NimiLinkType.YOUTUBE_CHANNEL) {
+          if (!isYoutubeUsername(value)) {
+            throw new Error('Invalid youtube channel');
+          }
+          return true;
+        }
+
+        //Twitch
+        if (linkType === NimiLinkType.TWITCH) {
+          if (!isTwitterUsername(value)) {
+            throw new Error('Invalid twitch username');
+          }
+          return true;
+        }
+
+        //Github
+        if (linkType === NimiLinkType.GITHUB) {
+          if (!isGithubUsername(value)) {
+            throw new Error('Invalid github username');
+          }
+          return true;
+        }
+
+        //Medium
+        if (linkType === NimiLinkType.MEDIUM) {
+          if (!isMediumUsername(value)) {
+            throw new Error('Invalid medium username');
           }
           return true;
         }
@@ -139,10 +203,26 @@ export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
           return true;
         }
 
-        // URL
-        if (linkType === NimiLinkType.URL) {
-          if (!isValidUrl(value as any)) {
-            throw new Error('Invalid URL');
+        //Telegram
+        if (linkType === NimiLinkType.TELEGRAM) {
+          if (!isTelegramUsername(value)) {
+            throw new Error('Invalid telegram username');
+          }
+          return true;
+        }
+
+        //Reddit
+        if (linkType === NimiLinkType.REDDIT) {
+          if (!isRedditUsername(value)) {
+            throw new Error('Invalid reddit username');
+          }
+          return true;
+        }
+
+        // Discord
+        if (linkType === NimiLinkType.DISCORD) {
+          if (!isDiscordUsername(value)) {
+            throw new Error('Invalid Discord username');
           }
           return true;
         }
