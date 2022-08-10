@@ -1,5 +1,6 @@
 import isEmail from 'validator/lib/isEmail';
 import * as Yup from 'yup';
+import { isValidUrl } from '../../../utils';
 
 import { Nimi, NimiBlockchain, NimiBlockchainAddress, NimiLinkBaseDetails, NimiLinkType } from '../types';
 import { NimiWidgetType } from '../types/NimiWidget';
@@ -94,6 +95,8 @@ export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
       name: 'customNimiLinkValidator',
       message: '${path} must be a valid Nimi link',
       test: function customNimiLinkValidator(value) {
+        const linkType = this.parent.type;
+
         if (process.env.NODE_ENV !== 'production') {
           console.log({
             type: this.parent.type,
@@ -108,12 +111,12 @@ export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
         }
 
         // Invalid link type
-        if (!NimiLinkType[this.parent.type]) {
+        if (!NimiLinkType[linkType]) {
           throw new Error('Invalid NimiLinkType');
         }
 
         // Email
-        if (this.parent.type === NimiLinkType.EMAIL) {
+        if (linkType === NimiLinkType.EMAIL) {
           if (!isEmail(value)) {
             throw new Error('Invalid email address');
           }
@@ -121,7 +124,7 @@ export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
         }
 
         // Discord
-        if (this.parent.type === NimiLinkType.DISCORD) {
+        if (linkType === NimiLinkType.DISCORD) {
           if (!isDiscordUsername(value)) {
             throw new Error('Invalid Discord username');
           }
@@ -129,15 +132,20 @@ export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
         }
 
         // Lenster
-        if (this.parent.type === NimiLinkType.LENSTER) {
+        if (linkType === NimiLinkType.LENSTER) {
           if (!isLensterUsername(value)) {
             throw new Error('Invalid Lenster username');
           }
           return true;
         }
 
-        // Must be a validate URL
-        new URL(value as string);
+        // URL
+        if (linkType === NimiLinkType.URL) {
+          if (!isValidUrl(value as any)) {
+            throw new Error('Invalid URL');
+          }
+          return true;
+        }
 
         return true;
       },
