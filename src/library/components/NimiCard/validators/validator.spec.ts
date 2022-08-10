@@ -5,7 +5,7 @@ describe('Validators', () => {
   describe('Link', () => {
     test('throws an error when email invalid', () => {
       const linkPayload: NimiLinkBaseDetails = {
-        type: NimiLinkType.EMAIL,
+        type: 'EMAIL' as NimiLinkType,
         label: '',
         content: '',
         title: '',
@@ -15,7 +15,7 @@ describe('Validators', () => {
 
     test('throws an error when URL is invalid', () => {
       const linkPayload: NimiLinkBaseDetails = {
-        type: NimiLinkType.URL,
+        type: 'URL' as NimiLinkType,
         label: '',
         content: 'aaaaaa',
         title: '',
@@ -25,7 +25,7 @@ describe('Validators', () => {
 
     test('returns the validated payload when URL is valid', () => {
       const linkPayload: NimiLinkBaseDetails = {
-        type: NimiLinkType.URL,
+        type: 'URL' as NimiLinkType,
         label: '',
         content: 'https://example.com',
         title: '',
@@ -40,7 +40,7 @@ describe('Validators', () => {
 
     test('returns the validated payload when URL is valid', () => {
       const linkPayload: NimiLinkBaseDetails = {
-        type: NimiLinkType.DISCORD,
+        type: 'DISCORD' as NimiLinkType,
         label: '',
         content: 'adam',
         title: '',
@@ -50,7 +50,7 @@ describe('Validators', () => {
 
     test('throws when Discord name is invalid', () => {
       const linkPayload: NimiLinkBaseDetails = {
-        type: NimiLinkType.DISCORD,
+        type: 'DISCORD' as NimiLinkType,
         label: '',
         content: 'adam#14',
         title: '',
@@ -60,13 +60,13 @@ describe('Validators', () => {
 
     test('returns the validated payload when Discord name is valid', () => {
       const linkPayload: NimiLinkBaseDetails = {
-        type: NimiLinkType.DISCORD,
+        type: 'DISCORD' as NimiLinkType,
         label: '',
         content: 'adam#1234',
         title: '',
       };
       expect(link.validate(linkPayload)).resolves.toEqual({
-        type: NimiLinkType.DISCORD,
+        type: 'DISCORD' as NimiLinkType,
         label: '',
         content: 'adam#1234',
         title: '',
@@ -81,6 +81,16 @@ describe('Validators', () => {
         title: '',
       };
       expect(link.validate(linkPayload)).rejects.toThrow();
+    });
+
+    test(`validates Twitter username correctly`, () => {
+      const linkPayload: NimiLinkBaseDetails = {
+        type: 'TWITTER' as NimiLinkType,
+        label: '',
+        content: 'adam',
+        title: '',
+      };
+      expect(link.validate(linkPayload)).resolves.toThrow();
     });
   });
 });
