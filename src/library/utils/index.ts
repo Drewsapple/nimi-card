@@ -48,7 +48,7 @@ export function getNimiLinkLabel(nimi: NimiLinkBaseDetails): string {
     const { hostname } = new URL(nimi.content);
     return hostname;
   } else if (isValidUrl(nimi.content)) {
-    const url = new URL('https://twitter.com/0xViolet/');
+    const url = new URL(nimi.content);
 
     return url.pathname.replace(new RegExp('/', 'g'), '');
   }
