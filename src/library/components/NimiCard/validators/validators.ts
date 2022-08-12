@@ -173,9 +173,10 @@ export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
 export const links = Yup.array().of(link);
 
 /**
- * NimiCard schema definition
+ * Nimi schema definition and validator
+ * @deprecated use `nimiCardValidator` instead
  */
-export const nimiCard: Yup.SchemaOf<Nimi> = Yup.object().shape({
+export const nimiCardValidator: Yup.SchemaOf<Nimi> = Yup.object().shape({
   displayName,
   ensName,
   isLanding,
@@ -194,3 +195,9 @@ export const nimiCard: Yup.SchemaOf<Nimi> = Yup.object().shape({
     )
     .optional(),
 });
+
+/**
+ * NimiCard schema definition and validator
+ * @deprecated use `nimiCardValidator` instead
+ */
+export const nimiCard = nimiCardValidator;
