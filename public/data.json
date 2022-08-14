@@ -25,6 +25,7 @@
     { "type": "GITHUB", "label": "Github", "content": "Mi-lan" },
     { "type": "LENSTER", "label": "Lenster", "content": "luduvigo.lens" },
     { "type": "INSTAGRAM", "label": "INSTAGRAM", "content": "something.something" },
+    { "type": "MEDIUM", "label": "medium", "content": "@something" },
     { "type": "REDDIT", "label": "reddit", "content": "reddit" }
   ]
 }
