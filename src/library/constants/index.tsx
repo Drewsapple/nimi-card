@@ -66,12 +66,14 @@ export const nimiLinkDetailsExtended: Record<
   },
   [NimiLinkType.DISCORD]: {
     logo: DiscordLogo,
-    prepend: 'https://discord.com/users/',
+    prepend: '',
   },
   [NimiLinkType.TWITCH]: {
     prepend: 'https://twitch.tv/',
   },
 };
+
+export const NIMI_CARDS_WIDTH = 570;
 
 /**
  * Blockchain logo mapping

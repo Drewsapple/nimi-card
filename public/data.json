@@ -17,6 +17,7 @@
   ],
   "ensName": "nimi.eth",
   "links": [
+<<<<<<< HEAD
     { "type": "DISCORD", "label": "Discord", "content": "Violet#6640" },
     { "type": "EMAIL", "label": "Email", "content": "smilenostress@gmail.com" },
     { "type": "URL", "label": "Website", "content": "https://github.com" },
@@ -27,5 +28,14 @@
     { "type": "INSTAGRAM", "label": "INSTAGRAM", "content": "something.something" },
     { "type": "MEDIUM", "label": "medium", "content": "@something" },
     { "type": "REDDIT", "label": "reddit", "content": "reddit" }
+=======
+    { "type": "DISCORD", "label": "Discord", "content": "violet#6640" },
+    { "type": "EMAIL", "label": "Email", "content": "smilenostress@gmail.com" },
+    { "type": "URL", "label": "Website", "content": "" },
+    { "type": "TWITTER", "label": "Twitter", "content": "0xViolet" },
+    { "type": "LINKEDIN", "label": "Github", "content": "https://linkedin.com/in/Mi-lan" },
+    { "type": "GITHUB", "label": "Github", "content": "https://github.com/Mi-lan" },
+    { "type": "LENSTER", "label": "Lenster", "content": "luduvigo.lens" }
+>>>>>>> 03c8ac860bf1f53536d76d83a0bbec7624ad35f7
   ]
 }
