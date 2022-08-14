@@ -1,4 +1,4 @@
-import { FC, SVGProps, useState } from 'react';
+import { FC, SVGProps, useEffect, useState } from 'react';
 import { QRCode } from 'react-qrcode-logo';
 import styled from 'styled-components';
 
@@ -27,6 +27,7 @@ import {
   FooterWrapper,
   NimiTextFooter,
   PicBackgroundTop,
+  PoapSection,
   PoapTitle,
   ProfilePicture,
   ProfilePictureContainer,
@@ -77,7 +78,7 @@ function renderWidgets(nimiWidgetList: NimiCardProps['nimi']['widgets'], ensName
       switch (widget.type) {
         case NimiWidgetType.POAP:
           return (
-            <Section key={widget.type + '-' + widget.address}>
+            <PoapSection key={widget.type + '-' + widget.address}>
               <PoapTitle>
                 <SectionTitle>POAPs</SectionTitle>
                 <ShadowButton
@@ -87,12 +88,12 @@ function renderWidgets(nimiWidgetList: NimiCardProps['nimi']['widgets'], ensName
                   href={`https://app.poap.xyz/scan/${ensName}`}
                   color="purple"
                 >
-                  View Full Collection <ExternalLinkSvg />
+                  Full Collection <ExternalLinkSvg />
                 </ShadowButton>
               </PoapTitle>
 
               <POAPWidget address={widget.address} />
-            </Section>
+            </PoapSection>
           );
         default:
           return null;
@@ -196,12 +197,28 @@ export function NimiCard({ nimi }: NimiCardProps) {
   const { ensAddress, displayName, displayImageUrl, image, addresses, description, ensName, links } =
     validateNimi as Nimi;
 
+  useEffect(() => {
+    const textPath = document.querySelector('#animated-text-path');
+    let p = 30;
+    textPathAnimationLoop();
+    function textPathAnimationLoop() {
+      if (!textPath) return;
+      p += 0.07; // change to tweak the speed
+      if (p > 32.6) p = 0;
+      textPath.setAttribute('startOffset', p + '%');
+      setTimeout(() => {
+        window.requestAnimationFrame(textPathAnimationLoop);
+      }, 1000 / 60);
+    }
+  }, []);
+
   return (
     <StyledWrapper>
       {!isLanding && (
         <>
           <PicBackgroundTop />
-          <StyledNimiBig />
+
+          <StyledNimiBig onClick={() => window.open('https://nimi.link/', '_black')} />
         </>
       )}
 

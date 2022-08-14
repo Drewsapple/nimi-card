@@ -2,6 +2,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { unstable_batchedUpdates } from 'react-dom';
 import styled from 'styled-components';
 
+import { filterEmptyLinks } from '../library';
 import { ReactComponent as NimiLogoMarkSvg } from '../library/assets/svg/nimi-logo-mark.svg';
 import { Nimi, NimiCard, Container as NimiCardContainer } from '../library/components/NimiCard';
 import { Providers } from '../library/providers';
@@ -40,8 +41,10 @@ export function App() {
       .then(async (response) => {
         if (response.ok) {
           const json = (await response.json()) as Nimi;
+          const filteredNimi = filterEmptyLinks(json);
+
           unstable_batchedUpdates(() => {
-            setNimi(json);
+            setNimi(filteredNimi);
             setIsLoading(false);
           });
         }

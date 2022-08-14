@@ -6,6 +6,7 @@ import {
   ThemeProvider as StyledComponentsThemeProvider,
 } from 'styled-components';
 
+import { NIMI_CARDS_WIDTH } from '../library';
 import { Colors } from './styled';
 
 export const MEDIA_WIDTHS = {
@@ -162,7 +163,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body {
-  background-image: url("https://bafybeif5c6xz6ryiyrtm4r6amwiftwrw2kf3llipy6dco27hp3ilftthtm.ipfs.dweb.link/nimi-header-background.d73a42cfaca4acf944f4.png");
+  @media (min-width: ${NIMI_CARDS_WIDTH}px) {
+    background-image: url("https://bafybeif5c6xz6ryiyrtm4r6amwiftwrw2kf3llipy6dco27hp3ilftthtm.ipfs.dweb.link/nimi-header-background.d73a42cfaca4acf944f4.png");
+  }
+
+
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
