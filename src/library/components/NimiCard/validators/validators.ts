@@ -139,6 +139,7 @@ export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
           return true;
         }
 
+<<<<<<< HEAD
         //Twitter
         if (linkType === NimiLinkType.TWITTER) {
           if (!isTwitterUsername(value)) {
@@ -191,6 +192,12 @@ export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
         if (linkType === NimiLinkType.MEDIUM) {
           if (!isMediumUsername(value)) {
             throw new Error('Invalid medium username');
+=======
+        // Discord
+        if (linkType === NimiLinkType.DISCORD) {
+          if (!isDiscordUsername(value)) {
+            throw new Error('Invalid Discord username');
+>>>>>>> a5d4562a1a8ea99601744c35da478a5a79f345c9
           }
           return true;
         }
@@ -203,6 +210,7 @@ export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
           return true;
         }
 
+<<<<<<< HEAD
         //Telegram
         if (linkType === NimiLinkType.TELEGRAM) {
           if (!isTelegramUsername(value)) {
@@ -223,6 +231,12 @@ export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
         if (linkType === NimiLinkType.DISCORD) {
           if (!isDiscordUsername(value)) {
             throw new Error('Invalid Discord username');
+=======
+        // URL
+        if (linkType === NimiLinkType.URL) {
+          if (!isValidUrl(value as any)) {
+            throw new Error('Invalid URL');
+>>>>>>> a5d4562a1a8ea99601744c35da478a5a79f345c9
           }
           return true;
         }
@@ -253,9 +267,10 @@ export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
 export const links = Yup.array().of(link);
 
 /**
- * NimiCard schema definition
+ * Nimi schema definition and validator
+ * @deprecated use `nimiCardValidator` instead
  */
-export const nimiCard: Yup.SchemaOf<Nimi> = Yup.object().shape({
+export const nimiCardValidator: Yup.SchemaOf<Nimi> = Yup.object().shape({
   displayName,
   ensName,
   isLanding,
@@ -274,3 +289,9 @@ export const nimiCard: Yup.SchemaOf<Nimi> = Yup.object().shape({
     )
     .optional(),
 });
+
+/**
+ * NimiCard schema definition and validator
+ * @deprecated use `nimiCardValidator` instead
+ */
+export const nimiCard = nimiCardValidator;

@@ -73,6 +73,16 @@ describe('Validators', () => {
       });
     });
 
+    test('throws when Discord username is a URL', () => {
+      const linkPayload: NimiLinkBaseDetails = {
+        type: 'DISCORD' as NimiLinkType,
+        label: '',
+        content: 'https://discord.com/users/Violet#6640',
+        title: '',
+      };
+      expect(link.validate(linkPayload)).rejects.toThrow();
+    });
+
     test('throws when the link type is not registered ', () => {
       const linkPayload: NimiLinkBaseDetails = {
         type: 'NOT_REGISTERED' as any,
@@ -83,6 +93,7 @@ describe('Validators', () => {
       expect(link.validate(linkPayload)).rejects.toThrow();
     });
 
+<<<<<<< HEAD
     test(`validates Twitter username correctly`, () => {
       const linkPayload: NimiLinkBaseDetails = {
         type: 'TWITTER' as NimiLinkType,
@@ -91,6 +102,21 @@ describe('Validators', () => {
         title: '',
       };
       expect(link.validate(linkPayload)).resolves.toThrow();
+=======
+    test(`returns the validated payload when Twitter username`, () => {
+      const linkPayload: NimiLinkBaseDetails = {
+        type: 'TWITTER' as NimiLinkType,
+        label: '',
+        content: 'test',
+        title: '',
+      };
+      expect(link.validate(linkPayload)).resolves.toEqual({
+        type: 'TWITTER' as NimiLinkType,
+        label: '',
+        content: 'test',
+        title: '',
+      });
+>>>>>>> a5d4562a1a8ea99601744c35da478a5a79f345c9
     });
   });
 });
