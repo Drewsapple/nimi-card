@@ -66,7 +66,7 @@ export const nimiLinkDetailsExtended: Record<
   },
   [NimiLinkType.DISCORD]: {
     logo: DiscordLogo,
-    prepend: 'https://discord.com/users/',
+    prepend: '',
   },
   [NimiLinkType.TWITCH]: {
     prepend: 'https://twitch.tv/',
