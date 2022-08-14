@@ -1,3 +1,5 @@
+import ReactDOMServer from 'react-dom/server';
+
 import { Nimi, NimiBlockchain, NimiLinkBaseDetails, NimiLinkType } from '../components/NimiCard/types';
 import { NIMI_BLOCKCHAIN_DETAILS, nimiLinkDetailsExtended } from '../constants';
 /**
@@ -77,4 +79,13 @@ export function filterEmptyLinks(nimi: Nimi): Nimi {
   if (nimi.links) nimi.links = nimi.links.filter(({ content }) => content !== '');
 
   return nimi;
+}
+
+/**
+ * Encodes a SVG component to base64
+ * @param reactElement - react element
+ * @returns react element's innerHTML
+ */
+export function encodeSVGToDataURI(reactElement) {
+  return 'data:image/svg+xml,' + escape(ReactDOMServer.renderToStaticMarkup(reactElement));
 }

@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 import { ReactComponent as AnimatedFooter } from '../../assets/svg/animated-footer.svg';
-import { ReactComponent as DefaultNimi } from '../../assets/svg/default-nimi.svg';
+import { ReactComponent as NimiLogoSVG } from '../../assets/svg/default-nimi.svg';
 import { ReactComponent as StyledNimiBigSvg } from '../../assets/svg/nimi-text.svg';
 import { NIMI_CARDS_WIDTH } from '../../constants';
+import { encodeSVGToDataURI } from '../../utils';
 import { ExternalLink } from '../ExternalLink';
 
 export const StyledWrapper = styled.div`
@@ -81,10 +82,12 @@ export const StyledNimiBig = styled(StyledNimiBigSvg)`
   }
 `;
 
+const defaultNimiImageURI = encodeSVGToDataURI(<NimiLogoSVG />);
+
 export const ProfilePicture = styled.div<{
   image?: string;
 }>(
-  ({ image = `data:image/svg+xml;utf8,${DefaultNimi}` }) => `
+  ({ image = defaultNimiImageURI }) => `
   background-image: url(${image});
   background-position: center, center;
   background-size: cover;
