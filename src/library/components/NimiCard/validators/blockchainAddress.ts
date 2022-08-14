@@ -18,3 +18,8 @@ export const bitcoinAddress = Yup.string()
     test: (value) => isBitcoinAddress(value as string),
     message: '${path} is not a Bitcoin address',
   });
+
+export const validators = {
+  isEVMAddress,
+  isBitcoinAddress,
+};

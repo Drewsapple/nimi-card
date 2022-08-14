@@ -1,16 +1,19 @@
-import { FC, SVGProps } from 'react';
+import { FC, SVGProps, useState } from 'react';
+import { QRCode } from 'react-qrcode-logo';
 import styled from 'styled-components';
 
+import { ReactComponent as Avatar } from '../../assets/svg/avatar-logo.svg';
 import { ReactComponent as EthereumLogo } from '../../assets/svg/blockchain/ethereum.svg';
 import { ReactComponent as CopyClipboard } from '../../assets/svg/common/copy-clipboard.svg';
 import { ReactComponent as ExternalLinkSvg } from '../../assets/svg/common/external-link.svg';
 import { ReactComponent as LimoText } from '../../assets/svg/limo-text.svg';
 import { ReactComponent as TwitterLogo } from '../../assets/svg/links/twitter.svg';
 import { ReactComponent as NimiLanding } from '../../assets/svg/NimiLanding.svg';
+import { ReactComponent as QrCodeLogo } from '../../assets/svg/qr-code.svg';
 import { ReactComponent as XIcon } from '../../assets/svg/x-icon.svg';
 import { NIMI_BLOCKCHAIN_LOGO_URL, nimiLinkDetailsExtended } from '../../constants';
 import { useToast } from '../../toast';
-import { getExplorerAddressLink, getNimiLinkLabel, shortenAddress } from '../../utils';
+import { generateLink, getExplorerAddressLink, getNimiLinkLabel, shortenAddress } from '../../utils';
 import { Component as POAPWidget } from '../../widgets/poap';
 import {
   AddressBar,
@@ -38,7 +41,7 @@ import {
   StyledNimiBig,
   StyledWrapper,
 } from './styled';
-import { Nimi, NimiBlockchain } from './types';
+import { Nimi, NimiBlockchain, NimiLinkType } from './types';
 import { NimiWidgetType } from './types/NimiWidget';
 import { nimiCard } from './validators';
 
@@ -144,9 +147,42 @@ const NoLinks = styled.div`
   margin-top: 32px;
   color: #757575;
 `;
+
+const StyledQrCodeWrapper = styled.div`
+  background-position: center, center;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  border-radius: 200px;
+  height: 185px;
+  background-color: white;
+  width: 185px;
+  margin-top: -140px;
+  z-index: 1;
+`;
+
+const QrCodeSvg = styled(QrCodeLogo)`
+  position: absolute;
+  z-index: 1;
+  margin-left: 138px;
+  margin-top: -4px;
+`;
+const AvatarSvg = styled(Avatar)`
+  position: absolute;
+  z-index: 1;
+  margin-left: 138px;
+  margin-top: 140px;
+`;
+const StyledQrCode = styled(QRCode)`
+  box-shadow: 0px 26px 56px -20px rgba(74, 48, 140, 0.25);
+  border-radius: 15px;
+`;
 export function NimiCard({ nimi }: NimiCardProps) {
   const validateNimi = nimiCard.validateSync(nimi);
   const toast = useToast();
+  const [isQrCode, setIsQrCode] = useState(false);
   const copyTextShowToast = (value: string, text: string) => {
     navigator.clipboard.writeText(value);
     toast.open(text);
@@ -166,9 +202,22 @@ export function NimiCard({ nimi }: NimiCardProps) {
       )}
 
       <StyledInnerWrapper>
-        <ProfilePictureContainer>
-          <ProfilePicture image={image ? image.url : displayImageUrl} />
+        <ProfilePictureContainer onClick={() => setIsQrCode(!isQrCode)}>
+          {isQrCode ? (
+            <>
+              <StyledQrCodeWrapper>
+                <StyledQrCode size={110} eyeRadius={15} qrStyle="squares" value={`https://${ensName}.limo`} />
+                <AvatarSvg />
+              </StyledQrCodeWrapper>
+            </>
+          ) : (
+            <>
+              <ProfilePicture image={image ? image.url : displayImageUrl} />
+              <QrCodeSvg />
+            </>
+          )}
         </ProfilePictureContainer>
+
         <DisplayName>{displayName}</DisplayName>
         <AddressBar>
           <StyledExternalLink color="shadow1" href={getExplorerAddressLink(NimiBlockchain.ETHEREUM, ensAddress)}>
@@ -189,36 +238,44 @@ export function NimiCard({ nimi }: NimiCardProps) {
 
         {links && links.length > 0 && (
           <SectionItemContainerGrid>
-            {links.map(({ label, type, url }) => (
-              <>
-                {type === 'email' || type === 'discord' ? (
-                  <ShadowButton
-                    color="shadow1"
-                    title={label}
-                    key={`${type}-${url}`}
-                    onClick={() =>
-                      copyTextShowToast(url, `${type.charAt(0).toUpperCase() + type.slice(1)} copied to the clipboard!`)
-                    }
-                  >
-                    {renderSVG(nimiLinkDetailsExtended[type].logo)}
-                    {getNimiLinkLabel({ label, type, url })}
-                  </ShadowButton>
-                ) : (
-                  <ShadowButton
-                    as="a"
-                    color="shadow1"
-                    href={nimiLinkDetailsExtended[type].prepend + url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={label}
-                    key={`${type}-${url}`}
-                  >
-                    {renderSVG(nimiLinkDetailsExtended[type].logo)}
-                    {getNimiLinkLabel({ label, type, url })}
-                  </ShadowButton>
-                )}
-              </>
-            ))}
+            {links.map(({ label, title, type, content }) => {
+              // Title should have presdence over label
+              title = title ? title : label;
+
+              return (
+                <>
+                  {type === NimiLinkType.EMAIL || type === NimiLinkType.DISCORD ? (
+                    <ShadowButton
+                      color="shadow1"
+                      title={title}
+                      key={`${type}-${content}`}
+                      onClick={() =>
+                        copyTextShowToast(
+                          generateLink({ label, type, content }),
+                          `${type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()} copied to the clipboard!`
+                        )
+                      }
+                    >
+                      {renderSVG(nimiLinkDetailsExtended[type].logo)}
+                      {getNimiLinkLabel({ title, type, content })}
+                    </ShadowButton>
+                  ) : (
+                    <ShadowButton
+                      as="a"
+                      color="shadow1"
+                      href={generateLink({ title, type, content })}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={title}
+                      key={`${type}-${content}`}
+                    >
+                      {renderSVG(nimiLinkDetailsExtended[type].logo)}
+                      {getNimiLinkLabel({ title, type, content })}
+                    </ShadowButton>
+                  )}
+                </>
+              );
+            })}
           </SectionItemContainerGrid>
         )}
         {isLanding && links && links.length === 0 && (

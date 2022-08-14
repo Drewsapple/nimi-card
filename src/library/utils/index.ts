@@ -1,5 +1,5 @@
-import { NimiBlockchain, NimiLinkBaseDetails } from '../components/NimiCard/types';
-import { NIMI_BLOCKCHAIN_DETAILS } from '../constants';
+import { Nimi, NimiBlockchain, NimiLinkBaseDetails, NimiLinkType } from '../components/NimiCard/types';
+import { NIMI_BLOCKCHAIN_DETAILS, nimiLinkDetailsExtended } from '../constants';
 /**
  * Returns true if value is proper url
  * @param urlString
@@ -44,10 +44,37 @@ export function shortenAddress(address: string, charsBefore = 4, charsAfter = 4)
  * @returns
  */
 export function getNimiLinkLabel(nimi: NimiLinkBaseDetails): string {
-  if (nimi.type === 'website' && isValidUrl(nimi.url)) {
-    const { hostname } = new URL(nimi.url);
+  if (nimi.type === NimiLinkType.URL && isValidUrl(nimi.content)) {
+    const { hostname } = new URL(nimi.content);
     return hostname;
+  } else if (isValidUrl(nimi.content)) {
+    const url = new URL(nimi.content);
+
+    return url.pathname.replace(new RegExp('/', 'g'), '');
   }
 
-  return nimi.url;
+  return nimi.content;
+}
+
+/**
+ * If its a link returns a link else prepends the base url for given social link
+ * @param nimi - the Nimi link
+ * @returns url
+ */
+export function generateLink({ type, content }: NimiLinkBaseDetails): string {
+  if (isValidUrl(content)) {
+    return content;
+  }
+  return nimiLinkDetailsExtended[type].prepend + content;
+}
+
+/**
+ * Filters empty links
+ * @param nimi - Nimi object
+ * @returns Filtered nimi object
+ */
+export function filterEmptyLinks(nimi: Nimi): Nimi {
+  if (nimi.links) nimi.links = nimi.links.filter(({ content }) => content !== '');
+
+  return nimi;
 }
