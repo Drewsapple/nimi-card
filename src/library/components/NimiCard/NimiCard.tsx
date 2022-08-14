@@ -1,4 +1,4 @@
-import { FC, SVGProps, useState } from 'react';
+import { FC, SVGProps, useEffect, useState } from 'react';
 import { QRCode } from 'react-qrcode-logo';
 import styled from 'styled-components';
 
@@ -192,12 +192,28 @@ export function NimiCard({ nimi }: NimiCardProps) {
   const { ensAddress, displayName, displayImageUrl, image, addresses, description, ensName, links } =
     validateNimi as Nimi;
 
+  useEffect(() => {
+    const textPath = document.querySelector('#animated-text-path');
+    let p = 30;
+    textPathAnimationLoop();
+    function textPathAnimationLoop() {
+      if (!textPath) return;
+      p += 0.07; // change to tweak the speed
+      if (p > 32.6) p = 0;
+      textPath.setAttribute('startOffset', p + '%');
+      setTimeout(() => {
+        window.requestAnimationFrame(textPathAnimationLoop);
+      }, 1000 / 60);
+    }
+  }, []);
+
   return (
     <StyledWrapper>
       {!isLanding && (
         <>
           <PicBackgroundTop />
-          <StyledNimiBig />
+
+          <StyledNimiBig onClick={() => window.open('https://nimi.link/', '_black')} />
         </>
       )}
 
