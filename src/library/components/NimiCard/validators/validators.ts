@@ -174,7 +174,6 @@ export const links = Yup.array().of(link);
 
 /**
  * Nimi schema definition and validator
- * @deprecated use `nimiCardValidator` instead
  */
 export const nimiCardValidator: Yup.SchemaOf<Nimi> = Yup.object().shape({
   displayName,
