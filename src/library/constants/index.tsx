@@ -73,6 +73,8 @@ export const nimiLinkDetailsExtended: Record<
   },
 };
 
+export const NIMI_CARDS_WIDTH = 570;
+
 /**
  * Blockchain logo mapping
  */
