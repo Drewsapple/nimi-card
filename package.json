@@ -1,6 +1,6 @@
 {
   "name": "nimi-card",
-  "version": "0.8.0-rc.4",
+  "version": "0.8.0-rc.5",
   "private": false,
   "dependencies": {
     "@ethersproject/address": "^5.6.1",
