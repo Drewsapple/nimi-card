@@ -1,4 +1,4 @@
-const DISCORD_USERNAME_PATTERN = /\w+#\d{4}/i;
+const TWITCH_PATTERN = /^(#)?[a-zA-Z0-9]{4,25}$/;
 
 /**
  * Checks if a value is a valid Discord username
@@ -6,5 +6,5 @@ const DISCORD_USERNAME_PATTERN = /\w+#\d{4}/i;
  * @returns
  */
 export function isTwitchUsername(value: any): boolean {
-  return DISCORD_USERNAME_PATTERN.test(value);
+  return TWITCH_PATTERN.test(value);
 }

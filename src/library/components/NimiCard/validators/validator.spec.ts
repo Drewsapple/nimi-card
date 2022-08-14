@@ -93,16 +93,6 @@ describe('Validators', () => {
       expect(link.validate(linkPayload)).rejects.toThrow();
     });
 
-<<<<<<< HEAD
-    test(`validates Twitter username correctly`, () => {
-      const linkPayload: NimiLinkBaseDetails = {
-        type: 'TWITTER' as NimiLinkType,
-        label: '',
-        content: 'adam',
-        title: '',
-      };
-      expect(link.validate(linkPayload)).resolves.toThrow();
-=======
     test(`returns the validated payload when Twitter username`, () => {
       const linkPayload: NimiLinkBaseDetails = {
         type: 'TWITTER' as NimiLinkType,
@@ -116,7 +106,6 @@ describe('Validators', () => {
         content: 'test',
         title: '',
       });
->>>>>>> a5d4562a1a8ea99601744c35da478a5a79f345c9
     });
   });
 });

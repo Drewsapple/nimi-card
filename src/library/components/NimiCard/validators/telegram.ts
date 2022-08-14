@@ -1,10 +1,10 @@
-const DISCORD_USERNAME_PATTERN = /\w+#\d{4}/i;
+const TELEGRAM_PATTERN = /.*[\W](@(?=.{5,64}(?:\s|$))(?![_])(?!.*[_]{2})[a-zA-Z0-9_]+(?<![_.])).*/;
 
 /**
- * Checks if a value is a valid Discord username
+ * Checks if a value is a valid Telegram username
  * @param value
  * @returns
  */
 export function isTelegramUsername(value: any): boolean {
-  return DISCORD_USERNAME_PATTERN.test(value);
+  return TELEGRAM_PATTERN.test(value);
 }

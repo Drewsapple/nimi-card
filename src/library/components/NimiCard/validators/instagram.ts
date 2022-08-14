@@ -1,4 +1,4 @@
-const DISCORD_USERNAME_PATTERN = /\w+#\d{4}/i;
+const INSTAGRAM_PATTERN = /^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)$/;
 
 /**
  * Checks if a value is a valid Discord username
@@ -6,5 +6,5 @@ const DISCORD_USERNAME_PATTERN = /\w+#\d{4}/i;
  * @returns
  */
 export function isInstagramUsername(value: any): boolean {
-  return DISCORD_USERNAME_PATTERN.test(value);
+  return INSTAGRAM_PATTERN.test(value);
 }

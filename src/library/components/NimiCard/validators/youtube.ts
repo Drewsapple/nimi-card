@@ -1,4 +1,4 @@
-const DISCORD_USERNAME_PATTERN = /\w+#\d{4}/i;
+const YOUTUBE_PATTERN = /[a-zA-Z0-9_-]/;
 
 /**
  * Checks if a value is a valid Discord username
@@ -6,5 +6,5 @@ const DISCORD_USERNAME_PATTERN = /\w+#\d{4}/i;
  * @returns
  */
 export function isYoutubeUsername(value: any): boolean {
-  return DISCORD_USERNAME_PATTERN.test(value);
+  return YOUTUBE_PATTERN.test(value);
 }

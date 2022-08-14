@@ -1,4 +1,4 @@
-const DISCORD_USERNAME_PATTERN = /\w+#\d{4}/i;
+const LINKEDIN_PATTERN = /^[a-zA-Z0-9._-]+$/;
 
 /**
  * Checks if a value is a valid Discord username
@@ -6,5 +6,5 @@ const DISCORD_USERNAME_PATTERN = /\w+#\d{4}/i;
  * @returns
  */
 export function isLinkedInUsername(value: any): boolean {
-  return DISCORD_USERNAME_PATTERN.test(value);
+  return LINKEDIN_PATTERN.test(value);
 }

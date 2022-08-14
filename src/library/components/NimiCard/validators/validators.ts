@@ -1,4 +1,3 @@
-import isEmail from 'validator/lib/isEmail';
 import * as Yup from 'yup';
 
 import { isValidUrl } from '../../../utils';
@@ -6,6 +5,7 @@ import { Nimi, NimiBlockchain, NimiBlockchainAddress, NimiLinkBaseDetails, NimiL
 import { NimiWidgetType } from '../types/NimiWidget';
 import { validators as addressValidators, evmAddress as evmAddressValidator } from './blockchainAddress';
 import { isDiscordUsername } from './discord';
+import { isEmail } from './email';
 import { isGithubUsername } from './github';
 import { nimiImageUrl } from './image';
 import { isInstagramUsername } from './instagram';
@@ -139,7 +139,6 @@ export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
           return true;
         }
 
-<<<<<<< HEAD
         //Twitter
         if (linkType === NimiLinkType.TWITTER) {
           if (!isTwitterUsername(value)) {
@@ -192,12 +191,6 @@ export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
         if (linkType === NimiLinkType.MEDIUM) {
           if (!isMediumUsername(value)) {
             throw new Error('Invalid medium username');
-=======
-        // Discord
-        if (linkType === NimiLinkType.DISCORD) {
-          if (!isDiscordUsername(value)) {
-            throw new Error('Invalid Discord username');
->>>>>>> a5d4562a1a8ea99601744c35da478a5a79f345c9
           }
           return true;
         }
@@ -210,7 +203,6 @@ export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
           return true;
         }
 
-<<<<<<< HEAD
         //Telegram
         if (linkType === NimiLinkType.TELEGRAM) {
           if (!isTelegramUsername(value)) {
@@ -231,12 +223,6 @@ export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
         if (linkType === NimiLinkType.DISCORD) {
           if (!isDiscordUsername(value)) {
             throw new Error('Invalid Discord username');
-=======
-        // URL
-        if (linkType === NimiLinkType.URL) {
-          if (!isValidUrl(value as any)) {
-            throw new Error('Invalid URL');
->>>>>>> a5d4562a1a8ea99601744c35da478a5a79f345c9
           }
           return true;
         }

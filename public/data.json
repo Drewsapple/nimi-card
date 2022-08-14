@@ -17,12 +17,14 @@
   ],
   "ensName": "nimi.eth",
   "links": [
-    { "type": "DISCORD", "label": "Discord", "content": "https://discord.com/users/Violet#6640" },
+    { "type": "DISCORD", "label": "Discord", "content": "Violet#6640" },
     { "type": "EMAIL", "label": "Email", "content": "smilenostress@gmail.com" },
-    { "type": "URL", "label": "Website", "content": "" },
-    { "type": "TWITTER", "label": "Twitter", "content": "https://twitter.com/0xViolet" },
-    { "type": "LINKEDIN", "label": "Github", "content": "https://linkedin.com/in/Mi-lan" },
-    { "type": "GITHUB", "label": "Github", "content": "https://github.com/Mi-lan" },
-    { "type": "LENSTER", "label": "Lenster", "content": "luduvigo.lens" }
+    { "type": "URL", "label": "Website", "content": "https://github.com" },
+    { "type": "TWITTER", "label": "Twitter", "content": "0xViolet" },
+    { "type": "LINKEDIN", "label": "LinkedIn", "content": "milan-rasovic-vue" },
+    { "type": "GITHUB", "label": "Github", "content": "Mi-lan" },
+    { "type": "LENSTER", "label": "Lenster", "content": "luduvigo.lens" },
+    { "type": "INSTAGRAM", "label": "INSTAGRAM", "content": "something.something" },
+    { "type": "REDDIT", "label": "reddit", "content": "reddit" }
   ]
 }

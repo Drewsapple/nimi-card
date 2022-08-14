@@ -1,4 +1,4 @@
-const DISCORD_USERNAME_PATTERN = /\w+#\d{4}/i;
+const MEDIUM_USERNAME = /^[@][A-Za-z0-9_]{7,29}$/;
 
 /**
  * Checks if a value is a valid Discord username
@@ -6,5 +6,5 @@ const DISCORD_USERNAME_PATTERN = /\w+#\d{4}/i;
  * @returns
  */
 export function isMediumUsername(value: any): boolean {
-  return DISCORD_USERNAME_PATTERN.test(value);
+  return MEDIUM_USERNAME.test(value);
 }
