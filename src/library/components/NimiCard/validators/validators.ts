@@ -175,7 +175,7 @@ export const links = Yup.array().of(link);
 /**
  * Nimi schema definition and validator
  */
-export const nimiCardValidator: Yup.SchemaOf<Nimi> = Yup.object().shape({
+export const nimiValidator: Yup.SchemaOf<Nimi> = Yup.object().shape({
   displayName,
   ensName,
   isLanding,
@@ -199,4 +199,4 @@ export const nimiCardValidator: Yup.SchemaOf<Nimi> = Yup.object().shape({
  * NimiCard schema definition and validator
  * @deprecated use `nimiCardValidator` instead
  */
-export const nimiCard = nimiCardValidator;
+export const nimiCard = nimiValidator;
