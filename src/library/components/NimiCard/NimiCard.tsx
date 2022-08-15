@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { ReactComponent as Avatar } from '../../assets/svg/avatar-logo.svg';
 import { ReactComponent as EthereumLogo } from '../../assets/svg/blockchain/ethereum.svg';
+import { ReactComponent as SolanaLogo } from '../../assets/svg/blockchain/solana.svg';
 import { ReactComponent as CopyClipboard } from '../../assets/svg/common/copy-clipboard.svg';
 import { ReactComponent as ExternalLinkSvg } from '../../assets/svg/common/external-link.svg';
 import { ReactComponent as LimoText } from '../../assets/svg/limo-text.svg';
@@ -189,8 +190,10 @@ export function NimiCard({ nimi }: NimiCardProps) {
   };
   const isLanding = nimi.isLanding && nimi.isLanding === true;
 
-  const { ensAddress, displayName, displayImageUrl, image, addresses, description, ensName, links } =
+  const { ensAddress, solanaAddress, displayName, displayImageUrl, image, addresses, description, ensName, links } =
     validateNimi as Nimi;
+
+  const domainAdddress = solanaAddress ? solanaAddress : ensAddress ? solanaAddress : '';
 
   useEffect(() => {
     const textPath = document.querySelector('#animated-text-path');
@@ -236,8 +239,17 @@ export function NimiCard({ nimi }: NimiCardProps) {
 
         <DisplayName>{displayName}</DisplayName>
         <AddressBar>
-          <StyledExternalLink color="shadow1" href={getExplorerAddressLink(NimiBlockchain.ETHEREUM, ensAddress)}>
-            <EthereumLogo /> {shortenAddress(ensAddress, 2, 4)}
+          <StyledExternalLink
+            color="shadow1"
+            href={
+              solanaAddress
+                ? getExplorerAddressLink(NimiBlockchain.SOLANA, solanaAddress)
+                : ensAddress
+                ? getExplorerAddressLink(NimiBlockchain.ETHEREUM, ensAddress)
+                : ''
+            }
+          >
+            {solanaAddress ? <SolanaLogo /> : <EthereumLogo />} {shortenAddress(domainAdddress, 2, 4)}
           </StyledExternalLink>
           <Divider />
           <EnsName onClick={() => copyTextShowToast(ensName, 'ENS name copied to clipboard!')}>

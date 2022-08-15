@@ -27,7 +27,12 @@ export const isLanding = Yup.boolean().optional();
 /**
  * The Ethereum address that holds the ENS
  */
-export const ensAddress = evmAddressValidator.required();
+export const ensAddress = evmAddressValidator.optional();
+
+/**
+ * The Solana address that holds the SNS
+ */
+export const solanaAddress = Yup.string().min(32).max(44).optional();
 
 /**
  *
@@ -180,6 +185,7 @@ export const nimiValidator: Yup.SchemaOf<Nimi> = Yup.object().shape({
   ensName,
   isLanding,
   ensAddress,
+  solanaAddress,
   displayImageUrl,
   image: Yup.mixed().oneOf([nimiImageUrl, nimiImageUrl]).optional(),
   description,

@@ -8,6 +8,7 @@ export enum NimiBlockchain {
   LITECOIN = 'LITECOIN',
   POLYGON = 'POLYGON',
   DOGECOIN = 'DOGECOIN',
+  SOLANA = 'SOLANA',
 }
 
 export interface NimiBlockchainAddress {

@@ -1,20 +1,11 @@
 {
   "displayName": "Nimi",
   "displayImageUrl": "https://gateway.pinata.cloud/ipfs/QmTVmDTUNnMChujFptE4gQvo2QH2yBpj4YX2wzVT1mdZEv",
-  "addresses": [
-    {
-      "address": "0x4e675ceB415fC41700fb821fF3B43cE5C8B9a83B",
-      "blockchain": "ETHEREUM"
-    }
-  ],
+  "addresses": [],
   "description": "Host your personal page on your ENS domain! Nimi 0.1.alpha live on Ethereum Mainnet :) #devconnect #ETHAmsterdam",
-  "ensAddress": "0x4e675ceB415fC41700fb821fF3B43cE5C8B9a83B",
-  "widgets": [
-    {
-      "type": "POAP",
-      "address": "0xF006779eAbE823F8EEd05464A1628383af1f7afb"
-    }
-  ],
+  "solanaAddress": "HP9682P96WeTUNmawUdMKAQAafn2KmYdc2MUv4nU22pT",
+  "ensAddress": "0x26358E62C2eDEd350e311bfde51588b8383A9315",
+  "widgets": [],
   "ensName": "nimi.eth",
   "links": [
     { "type": "DISCORD", "label": "Discord", "content": "violet#6640" },
