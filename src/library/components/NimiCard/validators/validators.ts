@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { isValidUrl } from '../../../utils';
 import { Nimi, NimiBlockchain, NimiBlockchainAddress, NimiLinkBaseDetails, NimiLinkType } from '../types';
 import { NimiWidgetType } from '../types/NimiWidget';
-import { addressValidator, validators } from './blockchainAddress';
+import { validators } from './blockchainAddress';
 import { isDiscordUsername } from './discord';
 import { nimiImageUrl } from './image';
 import { isLensterUsername } from './lenster';
@@ -27,7 +27,7 @@ export const isLanding = Yup.boolean().optional();
 /**
  * The Ethereum address that holds the ENS
  */
-export const address = addressValidator.required();
+export const ensAddress = Yup.string().required();
 
 /**
  *
@@ -179,7 +179,7 @@ export const nimiValidator: Yup.SchemaOf<Nimi> = Yup.object().shape({
   displayName,
   ensName,
   isLanding,
-  address,
+  ensAddress,
   displayImageUrl,
   image: Yup.mixed().oneOf([nimiImageUrl, nimiImageUrl]).optional(),
   description,

@@ -1,4 +1,6 @@
-import { FC, SVGProps, useEffect, useState } from 'react';
+import { getAddress } from '@ethersproject/address';
+
+import { FC, SVGProps, useEffect, useMemo, useState } from 'react';
 import { QRCode } from 'react-qrcode-logo';
 import styled from 'styled-components';
 
@@ -190,7 +192,8 @@ export function NimiCard({ nimi }: NimiCardProps) {
   };
   const isLanding = nimi.isLanding && nimi.isLanding === true;
 
-  const { address, displayName, displayImageUrl, image, addresses, description, ensName, links } = validateNimi as Nimi;
+  const { ensAddress, displayName, displayImageUrl, image, addresses, description, ensName, links } =
+    validateNimi as Nimi;
 
   useEffect(() => {
     const textPath = document.querySelector('#animated-text-path');
@@ -206,6 +209,13 @@ export function NimiCard({ nimi }: NimiCardProps) {
       }, 1000 / 60);
     }
   }, []);
+  const isEthereum = useMemo(() => {
+    try {
+      return getAddress(ensAddress);
+    } catch {
+      return false;
+    }
+  }, [ensAddress]);
 
   return (
     <StyledWrapper>
@@ -236,8 +246,15 @@ export function NimiCard({ nimi }: NimiCardProps) {
 
         <DisplayName>{displayName}</DisplayName>
         <AddressBar>
-          <StyledExternalLink color="shadow1" href={getExplorerAddressLink(NimiBlockchain.ETHEREUM, address)}>
-            {address ? <SolanaLogo /> : <EthereumLogo />} {shortenAddress(address, 2, 4)}
+          <StyledExternalLink
+            color="shadow1"
+            href={
+              isEthereum
+                ? getExplorerAddressLink(NimiBlockchain.ETHEREUM, ensAddress)
+                : getExplorerAddressLink(NimiBlockchain.SOLANA, ensAddress)
+            }
+          >
+            {isEthereum ? <EthereumLogo /> : <SolanaLogo />} {shortenAddress(ensAddress, 2, 4)}
           </StyledExternalLink>
           <Divider />
           <EnsName onClick={() => copyTextShowToast(ensName, 'ENS name copied to clipboard!')}>

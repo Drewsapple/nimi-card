@@ -32,7 +32,7 @@ export interface Nimi {
   /**
    * Address that hold ENS or Bonfida domain
    */
-  address: string;
+  ensAddress: string;
   /**
    * List of Nimi Links
    */
