@@ -5,6 +5,7 @@ import { ReactComponent as DogecoinLogoUrl } from '../assets/svg/blockchain/doge
 import { ReactComponent as EtherLogoUrl } from '../assets/svg/blockchain/ether.svg';
 import { ReactComponent as LitecoinLogoUrl } from '../assets/svg/blockchain/litecoin.svg';
 import { ReactComponent as PolygonLogoUrl } from '../assets/svg/blockchain/polygon.svg';
+import { ReactComponent as SolanaLogoUrl } from '../assets/svg/blockchain/solana.svg';
 import { ReactComponent as DiscordLogo } from '../assets/svg/links/discord.svg';
 import { ReactComponent as GitHubMarkLogo } from '../assets/svg/links/github.svg';
 import { ReactComponent as InstagramLogo } from '../assets/svg/links/instagram.svg';
@@ -84,6 +85,7 @@ export const NIMI_BLOCKCHAIN_LOGO_URL: Record<NimiBlockchain, FC<SVGProps<SVGSVG
   [NimiBlockchain.LITECOIN]: LitecoinLogoUrl,
   [NimiBlockchain.DOGECOIN]: DogecoinLogoUrl,
   [NimiBlockchain.POLYGON]: PolygonLogoUrl,
+  [NimiBlockchain.SOLANA]: SolanaLogoUrl,
 };
 
 /**
@@ -109,5 +111,9 @@ export const NIMI_BLOCKCHAIN_DETAILS: Record<NimiBlockchain, NimiBlockchainDetai
   [NimiBlockchain.DOGECOIN]: {
     name: 'Dogecoin',
     explorerAddressUrl: ['https://dogechain.info/address/'],
+  },
+  [NimiBlockchain.SOLANA]: {
+    name: 'Solana',
+    explorerAddressUrl: ['https://solscan.io/account/'],
   },
 };
