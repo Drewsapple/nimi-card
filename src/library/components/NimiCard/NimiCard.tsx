@@ -190,10 +190,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
   };
   const isLanding = nimi.isLanding && nimi.isLanding === true;
 
-  const { ensAddress, solanaAddress, displayName, displayImageUrl, image, addresses, description, ensName, links } =
-    validateNimi as Nimi;
-
-  const domainAdddress = solanaAddress ? solanaAddress : ensAddress ? solanaAddress : '';
+  const { address, displayName, displayImageUrl, image, addresses, description, ensName, links } = validateNimi as Nimi;
 
   useEffect(() => {
     const textPath = document.querySelector('#animated-text-path');
@@ -239,17 +236,8 @@ export function NimiCard({ nimi }: NimiCardProps) {
 
         <DisplayName>{displayName}</DisplayName>
         <AddressBar>
-          <StyledExternalLink
-            color="shadow1"
-            href={
-              solanaAddress
-                ? getExplorerAddressLink(NimiBlockchain.SOLANA, solanaAddress)
-                : ensAddress
-                ? getExplorerAddressLink(NimiBlockchain.ETHEREUM, ensAddress)
-                : ''
-            }
-          >
-            {solanaAddress ? <SolanaLogo /> : <EthereumLogo />} {shortenAddress(domainAdddress, 2, 4)}
+          <StyledExternalLink color="shadow1" href={getExplorerAddressLink(NimiBlockchain.ETHEREUM, address)}>
+            {address ? <SolanaLogo /> : <EthereumLogo />} {shortenAddress(address, 2, 4)}
           </StyledExternalLink>
           <Divider />
           <EnsName onClick={() => copyTextShowToast(ensName, 'ENS name copied to clipboard!')}>

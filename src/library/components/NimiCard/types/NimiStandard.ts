@@ -30,13 +30,9 @@ export interface Nimi {
    */
   ensName: string;
   /**
-   * Address that hold ENS domain
+   * Address that hold ENS or Bonfida domain
    */
-  ensAddress?: string;
-  /**
-   * Address that hold Bonfida domain
-   */
-  solanaAddress?: string;
+  address: string;
   /**
    * List of Nimi Links
    */

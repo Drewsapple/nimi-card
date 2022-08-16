@@ -3,7 +3,7 @@ import { isAddress as isEVMAddress } from '@ethersproject/address';
 import { validate as isBitcoinAddress } from 'bitcoin-address-validation';
 import * as Yup from 'yup';
 
-export const evmAddress = Yup.string()
+export const addressValidator = Yup.string()
   .required()
   .test({
     name: 'isEVMAddress',

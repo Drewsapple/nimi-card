@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { isValidUrl } from '../../../utils';
 import { Nimi, NimiBlockchain, NimiBlockchainAddress, NimiLinkBaseDetails, NimiLinkType } from '../types';
 import { NimiWidgetType } from '../types/NimiWidget';
-import { validators as addressValidators, evmAddress as evmAddressValidator } from './blockchainAddress';
+import { addressValidator, validators } from './blockchainAddress';
 import { isDiscordUsername } from './discord';
 import { nimiImageUrl } from './image';
 import { isLensterUsername } from './lenster';
@@ -27,12 +27,7 @@ export const isLanding = Yup.boolean().optional();
 /**
  * The Ethereum address that holds the ENS
  */
-export const ensAddress = evmAddressValidator.optional();
-
-/**
- * The Solana address that holds the SNS
- */
-export const solanaAddress = Yup.string().min(32).max(44).optional();
+export const address = addressValidator.required();
 
 /**
  *
@@ -75,10 +70,10 @@ export const blockchainWallet: Yup.SchemaOf<NimiBlockchainAddress> = Yup.object(
       name: 'customNimiBlockchainAddressValidators',
       test: function customNimiBlockchainAddressValidators(value) {
         if (this.parent.blockchain === NimiBlockchain.BITCOIN) {
-          return addressValidators.isBitcoinAddress(value as string);
+          return validators.isBitcoinAddress(value as string);
         }
 
-        return addressValidators.isEVMAddress(value as string);
+        return validators.isEVMAddress(value as string);
       },
     }),
 });
@@ -184,8 +179,7 @@ export const nimiValidator: Yup.SchemaOf<Nimi> = Yup.object().shape({
   displayName,
   ensName,
   isLanding,
-  ensAddress,
-  solanaAddress,
+  address,
   displayImageUrl,
   image: Yup.mixed().oneOf([nimiImageUrl, nimiImageUrl]).optional(),
   description,

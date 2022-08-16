@@ -11,6 +11,16 @@ export enum NimiBlockchain {
   SOLANA = 'SOLANA',
 }
 
+export enum AddressType {
+  ETHEREUM,
+  SOLANA,
+}
+
+export interface AddressDetails {
+  address: string;
+  type: AddressType;
+}
+
 export interface NimiBlockchainAddress {
   address: string;
   blockchain: NimiBlockchain;
