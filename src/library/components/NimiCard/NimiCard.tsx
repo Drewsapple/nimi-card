@@ -46,7 +46,7 @@ import {
 } from './styled';
 import { Nimi, NimiBlockchain, NimiLinkType } from './types';
 import { NimiWidgetType } from './types/NimiWidget';
-import { nimiCard } from './validators';
+import { nimiValidator } from './validators';
 
 interface NimiCardProps {
   nimi: Nimi;
@@ -183,7 +183,7 @@ const StyledQrCode = styled(QRCode)`
   border-radius: 15px;
 `;
 export function NimiCard({ nimi }: NimiCardProps) {
-  const validateNimi = nimiCard.validateSync(nimi);
+  const validateNimi = nimiValidator.validateSync(nimi) as unknown as Nimi;
   const toast = useToast();
   const [isQrCode, setIsQrCode] = useState(false);
   const copyTextShowToast = (value: string, text: string) => {
@@ -192,8 +192,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
   };
   const isLanding = nimi.isLanding && nimi.isLanding === true;
 
-  const { ensAddress, displayName, displayImageUrl, image, addresses, description, ensName, links } =
-    validateNimi as Nimi;
+  const { ensAddress, displayName, displayImageUrl, image, addresses, description, ensName, links } = validateNimi;
 
   useEffect(() => {
     const textPath = document.querySelector('#animated-text-path');

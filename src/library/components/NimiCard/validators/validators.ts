@@ -1,13 +1,10 @@
-import isEmail from 'validator/lib/isEmail';
 import * as Yup from 'yup';
 
-import { isValidUrl } from '../../../utils';
-import { NimiBlockchain, NimiBlockchainAddress, NimiLinkBaseDetails, NimiLinkType } from '../types';
+import { Nimi, NimiBlockchain, NimiBlockchainAddress } from '../types';
 import { NimiWidgetType } from '../types/NimiWidget';
 import { validators } from './blockchainAddress';
-import { isDiscordUsername } from './discord';
 import { nimiImageValidator } from './image';
-import { isLensterUsername } from './lenster';
+import { link } from './link';
 
 /**
  * Display name validator
@@ -84,90 +81,6 @@ export const blockchainWallet: Yup.SchemaOf<NimiBlockchainAddress> = Yup.object(
 export const blockchainAddresses = Yup.array().of(blockchainWallet);
 
 /**
- * A single link definition and validator
- */
-export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
-  type: Yup.mixed().oneOf(Object.values(NimiLinkType)).required(),
-  label: Yup.string().optional(),
-  content: Yup.string()
-    .required()
-    .test({
-      name: 'customNimiLinkValidator',
-      message: '${path} must be a valid Nimi link',
-      test: function customNimiLinkValidator(value) {
-        const linkType = this.parent.type;
-
-        if (process.env.NODE_ENV !== 'production') {
-          console.log({
-            type: this.parent.type,
-            value,
-            // eslint-disable-next-line prefer-rest-params
-            arguments,
-          });
-        }
-
-        if (arguments.length === 0) {
-          throw new Error('Validation failed: customNimiLinkValidator requires arguments');
-        }
-
-        // Invalid link type
-        if (!NimiLinkType[linkType]) {
-          throw new Error('Invalid NimiLinkType');
-        }
-
-        // Email
-        if (linkType === NimiLinkType.EMAIL) {
-          if (!isEmail(value)) {
-            throw new Error('Invalid email address');
-          }
-          return true;
-        }
-
-        // Discord
-        if (linkType === NimiLinkType.DISCORD) {
-          if (!isDiscordUsername(value)) {
-            throw new Error('Invalid Discord username');
-          }
-          return true;
-        }
-
-        // Lenster
-        if (linkType === NimiLinkType.LENSTER) {
-          if (!isLensterUsername(value)) {
-            throw new Error('Invalid Lenster username');
-          }
-          return true;
-        }
-
-        // URL
-        if (linkType === NimiLinkType.URL) {
-          if (!isValidUrl(value as any)) {
-            throw new Error('Invalid URL');
-          }
-          return true;
-        }
-
-        return true;
-      },
-    }),
-  title: Yup.string()
-    .optional()
-    .test({
-      test: function defaultBack(value) {
-        if (arguments.length === 0) {
-          return this.parent.label;
-        }
-
-        if (value) {
-          return value.length <= 60;
-        }
-
-        return true;
-      },
-    }),
-});
-
-/**
  *
  */
 export const links = Yup.array().of(link);
@@ -181,7 +94,33 @@ export const nimiValidator = Yup.object().shape({
   isLanding,
   ensAddress,
   displayImageUrl,
-  image: nimiImageValidator.optional(),
+  image: Yup.object()
+    .test({
+      name: 'customNimiImageValidator',
+      test: function customNimiImageValidator(value) {
+        if (value === null || value === undefined || JSON.stringify(value) === '{}') {
+          return true;
+        }
+
+        const validatedImage = nimiImageValidator.validateSync(value, {
+          abortEarly: true,
+          stripUnknown: true,
+        }) as Nimi['image'];
+
+        if (validatedImage) {
+          return true;
+        }
+
+        throw new Error('Invalid image');
+      },
+    })
+    .transform(function customNimiImageTransfomer(value) {
+      const validatedImage = nimiImageValidator.validateSync(value, {
+        abortEarly: true,
+        stripUnknown: true,
+      }) as Nimi['image'];
+      return validatedImage;
+    }),
   description,
   links,
   addresses: blockchainAddresses,
