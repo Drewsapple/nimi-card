@@ -2,15 +2,24 @@ import * as Yup from 'yup';
 
 import { NimiImageType } from '../types';
 
-export const nimiImageERC721 = Yup.object().shape({
-  type: Yup.string().oneOf([NimiImageType.ERC721]).required(),
-  contract: Yup.string().required(),
-  tokenId: Yup.number().required(),
-  tokenUri: Yup.string().required(),
+/**
+ * The image schema definition and validator
+ */
+export const nimiImageValidator = Yup.object({
+  type: Yup.string().oneOf([NimiImageType.ERC721, NimiImageType.URL]).required(),
   url: Yup.string().url().required(),
-});
-
-export const nimiImageUrl = Yup.object().shape({
-  type: Yup.string().oneOf([NimiImageType.URL]).required(),
-  url: Yup.string().url().required(),
+  /**
+   * ERC721-specific fields for the image
+   */
+  tokenId: Yup.number().optional().when('type', {
+    is: NimiImageType.ERC721,
+    then: Yup.number().required(),
+  }),
+  /**
+   * ERC721-specific fields for the image
+   */
+  contract: Yup.string().optional().when('type', {
+    is: NimiImageType.ERC721,
+    then: Yup.string().required(),
+  }),
 });

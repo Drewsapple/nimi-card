@@ -2,11 +2,11 @@ import isEmail from 'validator/lib/isEmail';
 import * as Yup from 'yup';
 
 import { isValidUrl } from '../../../utils';
-import { Nimi, NimiBlockchain, NimiBlockchainAddress, NimiLinkBaseDetails, NimiLinkType } from '../types';
+import { NimiBlockchain, NimiBlockchainAddress, NimiLinkBaseDetails, NimiLinkType } from '../types';
 import { NimiWidgetType } from '../types/NimiWidget';
 import { validators } from './blockchainAddress';
 import { isDiscordUsername } from './discord';
-import { nimiImageUrl } from './image';
+import { nimiImageValidator } from './image';
 import { isLensterUsername } from './lenster';
 
 /**
@@ -175,13 +175,13 @@ export const links = Yup.array().of(link);
 /**
  * Nimi schema definition and validator
  */
-export const nimiValidator: Yup.SchemaOf<Nimi> = Yup.object().shape({
+export const nimiValidator = Yup.object().shape({
   displayName,
   ensName,
   isLanding,
   ensAddress,
   displayImageUrl,
-  image: Yup.mixed().oneOf([nimiImageUrl, nimiImageUrl]).optional(),
+  image: nimiImageValidator,
   description,
   links,
   addresses: blockchainAddresses,
