@@ -181,7 +181,7 @@ export const nimiValidator = Yup.object().shape({
   isLanding,
   ensAddress,
   displayImageUrl,
-  image: nimiImageValidator,
+  image: nimiImageValidator.optional(),
   description,
   links,
   addresses: blockchainAddresses,
