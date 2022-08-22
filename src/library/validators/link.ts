@@ -1,8 +1,8 @@
 import isEmail from 'validator/lib/isEmail';
 import * as Yup from 'yup';
 
-import { isValidUrl } from '../../../utils';
 import { NimiLinkBaseDetails, NimiLinkType } from '../types';
+import { isValidUrl } from '../utils';
 import { isDiscordUsername } from './discord';
 import { isLensterUsername } from './lenster';
 

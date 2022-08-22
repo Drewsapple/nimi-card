@@ -1,7 +1,7 @@
 import ReactDOMServer from 'react-dom/server';
 
-import { Nimi, NimiBlockchain, NimiLinkBaseDetails, NimiLinkType } from '../components/NimiCard/types';
 import { NIMI_BLOCKCHAIN_DETAILS, nimiLinkDetailsExtended } from '../constants';
+import { Nimi, NimiBlockchain, NimiLinkBaseDetails, NimiLinkType } from '../types';
 /**
  * Returns true if value is proper url
  * @param urlString

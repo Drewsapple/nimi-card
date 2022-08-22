@@ -16,7 +16,10 @@ import { ReactComponent as QrCodeLogo } from '../../assets/svg/qr-code.svg';
 import { ReactComponent as XIcon } from '../../assets/svg/x-icon.svg';
 import { NIMI_BLOCKCHAIN_LOGO_URL, nimiLinkDetailsExtended } from '../../constants';
 import { useToast } from '../../toast';
+import { Nimi, NimiBlockchain, NimiLinkType } from '../../types';
+import { NimiWidgetType } from '../../types/NimiWidget';
 import { generateLink, getExplorerAddressLink, getNimiLinkLabel, shortenAddress } from '../../utils';
+import { nimiValidator } from '../../validators';
 import { Component as POAPWidget } from '../../widgets/poap';
 import {
   AddressBar,
@@ -44,9 +47,6 @@ import {
   StyledNimiBig,
   StyledWrapper,
 } from './styled';
-import { Nimi, NimiBlockchain, NimiLinkType } from './types';
-import { NimiWidgetType } from './types/NimiWidget';
-import { nimiValidator } from './validators';
 
 interface NimiCardProps {
   nimi: Nimi;

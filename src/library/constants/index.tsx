@@ -15,7 +15,7 @@ import { ReactComponent as EmailLogo } from '../assets/svg/links/mail.svg';
 import { ReactComponent as TelegramLogo } from '../assets/svg/links/telegram.svg';
 import { ReactComponent as TwitterLogo } from '../assets/svg/links/twitter.svg';
 import { ReactComponent as WebsiteLogo } from '../assets/svg/links/website.svg';
-import { NimiBlockchain, NimiBlockchainDetails, NimiLinkType } from '../components/NimiCard/types';
+import { NimiBlockchain, NimiBlockchainDetails, NimiLinkType } from '../types';
 
 export const nimiLinkDetailsExtended: Record<
   NimiLinkType,

@@ -2,10 +2,8 @@ import { Suspense, useEffect, useState } from 'react';
 import { unstable_batchedUpdates } from 'react-dom';
 import styled from 'styled-components';
 
-import { filterEmptyLinks } from '../library';
+import { filterEmptyLinks, Nimi, NimiCard, Container as NimiCardContainer, Providers } from '../library';
 import { ReactComponent as NimiLogoMarkSvg } from '../library/assets/svg/nimi-logo-mark.svg';
-import { Nimi, NimiCard, Container as NimiCardContainer } from '../library/components/NimiCard';
-import { Providers } from '../library/providers';
 
 const StyledCenteredContainer = styled.div`
   width: 100%;

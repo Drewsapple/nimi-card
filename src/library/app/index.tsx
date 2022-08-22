@@ -1,5 +1,6 @@
-import { Nimi, NimiCard } from '../components/NimiCard';
+import { NimiCard } from '../components/NimiCard';
 import { Providers } from '../providers';
+import { Nimi } from '../types';
 import { filterEmptyLinks } from '../utils';
 
 export interface CardAppProps {
