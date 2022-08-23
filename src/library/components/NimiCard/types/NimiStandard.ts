@@ -30,9 +30,13 @@ export interface Nimi {
    */
   ensName: string;
   /**
-   * ENS name of the Nimi. nimi.eth.
+   * ENS owner of the Nimi. nimi.eth.
    */
   ensAddress: string;
+  /***
+   * ENS resolved address
+   */
+  resolvedAddress?: string;
   /**
    * List of Nimi Links
    */

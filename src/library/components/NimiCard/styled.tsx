@@ -117,17 +117,31 @@ export const DisplayName = styled.div`
   align-items: center;
   color: #000000;
 `;
+
+export const LeftOfCenter = styled.div`
+  width: 50%;
+  display: flex;
+  justify-content: end;
+  text-align: end;
+  padding-right: 12px;
+`;
+
+export const RightOfCenter = styled.div`
+  width: 50%;
+  display: flex;
+  justify-content: start;
+  text-align: start;
+  padding-left: 12px;
+`;
+
 export const EnsName = styled.div`
   display: flex;
   font-size: 22px;
   height: 16px;
   cursor: pointer;
   font-weight: 600;
-  padding-left: 12px;
-  width: 50%;
   line-height: 16px;
   letter-spacing: 0em;
-  text-align: left;
   gap: 4px;
   color: #383838;
 `;
@@ -150,17 +164,19 @@ export const StyledExternalLink = styled(ExternalLink)`
   font-weight: 400;
   font-size: 17.8976px;
   line-height: 100%;
-  text-transform: uppercase;
-  width: 50%;
+  text-transform: lowercase;
   height: 16px;
-  padding-right: 12px;
-  text-align: end;
   color: ${({ theme }) => theme.shadow1};
-  display: flex;
   gap: 7px;
-  justify-content: end;
 `;
 
+export const Registration = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: centered;
+  align-items: center;
+  margin-top: 24px;
+`;
 export const VerticalSeparator = styled.div`
   margin-right: 30px;
   margin-left: 30px;

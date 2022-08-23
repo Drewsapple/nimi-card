@@ -22,11 +22,14 @@ import {
   EnsName,
   Footer,
   FooterWrapper,
+  LeftOfCenter,
   NimiTextFooter,
   PicBackgroundTop,
   PoapTitle,
   ProfilePicture,
   ProfilePictureContainer,
+  Registration,
+  RightOfCenter,
   Section,
   SectionItemContainer,
   SectionItemContainerGrid,
@@ -152,7 +155,7 @@ export function NimiCard({ nimi }: NimiCardProps) {
   };
   const isLanding = nimi.isLanding && nimi.isLanding === true;
 
-  const { ensAddress, displayName, displayImageUrl, image, addresses, description, ensName, links } =
+  const { ensAddress, displayName, resolvedAddress, displayImageUrl, image, addresses, description, ensName, links } =
     validateNimi as Nimi;
 
   return (
@@ -169,23 +172,44 @@ export function NimiCard({ nimi }: NimiCardProps) {
           <ProfilePicture image={image ? image.url : displayImageUrl} />
         </ProfilePictureContainer>
         <DisplayName>{displayName}</DisplayName>
-        <AddressBar>
-          <StyledExternalLink color="shadow1" href={getExplorerAddressLink(NimiBlockchain.ETHEREUM, ensAddress)}>
-            <EthereumLogo /> {shortenAddress(ensAddress, 2, 4)}
-          </StyledExternalLink>
-          <Divider />
-          <EnsName onClick={() => copyTextShowToast(ensName, 'ENS name copied to clipboard!')}>
-            {ensName}
-            <CopyClipboard />
-          </EnsName>
-        </AddressBar>
+        <>
+          <AddressBar>
+            <LeftOfCenter>
+              {resolvedAddress ? (
+                <StyledExternalLink color="shadow1" href={getExplorerAddressLink(NimiBlockchain.ETHEREUM, ensAddress)}>
+                  <EthereumLogo /> {shortenAddress(resolvedAddress!, 2, 4)}
+                </StyledExternalLink>
+              ) : (
+                `No resolved address`
+              )}
+            </LeftOfCenter>
+            <Divider />
+            <RightOfCenter>
+              <EnsName onClick={() => copyTextShowToast(ensName, 'ENS name copied to clipboard!')}>
+                {ensName}
+                <CopyClipboard />
+              </EnsName>
+            </RightOfCenter>
+          </AddressBar>
+          {resolvedAddress && resolvedAddress != ensAddress ? (
+            <Registration>
+              <LeftOfCenter>Registered by:</LeftOfCenter>
+              <RightOfCenter>
+                <StyledExternalLink color="shadow1" href={getExplorerAddressLink(NimiBlockchain.ETHEREUM, ensAddress)}>
+                  <EthereumLogo /> {shortenAddress(ensAddress, 2, 4)}
+                </StyledExternalLink>
+              </RightOfCenter>
+            </Registration>
+          ) : (
+            <></>
+          )}
+        </>
         <DescriptionWrapper>{description}</DescriptionWrapper>
         {isLanding && (
           <ClaimYourNimi as="a" href="https://nimi.link/" target="_blank" rel="noopener noreferrer">
             Claim Your <NimiTextLogo /> Profile
           </ClaimYourNimi>
         )}
-
         {links && links.length > 0 && (
           <SectionItemContainerGrid>
             {links.map(({ label, type, url }) => (

@@ -26,6 +26,11 @@ export const isLanding = Yup.boolean().optional();
 export const ensAddress = evmAddressValidator.required();
 
 /**
+ * The Ethereum address that the ENS resolves to
+ */
+export const resolvedAddress = evmAddressValidator.optional();
+
+/**
  *
  * @todo - add support for Markdown
  */
@@ -64,15 +69,15 @@ export const blockchainWallet: Yup.SchemaOf<NimiBlockchainAddress> = Yup.object(
     .required()
     .when({
       is: NimiBlockchain.ETHEREUM,
-      then: evmAddressValidator,
+      then: evmAddressValidator.required(),
     })
     .when({
       is: NimiBlockchain.POLYGON,
-      then: evmAddressValidator,
+      then: evmAddressValidator.required(),
     })
     .when({
       is: NimiBlockchain.BITCOIN,
-      then: bitcoinAddressValidator,
+      then: bitcoinAddressValidator.required(),
     }),
 });
 
@@ -103,6 +108,7 @@ export const nimiCard: Yup.SchemaOf<Nimi> = Yup.object().shape({
   ensName,
   isLanding,
   ensAddress,
+  resolvedAddress,
   displayImageUrl,
   image: Yup.mixed().oneOf([nimiImageUrl, nimiImageUrl]).optional(),
   description,
