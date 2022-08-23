@@ -1,9 +1,10 @@
 import * as Yup from 'yup';
 
-import { linkTypeList, Nimi, NimiBlockchain, NimiBlockchainAddress, NimiLinkBaseDetails } from '../types';
+import { Nimi, NimiBlockchain, NimiBlockchainAddress } from '../types';
 import { NimiWidgetType } from '../types/NimiWidget';
-import { bitcoinAddress as bitcoinAddressValidator, evmAddress as evmAddressValidator } from './blockchainAddress';
-import { nimiImageUrl } from './image';
+import { validators } from './blockchainAddress';
+import { nimiImageValidator } from './image';
+import { link } from './link';
 
 /**
  * Display name validator
@@ -23,12 +24,12 @@ export const isLanding = Yup.boolean().optional();
 /**
  * The Ethereum address that holds the ENS
  */
-export const ensAddress = evmAddressValidator.required();
+export const ensAddress = Yup.string().required();
 
 /**
  * The Ethereum address that the ENS resolves to
  */
-export const resolvedAddress = evmAddressValidator.optional();
+export const resolvedAddress = Yup.string().optional();
 
 /**
  *
@@ -67,17 +68,15 @@ export const blockchainWallet: Yup.SchemaOf<NimiBlockchainAddress> = Yup.object(
   blockchain: Yup.mixed().oneOf(Object.keys(NimiBlockchain)).required(),
   address: Yup.string()
     .required()
-    .when({
-      is: NimiBlockchain.ETHEREUM,
-      then: evmAddressValidator.required(),
-    })
-    .when({
-      is: NimiBlockchain.POLYGON,
-      then: evmAddressValidator.required(),
-    })
-    .when({
-      is: NimiBlockchain.BITCOIN,
-      then: bitcoinAddressValidator.required(),
+    .test({
+      name: 'customNimiBlockchainAddressValidators',
+      test: function customNimiBlockchainAddressValidators(value) {
+        if (this.parent.blockchain === NimiBlockchain.BITCOIN) {
+          return validators.isBitcoinAddress(value as string);
+        }
+
+        return validators.isEVMAddress(value as string);
+      },
     }),
 });
 
@@ -87,30 +86,47 @@ export const blockchainWallet: Yup.SchemaOf<NimiBlockchainAddress> = Yup.object(
 export const blockchainAddresses = Yup.array().of(blockchainWallet);
 
 /**
- * A single link definition and validator
- */
-export const link: Yup.SchemaOf<NimiLinkBaseDetails> = Yup.object({
-  type: Yup.mixed().oneOf(Array.from(linkTypeList)).required(),
-  label: Yup.string().optional(),
-  url: Yup.string().required(),
-});
-
-/**
  *
  */
 export const links = Yup.array().of(link);
 
 /**
- * NimiCard schema definition
+ * Nimi schema definition and validator
  */
-export const nimiCard: Yup.SchemaOf<Nimi> = Yup.object().shape({
+export const nimiValidator = Yup.object().shape({
   displayName,
   ensName,
   isLanding,
   ensAddress,
   resolvedAddress,
   displayImageUrl,
-  image: Yup.mixed().oneOf([nimiImageUrl, nimiImageUrl]).optional(),
+  image: Yup.object()
+    .test({
+      name: 'customNimiImageValidator',
+      test: function customNimiImageValidator(value) {
+        if (value === null || value === undefined || JSON.stringify(value) === '{}') {
+          return true;
+        }
+
+        const validatedImage = nimiImageValidator.validateSync(value, {
+          abortEarly: true,
+          stripUnknown: true,
+        }) as Nimi['image'];
+
+        if (validatedImage) {
+          return true;
+        }
+
+        throw new Error('Invalid image');
+      },
+    })
+    .transform(function customNimiImageTransfomer(value) {
+      const validatedImage = nimiImageValidator.validateSync(value, {
+        abortEarly: true,
+        stripUnknown: true,
+      }) as Nimi['image'];
+      return validatedImage;
+    }),
   description,
   links,
   addresses: blockchainAddresses,
@@ -123,3 +139,9 @@ export const nimiCard: Yup.SchemaOf<Nimi> = Yup.object().shape({
     )
     .optional(),
 });
+
+/**
+ * NimiCard schema definition and validator
+ * @deprecated use `nimiCardValidator` instead
+ */
+export const nimiCard = nimiValidator;

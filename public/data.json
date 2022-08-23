@@ -1,21 +1,19 @@
 {
   "displayName": "Nimi",
   "displayImageUrl": "https://gateway.pinata.cloud/ipfs/QmTVmDTUNnMChujFptE4gQvo2QH2yBpj4YX2wzVT1mdZEv",
-  "addresses": [
-    {
-      "address": "0x4e675ceB415fC41700fb821fF3B43cE5C8B9a83B",
-      "blockchain": "ETHEREUM"
-    }
-  ],
+  "addresses": [],
   "description": "Host your personal page on your ENS domain! Nimi 0.1.alpha live on Ethereum Mainnet :) #devconnect #ETHAmsterdam",
-  "ensAddress": "0x097b7feb64d0b272efc3092f833b0e18bd4d1521",
-  "resolvedAddress": "0x4e675ceB415fC41700fb821fF3B43cE5C8B9a83B",
-  "widgets": [
-    {
-      "type": "POAP",
-      "address": "0xF006779eAbE823F8EEd05464A1628383af1f7afb"
-    }
-  ],
+  "ensAddress": "HP9682P96WeTUNmawUdMKAQAafn2KmYdc2MUv4nU22pT",
+  "resolvedAddress": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+  "widgets": [],
   "ensName": "nimi.eth",
-  "links": [{ "type": "discord", "label": "Discord", "url": "Violet#6640" }]
+  "links": [
+    { "type": "DISCORD", "label": "Discord", "content": "violet#6640" },
+    { "type": "EMAIL", "label": "Email", "content": "smilenostress@gmail.com" },
+    { "type": "URL", "label": "Website", "content": "" },
+    { "type": "TWITTER", "label": "Twitter", "content": "0xViolet" },
+    { "type": "LINKEDIN", "label": "Github", "content": "https://linkedin.com/in/Mi-lan" },
+    { "type": "GITHUB", "label": "Github", "content": "https://github.com/Mi-lan" },
+    { "type": "LENSTER", "label": "Lenster", "content": "luduvigo.lens" }
+  ]
 }

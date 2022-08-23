@@ -30,7 +30,7 @@ export interface Nimi {
    */
   ensName: string;
   /**
-   * ENS owner of the Nimi. nimi.eth.
+   * Address that hold ENS or Bonfida domain
    */
   ensAddress: string;
   /***

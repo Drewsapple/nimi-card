@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 import { ReactComponent as AnimatedFooter } from '../../assets/svg/animated-footer.svg';
+import { ReactComponent as NimiLogoSVG } from '../../assets/svg/default-nimi.svg';
 import { ReactComponent as StyledNimiBigSvg } from '../../assets/svg/nimi-text.svg';
+import { NIMI_CARDS_WIDTH } from '../../constants';
+import { encodeSVGToDataURI } from '../../utils';
 import { ExternalLink } from '../ExternalLink';
-
-const NIMI_CARDS_WIDTH = 570;
 
 export const StyledWrapper = styled.div`
   display: flex;
@@ -45,9 +46,12 @@ export const StyledInnerWrapper = styled.div`
 
 export const ProfilePictureContainer = styled.div`
   display: flex;
+  cursor: pointer;
   flex-direction: column;
   width: 100%;
   align-items: center;
+  transform-style: preserve-3d;
+  perspective: 5000px;
 `;
 
 export const PicBackgroundTop = styled.div`
@@ -70,6 +74,7 @@ export const StyledNimiBig = styled(StyledNimiBigSvg)`
   margin-top: 22px;
   position: absolute;
   z-index: 1;
+  cursor: pointer;
 
   @media (min-width: ${NIMI_CARDS_WIDTH}px) {
     width: 105px;
@@ -77,17 +82,21 @@ export const StyledNimiBig = styled(StyledNimiBigSvg)`
   }
 `;
 
+const defaultNimiImageURI = encodeSVGToDataURI(<NimiLogoSVG />);
+
 export const ProfilePicture = styled.div<{
   image?: string;
 }>(
-  ({ image = 'https://gateway.pinata.cloud/ipfs/QmRwFR4CXRWHd9cXy8xFbUcPHw5oeczg9HsEiP4qt96MZ9' }) => `
+  ({ image = defaultNimiImageURI }) => `
   background-image: url(${image});
   background-position: center, center;
   background-size: cover;
   border: 8px solid #FFFFFF;
+  box-shadow: 0px 26px 56px -20px rgba(74, 48, 140, 0.25);
   border-radius: 200px;
-  height: 250px;
-  width: 250px;
+  height: 185px;
+  width: 185px;
+  font-weight: 600;
   margin-top: -140px;
   z-index: 1;
 `
@@ -223,6 +232,14 @@ export const Section = styled.section<{ padding?: string }>`
   width: 100%;
   margin-bottom: 40px;
 `;
+export const PoapSection = styled(Section)`
+  @media (max-width: ${NIMI_CARDS_WIDTH}px) {
+    position: relative;
+    width: calc(100% + 40px);
+    left: -20px;
+    border-radius: 0px;
+  }
+`;
 
 export const SectionTitle = styled.h3`
   font-family: inherit;
@@ -254,10 +271,14 @@ export const SectionItemContainerGrid = styled.div`
 export const NimiTextFooter = styled(StyledNimiBigSvg)`
   position: absolute;
   min-height: 25px;
-  bottom: 25px;
+  bottom: 20px;
   z-index: 1;
   left: 50%;
   transform: translate(-50%, 0);
+
+  @media (max-width: ${NIMI_CARDS_WIDTH}px) {
+    bottom: 12px;
+  }
 `;
 export const AddressButton = styled.div`
   display: flex;
@@ -275,7 +296,9 @@ export const AddressButton = styled.div`
 export const Footer = styled(AnimatedFooter)`
   margin-top: auto;
   width: 100%;
-  min-height: 93px;
+  min-height: 81px;
+  font-weight: 600;
+  font-family: 'Archivo', sans-serif !important;
   display: flex; ;
 `;
 
@@ -299,8 +322,13 @@ export const ShadowButton = styled.div<{ color: string }>`
   box-shadow: 0px 5px 18px rgba(156, 149, 233, 0.2);
   border-radius: 20px;
   color: ${({ theme, color }) => theme[color]};
+  @media (max-width: ${NIMI_CARDS_WIDTH}px) {
+    font-size: 14px;
+    gap: none;
+  }
 `;
 export const FooterWrapper = styled.div`
   position: relative;
   bottom: 0;
+  width: 100%;
 `;
