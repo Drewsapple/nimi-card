@@ -311,39 +311,39 @@ export function NimiCard({ nimi }: NimiCardProps) {
               // Title should have presdence over label
               title = title ? title : label;
 
-              return (
-                <>
-                  {type === NimiLinkType.EMAIL || type === NimiLinkType.DISCORD ? (
-                    <ShadowButton
-                      color="shadow1"
-                      title={title}
-                      key={`${type}-${content}`}
-                      onClick={() =>
-                        copyTextShowToast(
-                          generateLink({ label, type, content }),
-                          `${type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()} copied to the clipboard!`
-                        )
-                      }
-                    >
-                      {renderSVG(nimiLinkDetailsExtended[type].logo)}
-                      {getNimiLinkLabel({ title, type, content })}
-                    </ShadowButton>
-                  ) : (
-                    <ShadowButton
-                      as="a"
-                      color="shadow1"
-                      href={generateLink({ title, type, content })}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title={title}
-                      key={`${type}-${content}`}
-                    >
-                      {renderSVG(nimiLinkDetailsExtended[type].logo)}
-                      {getNimiLinkLabel({ title, type, content })}
-                    </ShadowButton>
-                  )}
-                </>
-              );
+              if (type === NimiLinkType.EMAIL || type === NimiLinkType.DISCORD) {
+                return (
+                  <ShadowButton
+                    color="shadow1"
+                    title={title}
+                    key={`${type}-${content}`}
+                    onClick={() =>
+                      copyTextShowToast(
+                        generateLink({ label, type, content }),
+                        `${type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()} copied to the clipboard!`
+                      )
+                    }
+                  >
+                    {renderSVG(nimiLinkDetailsExtended[type].logo)}
+                    {getNimiLinkLabel({ title, type, content })}
+                  </ShadowButton>
+                );
+              } else {
+                return (
+                  <ShadowButton
+                    as="a"
+                    color="shadow1"
+                    href={generateLink({ title, type, content })}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={title}
+                    key={`${type}-${content}`}
+                  >
+                    {renderSVG(nimiLinkDetailsExtended[type].logo)}
+                    {getNimiLinkLabel({ title, type, content })}
+                  </ShadowButton>
+                );
+              }
             })}
           </SectionItemContainerGrid>
         )}
